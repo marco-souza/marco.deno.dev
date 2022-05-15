@@ -10,7 +10,7 @@ export default function Home() {
         className="my10 h-40 mx-auto rounded-full"
       />
 
-      <div className="text-3xl fw100 animate-bounce-alt animate-count-1 animate-1s">
+      <div className="text-3xl fw100">
         {site.title}
       </div>
 
@@ -18,8 +18,11 @@ export default function Home() {
         {site.subtitle}
       </div>
 
-      <div className="grid gap-8 grid-cols-1 my-10 md:mx-20 md:grid-cols-2 ">
-        <ButtonLink to={site.cta.primary.link}>
+      <div className="grid gap-8 grid-cols-1 my-10 md:mx-20 md:grid-cols-2 animate-bounce-alt animate-count-1 animate-1s">
+        <ButtonLink
+          to={site.cta.primary.link}
+          className="text-pink-400"
+        >
           {site.cta.primary.text}
         </ButtonLink>
         <ButtonLink to={site.cta.primary.link} className="text-pink-100">

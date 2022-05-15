@@ -19,9 +19,14 @@ export function Container({ children, className = "" }: ContainerProps) {
 export function ButtonLink(
   { children, to = "#", className = "" }: ButtonProps,
 ) {
+  const composedClassName = `
+    uppercase inline-block px-8 py-2 text-sm font-medium transition border border-current
+    rounded hover:scale-110 hover:shadow-xl active:opacity-50
+    focus:outline-none focus:ring ${className}
+  `;
   return (
     <Link
-      className={`inline-block px-8 py-2 text-sm font-medium text-pink-400 transition border border-current rounded hover:scale-110 hover:shadow-xl active:opacity-50 focus:outline-none focus:ring ${className}`}
+      className={composedClassName}
       to={to}
     >
       {children}
