@@ -19,8 +19,12 @@ export default function Home() {
       </div>
 
       <div className="grid gap-8 grid-cols-1 my-10 md:mx-20 md:grid-cols-2 ">
-        <ButtonLink to={site.cta.primary.link}>{site.cta.primary.text}</ButtonLink>
-        <ButtonLink to={site.cta.primary.link} className="text-pink-100">{site.cta.secondary.text}</ButtonLink>
+        <ButtonLink to={site.cta.primary.link}>
+          {site.cta.primary.text}
+        </ButtonLink>
+        <ButtonLink to={site.cta.primary.link} className="text-pink-100">
+          {site.cta.secondary.text}
+        </ButtonLink>
       </div>
     </div>
   );

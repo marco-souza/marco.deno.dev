@@ -5,7 +5,6 @@ import { App } from "aleph/react";
 import { serve } from "aleph/server";
 import { renderToReadableStream } from "react-dom/server";
 
-
 serve({
   routes: "./routes/**/*.tsx",
   build: {
@@ -13,8 +12,8 @@ serve({
       presets: [
         presetWebFonts({
           fonts: {
-            sans: 'Roboto',
-            serif: 'Times New Roman',
+            sans: "Roboto",
+            serif: "Times New Roman",
           },
         }),
         presetUno(),

@@ -10,7 +10,7 @@ export const site = {
   avatarUrl: "https://avatars.githubusercontent.com/u/4452113?v=4",
   subtitle: "Software Developer, DevOps Evangelist and Cloud Architect.",
   cta: {
-    primary: { text: 'Contact me', link: '/contact'},
-    secondary: { text: 'Resume', link: '/resume'},
+    primary: { text: "Contact me", link: "/contact" },
+    secondary: { text: "Resume", link: "/resume" },
   },
 };

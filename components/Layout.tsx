@@ -2,7 +2,7 @@ import { Head } from "aleph/react";
 import { site } from "~/settings.ts";
 
 import Navbar from "./Navbar.tsx";
-import { Container, ChildrenProps } from "./shared.tsx";
+import { ChildrenProps, Container } from "./shared.tsx";
 
 export default function Layout({ children }: ChildrenProps) {
   return (

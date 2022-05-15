@@ -1,0 +1,2 @@
+#! /bin/bash
+deno fmt && git add --update

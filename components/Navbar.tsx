@@ -27,7 +27,10 @@ export default function Navbar() {
           <ul className="flex ml-10 items-center space-x-5 font-light text-gray-300">
             {navigationLinks.map((item) => (
               <li key={item.link}>
-                <Link className="rounded-lg p-2 py-1 hover:bg-gray-700" to={item.link}>
+                <Link
+                  className="rounded-lg p-2 py-1 hover:bg-gray-700"
+                  to={item.link}
+                >
                   {item.title}
                 </Link>
               </li>
