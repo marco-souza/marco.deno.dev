@@ -18,17 +18,22 @@ export default function Home() {
         {site.subtitle}
       </div>
 
-      <div className="grid gap-8 grid-cols-1 my-10 md:mx-20 md:grid-cols-2 animate-bounce-alt animate-count-1 animate-1s">
+      <div className="grid gap-8 grid-cols-1 my-10 md:mx-20 md:grid-cols-2">
         <ButtonLink
           to={site.cta.primary.link}
-          className="text-pink-400"
+          className={`text-pink-400 ${buttonAnimation}`}
         >
           {site.cta.primary.text}
         </ButtonLink>
-        <ButtonLink to={site.cta.primary.link} className="text-gray-100">
+        <ButtonLink
+          to={site.cta.primary.link}
+          className={`text-gray-100 ${buttonAnimation} animate-delay-1s`}
+        >
           {site.cta.secondary.text}
         </ButtonLink>
       </div>
     </div>
   );
 }
+
+const buttonAnimation = "animate-bounce-alt animate-count-1 animate-1s";
