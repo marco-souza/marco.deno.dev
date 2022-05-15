@@ -1,6 +1,7 @@
 import { Link } from "aleph/react";
 import { links } from "~/settings.ts";
 import Logo from "./Logo.tsx";
+import { Container } from "./shared.tsx";
 import { GithubIcon, LinkedinIcon, StackOverflowIcon } from "./icons.tsx";
 
 const socialLinks = [
@@ -17,7 +18,7 @@ const navigationLinks = [
 export default function Navbar() {
   return (
     <nav className="bg-gray-900">
-      <div className="flex items-center justify-between max-w-4xl px-8 mx-auto">
+      <Container className="flex items-center justify-between">
         <div className="flex justify-between">
           <Link to="/">
             <Logo />
@@ -47,7 +48,7 @@ export default function Navbar() {
             </li>
           ))}
         </ul>
-      </div>
+      </Container>
     </nav>
   );
 }

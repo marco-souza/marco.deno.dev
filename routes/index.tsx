@@ -1,13 +1,9 @@
-import { Head, Link } from "aleph/react";
+import { Head } from "aleph/react";
 
 export default function Index() {
   return (
     <>
-      <Head>
-        <title>Aleph.js</title>
-        <meta name="description" content="The Fullstack Framework in Deno." />
-      </Head>
-      <div className="h-full light dark:bg-gray-700 flex select-none all:transition-400">
+      <div className="h-full light flex select-none all:transition-400">
         <div className="ma">
           <div className="text-5xl fw100 animate-bounce-alt animate-count-infinite animate-1s">
             unocss

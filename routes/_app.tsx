@@ -1,10 +1,9 @@
-import Navbar from "../components/Navbar.tsx";
+import Layout from "../components/Layout.tsx";
 
 export default function App({ children }: { children: React.ReactNode }) {
   return (
-    <>
-      <Navbar />
+    <Layout>
       {children}
-    </>
+    </Layout>
   );
 }
