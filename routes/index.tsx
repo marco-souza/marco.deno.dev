@@ -1,28 +1,27 @@
-import { Head } from "aleph/react";
+import { site } from "~/settings.ts";
+import { ButtonLink } from "~/components/shared.tsx";
 
-export default function Index() {
+export default function Home() {
   return (
-    <>
-      <div className="h-full light flex select-none all:transition-400">
-        <div className="ma">
-          <div className="text-5xl fw100 animate-bounce-alt animate-count-infinite animate-1s">
-            unocss
-          </div>
-          <div className="op30 text-lg fw300 m1">
-            The instant on-demand Atomic CSS engine.
-          </div>
-          <div className="m2 flex justify-center text-2xl op30 hover:op80 lt-md:m4">
-            <a
-              className="i-carbon-logo-github text-inherit"
-              href="https://github.com/antfu/unocss"
-              target="_blank"
-            />
-          </div>
-        </div>
+    <div className="my-10 grid grid-cols-1 items-center text-center text-gray-200">
+      <img
+        alt="It's Me"
+        src={site.avatarUrl}
+        className="my10 h-40 mx-auto rounded-full"
+      />
+
+      <div className="text-3xl fw100 animate-bounce-alt animate-count-1 animate-1s">
+        {site.title}
       </div>
-      <div className="absolute bottom-5 right-0 left-0 text-center op30 fw300">
-        on-demand · instant · fully customizable
+
+      <div className="op30 fw300 m1 text-md">
+        {site.subtitle}
       </div>
-    </>
+
+      <div className="grid gap-8 grid-cols-1 my-10 md:mx-20 md:grid-cols-2 ">
+        <ButtonLink to={site.cta.primary.link}>{site.cta.primary.text}</ButtonLink>
+        <ButtonLink to={site.cta.primary.link} className="text-pink-100">{site.cta.secondary.text}</ButtonLink>
+      </div>
+    </div>
   );
 }
