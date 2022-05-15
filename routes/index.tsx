@@ -25,7 +25,7 @@ export default function Home() {
         >
           {site.cta.primary.text}
         </ButtonLink>
-        <ButtonLink to={site.cta.primary.link} className="text-pink-100">
+        <ButtonLink to={site.cta.primary.link} className="text-gray-100">
           {site.cta.secondary.text}
         </ButtonLink>
       </div>

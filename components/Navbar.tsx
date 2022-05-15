@@ -24,7 +24,7 @@ export default function Navbar() {
             <Logo />
           </Link>
 
-          <ul className="flex ml-10 items-center space-x-5 font-light text-gray-300">
+          <ul className="flex ml-8 items-center space-x-5 font-light text-gray-300">
             {navigationLinks.map((item) => (
               <li key={item.link}>
                 <Link
@@ -38,11 +38,11 @@ export default function Navbar() {
           </ul>
         </div>
 
-        <ul className="flex items-center space-x-2 text-sm font-medium text-gray-400">
+        <ul className="grid grid-gap-4 grid-cols-3 py-4 text-gray-400">
           {socialLinks.map((item) => (
             <li key={item.link}>
               <Link
-                className="px-8 py-2 rounded-lg hover:text-gray-200"
+                className="rounded-lg hover:text-gray-200"
                 target="_blank"
                 to={item.link}
               >
