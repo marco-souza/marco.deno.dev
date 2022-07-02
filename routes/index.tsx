@@ -21,7 +21,7 @@ export default function Home() {
         {links.map((item) => (
           <a href={item.link}>
             <div class={cardStyle}>
-              <h3>{item.name}</h3>
+              <h2>{item.name}</h2>
             </div>
           </a>
         ))}
