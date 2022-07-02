@@ -5,8 +5,8 @@ import { z } from "zod";
 import { Handlers, PageProps } from "$fresh/server.ts";
 
 const GithubProfile = z.object({
-  login: z.string(),
   name: z.string(),
+  login: z.string(),
   avatar_url: z.string(),
   html_url: z.string(),
   bio: z.string().optional(),
@@ -55,7 +55,7 @@ export const handler: Handlers<Data> = {
     if (!profile.success) {
       const error = GithubException.safeParse(responseBody);
       if (!error.success) {
-        console.log({ responseBody });
+        console.log({ responseBody, err: profile.error });
         return ctx.render({ profile: null, error: null, username });
       }
       return ctx.render({ profile: null, error: error.data, username });
