@@ -61,9 +61,12 @@ export const handler: Handlers<Data> = {
 
 export default function ProfileSearch({ data }: PageProps<Data>) {
   const { profile, username, error } = data;
+  const hasUsername = username.trim() != "";
   return (
     <div class={tw`text-center grid gap-4`}>
-      <h1 class={tw`center text-4xl p-4`}>Github Profile</h1>
+      <h1 class={tw`center text-4xl p-4`}>
+        Github <span class={tw`text-blue-400 font-extralight`}>Finder</span>
+      </h1>
       <form>
         <input
           autoFocus
@@ -78,7 +81,7 @@ export default function ProfileSearch({ data }: PageProps<Data>) {
         </button>
       </form>
       <GithubError error={error} />
-      {username.trim() != "" && (
+      {hasUsername && (
         <div class="grid gap-4 mx-auto ">
           <GithubProfileCard profile={profile} />
         </div>
@@ -89,7 +92,7 @@ export default function ProfileSearch({ data }: PageProps<Data>) {
 
 const GithubError: FunctionComponent<Pick<Data, "error">> = ({ error }) => {
   if (!error) return null;
-  return <p class={tw`text-red-200`}>Oops, {error.message}</p>;
+  return <p class={tw`text-red-300 text-sm`}>Oops, {error.message}</p>;
 };
 
 const GithubProfileCard: FunctionComponent<Pick<Data, "profile">> = (
