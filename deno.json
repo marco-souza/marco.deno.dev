@@ -1,23 +1,17 @@
 {
   "compilerOptions": {
+    "allowJs": false,
     "lib": [
+      "deno.window",
       "dom",
-      "dom.iterable",
       "dom.asynciterable",
-      "deno.ns"
+      "deno.ns",
+      "deno.unstable"
     ],
-    "types": [
-      "https://deno.land/x/aleph@1.0.0-alpha.46/types.d.ts"
-    ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "https://esm.sh/react@18.1.0"
+    "strict": true
   },
-  "importMap": "import_map.json",
   "tasks": {
-    "dev": "deno run -A https://deno.land/x/aleph@1.0.0-alpha.46/cli.ts dev",
-    "start": "deno run -A https://deno.land/x/aleph@1.0.0-alpha.46/cli.ts start",
-    "build": "deno run -A https://deno.land/x/aleph@1.0.0-alpha.46/cli.ts build"
+    "start": "deno run -A --watch=static/,routes/ dev.ts"
   },
-  "fmt": {},
-  "lint": {}
+  "importMap": "./import_map.json"
 }

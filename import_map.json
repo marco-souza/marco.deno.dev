@@ -1,13 +1,15 @@
 {
   "imports": {
-    "~/": "./",
-    "@unocss/": "https://deno.land/x/aleph@1.0.0-alpha.46/lib/@unocss/",
-    "aleph/": "https://deno.land/x/aleph@1.0.0-alpha.46/",
-    "aleph/server": "https://deno.land/x/aleph@1.0.0-alpha.46/server/mod.ts",
-    "aleph/react": "https://deno.land/x/aleph@1.0.0-alpha.46/framework/react/mod.ts",
-    "react": "https://esm.sh/react@18.1.0",
-    "react-dom": "https://esm.sh/react-dom@18.1.0",
-    "react-dom/": "https://esm.sh/react-dom@18.1.0/"
-  },
-  "scopes": {}
+    "#/": "./",
+    "~packages/": "./packages/",
+    "~components/": "./components/",
+    "~islands/": "./islands/",
+    "$fresh/": "https://deno.land/x/fresh@1.0.0/",
+    "preact": "https://esm.sh/preact@10.8.1",
+    "preact/": "https://esm.sh/preact@10.8.1/",
+    "preact-render-to-string": "https://esm.sh/preact-render-to-string@5.2.0?deps=preact@10.8.1",
+    "@twind": "./utils/twind.ts",
+    "twind": "https://esm.sh/twind@0.16.17",
+    "twind/": "https://esm.sh/twind@0.16.17/"
+  }
 }

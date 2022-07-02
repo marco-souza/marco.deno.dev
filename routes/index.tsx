@@ -1,39 +1,41 @@
-import { site } from "~/settings.ts";
-import { ButtonLink } from "~/components/shared.tsx";
+/** @jsx h */
+import { Fragment, h } from "preact";
+import { tw } from "twind";
 
 export default function Home() {
+  const cardStyle = tw`
+    px-8 m-2 py-4 max-w-sm rounded-md border
+    hover:border-blue-300 hover:text-blue-300 hover:underline
+  `;
   return (
-    <div className="my-10 grid grid-cols-1 items-center text-center text-gray-200">
-      <img
-        alt="It's Me"
-        src={site.avatarUrl}
-        className="my10 h-40 mx-auto rounded-full"
-      />
+    <Fragment>
+      <h1 class={tw`text-2xl text-center py-16`}>
+        <p>Welcome to</p>
+        <p class={tw`text-4xl`}>
+          Marco's <span class={tw`text-red-400 underline`}>Labs!</span>
+          🧑🏽‍🔬
+        </p>
+      </h1>
 
-      <div className="text-3xl fw100">
-        {site.title}
+      <div class={tw`flex justify-center`}>
+        {links.map((item) => (
+          <a href={item.link}>
+            <div class={cardStyle}>
+              <h3>{item.name}</h3>
+            </div>
+          </a>
+        ))}
       </div>
-
-      <div className="op30 fw300 m1 text-md">
-        {site.subtitle}
-      </div>
-
-      <div className="grid gap-8 grid-cols-1 my-10 md:mx-20 md:grid-cols-2">
-        <ButtonLink
-          to={site.cta.primary.link}
-          className={`text-pink-400 ${buttonAnimation}`}
-        >
-          {site.cta.primary.text}
-        </ButtonLink>
-        <ButtonLink
-          to={site.cta.primary.link}
-          className={`text-gray-100 ${buttonAnimation} animate-delay-1s`}
-        >
-          {site.cta.secondary.text}
-        </ButtonLink>
-      </div>
-    </div>
+    </Fragment>
   );
 }
 
-const buttonAnimation = "animate-bounce-alt animate-count-1 animate-1s";
+const links: LinkItem[] = [
+  { name: "Playground", link: "/playground/counter" },
+  { name: "Projects", link: "/projects" },
+];
+
+interface LinkItem {
+  name: string;
+  link: string;
+}

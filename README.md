@@ -1,6 +1,11 @@
-# React App
+# fresh project
 
-A React demo application powered by Aleph.js in Deno and unocss, deploy to
-[Deno Deploy](https://deno.com/deploy):
+### Usage
 
-https://marco.deno.dev/
+Start the project:
+
+```
+deno task start
+```
+
+This will watch the project directory and restart as necessary.
