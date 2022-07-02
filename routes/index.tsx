@@ -12,7 +12,7 @@ export default function Home() {
       <h1 class={tw`text-2xl text-center py-16`}>
         <p>Welcome to</p>
         <p class={tw`text-4xl`}>
-          Marco's <span class={tw`text-red-400 underline`}>Labs!</span>
+          my <span class={tw`text-yellow-300`}>lab</span>
           🧑🏽‍🔬
         </p>
       </h1>
