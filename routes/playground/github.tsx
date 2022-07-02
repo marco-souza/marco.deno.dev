@@ -9,6 +9,7 @@ const GithubProfile = z.object({
   name: z.string(),
   bio: z.string(),
   avatar_url: z.string(),
+  html_url: z.string(),
 });
 
 const GithubException = z.object({
@@ -82,7 +83,7 @@ export default function ProfileSearch({ data }: PageProps<Data>) {
       </form>
       <GithubError error={error} />
       {hasUsername && (
-        <div class="grid gap-4 mx-auto ">
+        <div class={tw`p-4 flex justify-center`}>
           <GithubProfileCard profile={profile} />
         </div>
       )}
@@ -102,20 +103,24 @@ const GithubProfileCard: FunctionComponent<Pick<Data, "profile">> = (
     return <h2>User not found :(</h2>;
   }
 
+  const cardStyle = tw`
+    text-center grid gap-2 px-16 py-8
+    border rounded-lg bg-gray-500 shadow
+    max-w-md hover:shadow-2xl
+  `;
   return (
-    <div
-      class={tw
-        `text-center grid gap-2 p-16 border rounded-lg bg-gray-800 shadow`}
-    >
-      <img
-        src={profile.avatar_url}
-        class={tw`rounded-full mx-auto`}
-        width={64}
-        height={64}
-      />
-      <h2 class={tw`text-2xl font-extralight`}>{profile.name}</h2>
-      <p class={tw`text-sm`}>@{profile.login}</p>
-      <p>{profile.bio}</p>
-    </div>
+    <a href={profile.html_url} target="_blank">
+      <div class={cardStyle}>
+        <img
+          src={profile.avatar_url}
+          class={tw`rounded-full mx-auto`}
+          width={64}
+          height={64}
+        />
+        <h2 class={tw`text-2xl font-extralight`}>{profile.name}</h2>
+        <p class={tw`text-sm hover:underline`}>@{profile.login}</p>
+        {profile.bio.split("\n").map((i) => <p>{i}</p>)}
+      </div>
+    </a>
   );
 };
