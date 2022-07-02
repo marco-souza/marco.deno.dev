@@ -7,9 +7,9 @@ import { Handlers, PageProps } from "$fresh/server.ts";
 const GithubProfile = z.object({
   login: z.string(),
   name: z.string(),
-  bio: z.string(),
   avatar_url: z.string(),
   html_url: z.string(),
+  bio: z.string().optional(),
 });
 
 const GithubException = z.object({
@@ -53,8 +53,12 @@ export const handler: Handlers<Data> = {
     const responseBody = await resp.json();
     const profile = GithubProfile.safeParse(responseBody);
     if (!profile.success) {
-      const error = GithubException.parse(responseBody);
-      return ctx.render({ profile: null, error, username });
+      const error = GithubException.safeParse(responseBody);
+      if (!error.success) {
+        console.log({ responseBody });
+        return ctx.render({ profile: null, error: null, username });
+      }
+      return ctx.render({ profile: null, error: error.data, username });
     }
     return ctx.render({ profile: profile.data, error: null, username });
   },
@@ -81,6 +85,7 @@ export default function ProfileSearch({ data }: PageProps<Data>) {
           Search
         </button>
       </form>
+
       <GithubError error={error} />
       {hasUsername && (
         <div class={tw`p-4 flex justify-center`}>
@@ -119,7 +124,7 @@ const GithubProfileCard: FunctionComponent<Pick<Data, "profile">> = (
         />
         <h2 class={tw`text-2xl font-extralight`}>{profile.name}</h2>
         <p class={tw`text-sm hover:underline`}>@{profile.login}</p>
-        {profile.bio.split("\n").map((i) => <p>{i}</p>)}
+        {profile.bio?.split("\n").map((i) => <p>{i}</p>)}
       </div>
     </a>
   );
