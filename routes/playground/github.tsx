@@ -9,7 +9,7 @@ const GithubProfile = z.object({
   login: z.string(),
   avatar_url: z.string(),
   html_url: z.string(),
-  bio: z.string().optional(),
+  bio: z.string().nullable(),
 });
 
 const GithubException = z.object({
