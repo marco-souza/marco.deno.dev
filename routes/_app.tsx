@@ -3,7 +3,7 @@ import { h } from "preact";
 import { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import Layout from "~components/Layout.tsx";
-import { site } from "#/settings.ts";
+import { site } from "@settings";
 
 export default function App({ Component }: AppProps) {
   const headers = (

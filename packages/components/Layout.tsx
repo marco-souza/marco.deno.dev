@@ -1,7 +1,7 @@
 /** @jsx h */
 import { FunctionComponent, h } from "preact";
 import { tw } from "twind";
-import { site } from "#/settings.ts";
+import { site } from "@settings";
 
 const Layout: FunctionComponent = ({ children }) => {
   return (
