@@ -11,8 +11,8 @@ interface Props {
 export default function GameOfLifeBoard({ width, height }: Props) {
   const { board, generation, next, start, cleanup, stop, toggle } =
     useGameOfLife(width, height);
-  const deadCell = tw`bg-gray-800 text-center`;
-  const aliveCell = tw`bg-green-500 text-center`;
+  const deadCell = tw`bg-gray-800 text-center py-2 cursor-pointer`;
+  const aliveCell = tw`bg-green-500 text-center py-2 cursor-pointer`;
 
   return (
     <Fragment>
@@ -30,7 +30,7 @@ export default function GameOfLifeBoard({ width, height }: Props) {
               onClick={() => toggle({ line, col })}
               class={cell.isAlive ? aliveCell : deadCell}
             >
-              {line}-{col}
+              {cell.isAlive ? "🐣" : "💀"}
             </div>
           ))
         )}
