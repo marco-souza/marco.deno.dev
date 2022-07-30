@@ -3,11 +3,11 @@ import { IS_BROWSER } from "$fresh/runtime.ts";
 import { Fragment, FunctionComponent, h, JSX } from "preact";
 import { tw } from "~/configs/twind.ts";
 
-interface LazyProps {
+export interface PropsWithChildren {
   children: JSX.Element | JSX.Element[];
 }
 
-export const Lazy: FunctionComponent<LazyProps> = (props) => {
+export const Lazy: FunctionComponent<PropsWithChildren> = (props) => {
   if (!IS_BROWSER) {
     // show loader on the first render
     return (
