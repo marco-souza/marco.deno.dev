@@ -6,7 +6,7 @@
   "deno.suggest.imports.hosts": {
     "https://deno.land": true,
     "https://deno.land/x": true,
-    "https://esm.sh": false
+    "https://esm.sh": true
   },
   "tailwindCSS.experimental.classRegex": [
     "tw`([^`]*)", // tw`...`

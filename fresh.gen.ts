@@ -5,24 +5,28 @@
 import * as $0 from "./routes/[name].tsx";
 import * as $1 from "./routes/_app.tsx";
 import * as $2 from "./routes/api/hello.ts";
-import * as $3 from "./routes/index.tsx";
-import * as $4 from "./routes/playground/counter.tsx";
-import * as $5 from "./routes/playground/github.tsx";
-import * as $6 from "./routes/playground/index.tsx";
+import * as $3 from "./routes/game-of-life.tsx";
+import * as $4 from "./routes/index.tsx";
+import * as $5 from "./routes/playground/counter.tsx";
+import * as $6 from "./routes/playground/github.tsx";
+import * as $7 from "./routes/playground/index.tsx";
 import * as $$0 from "./islands/Counter.tsx";
+import * as $$1 from "./islands/GameOfLifeBoard.tsx";
 
 const manifest = {
   routes: {
     "./routes/[name].tsx": $0,
     "./routes/_app.tsx": $1,
     "./routes/api/hello.ts": $2,
-    "./routes/index.tsx": $3,
-    "./routes/playground/counter.tsx": $4,
-    "./routes/playground/github.tsx": $5,
-    "./routes/playground/index.tsx": $6,
+    "./routes/game-of-life.tsx": $3,
+    "./routes/index.tsx": $4,
+    "./routes/playground/counter.tsx": $5,
+    "./routes/playground/github.tsx": $6,
+    "./routes/playground/index.tsx": $7,
   },
   islands: {
     "./islands/Counter.tsx": $$0,
+    "./islands/GameOfLifeBoard.tsx": $$1,
   },
   baseUrl: import.meta.url,
 };

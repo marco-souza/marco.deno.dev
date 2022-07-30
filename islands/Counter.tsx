@@ -6,7 +6,7 @@ import {
   CounterProvider,
   useCounter,
   useCounterActions,
-} from "#/packages/feature/counter/context.tsx";
+} from "#/packages/features/counter/context.tsx";
 
 interface CounterProps {
   start: number;
@@ -23,8 +23,8 @@ export default function Counter(props: CounterProps) {
 const CounterContent: FunctionComponent = () => {
   const { counter } = useCounter();
   const { increment, decrement } = useCounterActions();
-  const btn = tw
-    `px-2 py-1 border(gray-100 1) text-gray-900 hover:bg-gray-200 bg-blue-100`;
+  const btn =
+    tw`px-2 py-1 border(gray-100 1) text-gray-900 hover:bg-gray-200 bg-blue-100`;
 
   return (
     <div class={tw`flex gap-2 w-full`}>

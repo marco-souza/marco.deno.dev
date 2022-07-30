@@ -20,8 +20,7 @@ export default Layout;
 function NavBar() {
   return (
     <div
-      class={tw
-        `fixed left-0 right-0 top-0 p-6 bg-gray-700 shadow-md flex justify-between`}
+      class={tw`fixed left-0 right-0 top-0 p-6 bg-gray-700 shadow-md flex justify-between`}
     >
       <a className={tw`logo flex items-center`} href="/">
         marco.
