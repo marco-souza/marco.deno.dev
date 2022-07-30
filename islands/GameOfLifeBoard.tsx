@@ -1,7 +1,8 @@
 /** @jsx h */
-import { Fragment, h } from "preact";
+import { h } from "preact";
 import { tw } from "~/configs/twind.ts";
 import { useGameOfLife } from "~features/use-cases/useGameOfLife.tsx";
+import { Lazy } from "~/shared/components.tsx";
 
 interface Props {
   width: number;
@@ -15,7 +16,7 @@ export default function GameOfLifeBoard({ width, height }: Props) {
   const aliveCell = tw`bg-green-500 text-center py-2 cursor-pointer`;
 
   return (
-    <Fragment>
+    <Lazy>
       <div class={tw`flex gap-4 my-4`}>
         <button onClick={start} title="play">▶️</button>
         <button onClick={stop} title="pause">⏸️</button>
@@ -36,6 +37,6 @@ export default function GameOfLifeBoard({ width, height }: Props) {
           ))
         )}
       </div>
-    </Fragment>
+    </Lazy>
   );
 }
