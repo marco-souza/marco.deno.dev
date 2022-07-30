@@ -7,15 +7,20 @@ export interface PropsWithChildren {
   children: JSX.Element | JSX.Element[];
 }
 
-export const Lazy: FunctionComponent<PropsWithChildren> = (props) => {
-  if (!IS_BROWSER) {
-    // show loader on the first render
-    return (
-      <div class={tw`flex`}>
-        <div class={tw`text-center text-3xl animate-spin my-8 mx-auto`}>♻️</div>
-      </div>
-    );
-  }
+interface LazyProps extends PropsWithChildren {
+  fallback?: JSX.Element;
+}
 
-  return <Fragment>{props.children}</Fragment>;
+export const Lazy: FunctionComponent<LazyProps> = (
+  { children, fallback = <Loader /> },
+) => {
+  return <Fragment>{!IS_BROWSER ? fallback : children}</Fragment>;
 };
+
+function Loader() {
+  return (
+    <div class={tw`flex`}>
+      <div class={tw`text-center text-3xl animate-spin my-8 mx-auto`}>♻️</div>
+    </div>
+  );
+}
