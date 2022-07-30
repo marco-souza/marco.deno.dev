@@ -26,12 +26,12 @@ export default function GameOfLifeBoard({ width, height }: Props) {
   return (
     <Lazy>
       <div class={tw`flex gap-4 my-4`}>
-        <button onClick={playPause} title="play">
+        <button onClick={playPause} title="Play/Pause (Space)">
           {isRunning ? " ⏸️" : "▶️"}
         </button>
-        <button onClick={next} title="next">⏭</button>
-        <button onClick={cleanup} title="cleanup">🗑️</button>
-        <button onClick={restart} title="restart">♻️</button>
+        <button onClick={next} title="next (n)">⏭</button>
+        <button onClick={cleanup} title="cleanup (c)">🗑️</button>
+        <button onClick={restart} title="restart (N)">♻️</button>
       </div>
       <p class={tw`text-gray-300 text-sm`}>Generation {generation}</p>
       <div class={tw(`grid gap-1 grid-cols-[repeat(${width},1fr)]`)}>
