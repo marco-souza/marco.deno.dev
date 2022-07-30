@@ -1,7 +1,6 @@
 import { HandlerContext } from "$fresh/server.ts";
 
 export const handler = (req: Request, _ctx: HandlerContext): Response => {
-  console.log(req);
   const { searchParams } = new URL(req.url);
   const body = JSON.stringify({
     text: `Hello, ${searchParams.get("name") ?? "World"}!`,

@@ -48,7 +48,6 @@ export function makeGameOfLife(
   life?: boolean,
 ): GameOfLife {
   const dim = { col: width, line: height };
-  console.log(dim);
   const board = Array.from(
     { length: height },
     (_, line) =>
@@ -81,7 +80,6 @@ export function getNextGeneration(board: Board): Board {
           return makeCell({ line, col }, false, dim);
         }
       } else {
-        console.log({ neighbors });
         if (aliveNeighbors === 3) {
           return makeCell(cell.pos, true, dim);
         }
