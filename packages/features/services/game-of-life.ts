@@ -14,13 +14,18 @@ export class GameBoard {
   #intervalId: Maybe<number> = null;
   #listenersMap: Record<string, Handler> = {};
 
-  constructor(dim: Position) {
-    this.#game = makeGameOfLife(dim.x, dim.y);
+  constructor(width: number, height: number) {
+    this.#game = makeGameOfLife({ height, width });
   }
 
   toggleLife(pos: Position) {
-    const cell = this.#getGame().board[pos.x][pos.y];
+    const cell = this.#getGame().board[pos.line][pos.col];
     cell.isAlive = !cell.isAlive;
+    this.#broadcast();
+  }
+
+  cleanup() {
+    this.#game = makeGameOfLife(this.#game, false);
     this.#broadcast();
   }
 
@@ -72,9 +77,9 @@ export class GameBoard {
     );
   }
 
-  static getInstance(): GameBoard {
+  static getInstance(width: number, height: number): GameBoard {
     if (instance == null) {
-      instance = new GameBoard({ x: 50, y: 50 });
+      instance = new GameBoard(width, height);
     }
     return instance;
   }

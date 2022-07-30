@@ -1,6 +1,6 @@
 export interface Position {
-  x: number;
-  y: number;
+  line: number;
+  col: number;
 }
 
 export interface Cell {
@@ -11,30 +11,25 @@ export interface Cell {
 
 export type Board = Cell[][];
 
-export function makeCell(
-  x: number,
-  y: number,
-  isAlive: boolean,
-  dim: Position,
-): Cell {
+export function makeCell(pos: Position, isAlive: boolean, dim: Position): Cell {
   return {
+    pos,
     isAlive,
-    pos: { x, y },
     getNeighborsPositions: () => {
       const neighbors = new Set<Position>();
       const options = [-1, 0, 1];
 
       for (const opX of options) {
         for (const opY of options) {
-          const pos = {
-            x: (x + opX) % dim.x,
-            y: (y + opY) % dim.y,
+          const newPos = {
+            line: (pos.line + opX) % dim.line,
+            col: (pos.col + opY) % dim.col,
           };
 
-          if (pos.x < 0) pos.x = dim.x + pos.x;
-          if (pos.y < 0) pos.y = dim.y + pos.y;
+          if (newPos.line < 0) newPos.line += dim.line;
+          if (newPos.col < 0) newPos.col += dim.col;
 
-          neighbors.add(pos);
+          neighbors.add(newPos);
         }
       }
       return [...neighbors];
@@ -48,14 +43,18 @@ export interface GameOfLife {
   board: Board;
 }
 
-export function makeGameOfLife(width: number, height: number): GameOfLife {
-  const dim = { x: width, y: height };
+export function makeGameOfLife(
+  { height = 0, width = 0 }: Partial<GameOfLife>,
+  life?: boolean,
+): GameOfLife {
+  const dim = { col: width, line: height };
+  console.log(dim);
   const board = Array.from(
-    { length: width },
-    (_, x) =>
+    { length: height },
+    (_, line) =>
       Array.from(
-        { length: height },
-        (_, y) => makeCell(x, y, randomLife(), dim),
+        { length: width },
+        (_, col) => makeCell({ line, col }, life ?? randomLife(), dim),
       ),
   );
 
@@ -69,21 +68,22 @@ export function makeGameOfLife(width: number, height: number): GameOfLife {
 const randomLife = () => Math.random() > 0.7;
 
 export function getNextGeneration(board: Board): Board {
-  return board.map((row, x) => {
-    return row.map((cell, y) => {
+  return board.map((row, line) => {
+    return row.map((cell, col) => {
       const neighbors = cell.getNeighborsPositions();
       const aliveNeighbors = neighbors.filter((pos) =>
-        board[pos.x][pos.y].isAlive
+        board[pos.line][pos.col].isAlive
       ).length;
-      const dim = { x: board.length, y: row.length };
+      const dim = { line: board.length, col: row.length };
 
       if (cell.isAlive) {
         if (aliveNeighbors < 2 || aliveNeighbors > 3) {
-          return makeCell(x, y, false, dim);
+          return makeCell({ line, col }, false, dim);
         }
       } else {
+        console.log({ neighbors });
         if (aliveNeighbors === 3) {
-          return makeCell(x, y, true, dim);
+          return makeCell(cell.pos, true, dim);
         }
       }
 
