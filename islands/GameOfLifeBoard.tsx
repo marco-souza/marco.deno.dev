@@ -33,7 +33,7 @@ export default function GameOfLifeBoard({ width, height }: Props) {
         <button onClick={cleanup} title="cleanup">🗑️</button>
         <button onClick={restart} title="restart">♻️</button>
       </div>
-      <p class={tw`text-gray-500 text-sm`}>Generation {generation}</p>
+      <p class={tw`text-gray-300 text-sm`}>Generation {generation}</p>
       <div class={tw(`grid gap-1 grid-cols-[repeat(${width},1fr)]`)}>
         {board.map((row, line) =>
           row.map((cell, col) => (
