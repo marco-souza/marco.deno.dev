@@ -34,6 +34,7 @@ export default function Home() {
 const links: LinkItem[] = [
   { name: "Github Finder", link: "/playground/github" },
   { name: "Counter", link: "/playground/counter" },
+  { name: "Game of Life", link: "/playground/game-of-life" },
 ];
 
 interface LinkItem {
