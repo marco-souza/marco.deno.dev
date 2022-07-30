@@ -15,8 +15,8 @@ export function useGameOfLife(width: number, height: number) {
   return {
     board,
     generation: game.generation,
-    start: () => game.startGame(),
-    stop: () => game.stopTicker(),
+    isRunning: game.isRunning,
+    playPause: () => game.isRunning ? game.stopTicker() : game.startGame(),
     next: () => game.next(),
     cleanup: () => game.cleanup(),
     restart: () => game.restart(),

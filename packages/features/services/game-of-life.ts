@@ -10,6 +10,7 @@ import { logger } from "~logger";
 
 export class GameBoard {
   generation = 1;
+  isRunning = false;
   #game: GameOfLife;
   #intervalId: Maybe<number> = null;
   #listenersMap: Record<string, Handler> = {};
@@ -45,8 +46,11 @@ export class GameBoard {
   }
 
   startGame(interval = 300) {
+    if (this.#intervalId != null) return;
+
     logger.info("starting interval");
     this.#intervalId = setInterval(() => this.next(), interval);
+    this.isRunning = true;
   }
 
   stopTicker() {
@@ -54,6 +58,7 @@ export class GameBoard {
       logger.info("stopping ticker");
       clearInterval(this.#intervalId);
       this.#intervalId = null;
+      this.isRunning = false;
     }
   }
 

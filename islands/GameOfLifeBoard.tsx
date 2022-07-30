@@ -10,16 +10,25 @@ interface Props {
 }
 
 export default function GameOfLifeBoard({ width, height }: Props) {
-  const { board, generation, next, start, cleanup, restart, stop, toggle } =
-    useGameOfLife(width, height);
+  const {
+    board,
+    generation,
+    isRunning,
+    next,
+    playPause,
+    cleanup,
+    restart,
+    toggle,
+  } = useGameOfLife(width, height);
   const deadCell = tw`bg-gray-800 text-center py-2 cursor-pointer`;
   const aliveCell = tw`bg-green-500 text-center py-2 cursor-pointer`;
 
   return (
     <Lazy>
       <div class={tw`flex gap-4 my-4`}>
-        <button onClick={start} title="play">▶️</button>
-        <button onClick={stop} title="pause">⏸️</button>
+        <button onClick={playPause} title="play">
+          {isRunning ? " ⏸️" : "▶️"}
+        </button>
         <button onClick={next} title="next">⏭</button>
         <button onClick={cleanup} title="cleanup">🗑️</button>
         <button onClick={restart} title="restart">♻️</button>
