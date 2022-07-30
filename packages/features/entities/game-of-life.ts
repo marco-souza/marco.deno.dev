@@ -21,6 +21,8 @@ export function makeCell(pos: Position, isAlive: boolean, dim: Position): Cell {
 
       for (const opX of options) {
         for (const opY of options) {
+          if (opX === opY && opX === 0) continue;
+
           const newPos = {
             line: (pos.line + opX) % dim.line,
             col: (pos.col + opY) % dim.col,
