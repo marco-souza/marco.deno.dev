@@ -19,6 +19,7 @@ export function useGameOfLife(width: number, height: number) {
     stop: () => game.stopTicker(),
     next: () => game.next(),
     cleanup: () => game.cleanup(),
+    restart: () => game.restart(),
     toggle: (pos: Position) => game.toggleLife(pos),
   };
 }

@@ -18,6 +18,11 @@ export class GameBoard {
     this.#game = makeGameOfLife({ height, width });
   }
 
+  restart() {
+    this.#game = makeGameOfLife(this.#game);
+    this.#broadcast();
+  }
+
   toggleLife(pos: Position) {
     const cell = this.#getGame().board[pos.line][pos.col];
     cell.isAlive = !cell.isAlive;
