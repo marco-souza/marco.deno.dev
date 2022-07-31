@@ -11,8 +11,10 @@ import * as $5 from "./routes/playground/counter.tsx";
 import * as $6 from "./routes/playground/game-of-life.tsx";
 import * as $7 from "./routes/playground/github.tsx";
 import * as $8 from "./routes/playground/index.tsx";
+import * as $9 from "./routes/playground/minesweeper.tsx";
 import * as $$0 from "./islands/Counter.tsx";
 import * as $$1 from "./islands/GameOfLifeBoard.tsx";
+import * as $$2 from "./islands/Minesweeper.tsx";
 
 const manifest = {
   routes: {
@@ -25,10 +27,12 @@ const manifest = {
     "./routes/playground/game-of-life.tsx": $6,
     "./routes/playground/github.tsx": $7,
     "./routes/playground/index.tsx": $8,
+    "./routes/playground/minesweeper.tsx": $9,
   },
   islands: {
     "./islands/Counter.tsx": $$0,
     "./islands/GameOfLifeBoard.tsx": $$1,
+    "./islands/Minesweeper.tsx": $$2,
   },
   baseUrl: import.meta.url,
 };

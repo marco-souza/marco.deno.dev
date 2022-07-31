@@ -1,5 +1,5 @@
 import { createContext } from "preact";
-import { useContext } from "preact/hooks";
+import { useContext, useState } from "preact/hooks";
 
 export const createCtx = <T = undefined>(
   displayName: string,
@@ -15,4 +15,20 @@ export const createCtx = <T = undefined>(
   }
 
   return [useContextData, context.Provider, context] as const;
+};
+
+export type Handler<T> = (data: T) => void;
+
+export const useExternalSync = <T>(
+  subscriber: Handler<Handler<T>>,
+  getSnapshot: () => T,
+  initialState: T,
+) => {
+  const [store, setStore] = useState(initialState);
+
+  subscriber(() => {
+    setStore({ ...getSnapshot() });
+  });
+
+  return store;
 };

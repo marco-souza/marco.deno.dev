@@ -35,6 +35,7 @@ const links: LinkItem[] = [
   { name: "Github Finder", link: "/playground/github" },
   { name: "Counter", link: "/playground/counter" },
   { name: "Game of Life", link: "/playground/game-of-life" },
+  { name: "Minesweeper", link: "/playground/minesweeper" },
 ];
 
 interface LinkItem {
