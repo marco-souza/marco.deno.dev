@@ -1,24 +1,24 @@
 {
   "imports": {
     "#/": "./",
-    "~/": "./packages/",
-    "~islands/": "./islands/",
-    "~components/": "./packages/components/",
-    "~features/": "./packages/features/",
-    "~logger": "./packages/shared/logger.ts",
-    "logger": "https://deno.land/std@0.150.0/log/logger.ts",
     "$fresh/": "https://deno.land/x/fresh@1.0.0/",
-    "evt": "https://deno.land/x/evt@v2.3.1/mod.ts",
-    "preact": "https://esm.sh/preact@10.8.1",
-    "preact/": "https://esm.sh/preact@10.8.1/",
-    "preact-render-to-string": "https://esm.sh/preact-render-to-string@5.2.0?deps=preact@10.8.1",
     "@hooks": "./packages/shared/hooks.ts",
-    "@settings": "./packages/configs/settings.ts",
-    "@twind": "./packages/configs/twind.ts",
     "@reduxjs/toolkit": "https://esm.sh/@reduxjs/toolkit@1.8.3",
     "@reduxjs/toolkit/": "https://esm.sh/@reduxjs/toolkit@1.8.3/",
+    "@settings": "./packages/configs/settings.ts",
+    "@twind": "./packages/configs/twind.ts",
+    "evt": "https://deno.land/x/evt@v2.3.1/mod.ts",
+    "logger": "https://deno.land/std@0.150.0/log/logger.ts",
+    "preact": "https://esm.sh/preact@10.8.1",
+    "preact-render-to-string": "https://esm.sh/preact-render-to-string@5.2.0?deps=preact@10.8.1",
+    "preact/": "https://esm.sh/preact@10.8.1/",
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
-    "zod": "https://deno.land/x/zod@v3.16.1/mod.ts"
+    "zod": "https://deno.land/x/zod@v3.16.1/mod.ts",
+    "~/": "./packages/",
+    "~components/": "./packages/components/",
+    "~features/": "./packages/features/",
+    "~islands/": "./islands/",
+    "~logger": "./packages/shared/logger.ts"
   }
 }

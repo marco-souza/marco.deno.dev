@@ -1,3 +1,5 @@
+import { GridPosition } from "~/shared/types.ts";
+
 export type CellState = "closed" | "visible" | "flagged";
 
 export interface Cell {
@@ -39,9 +41,10 @@ export function makeGame(
   cols: number,
   minesAmount: number,
 ): Game {
+  const board = makeBoard(lines, cols);
   return {
     time: 0,
-    board: makeBoard(lines, cols),
+    board: makeRandomMines(board, minesAmount),
     mines: { amount: minesAmount, remaining: 0 },
   };
 }
@@ -53,7 +56,7 @@ function makeBoard(lines: number, cols: number): Board {
       Array.from(
         { length: cols },
         // TODO: generate mines
-        () => makeCell({ isMine: true }),
+        () => makeCell({ isMine: false }),
       ),
   );
 }
@@ -71,3 +74,32 @@ export const GameLevelConfigMap: Record<GameLevel, GameConfig> = {
   "medium": { cols: 16, lines: 16, minesAmount: 40 },
   "hard": { cols: 30, lines: 16, minesAmount: 99 },
 };
+
+function makeRandomMines(board: Board, minesAmount: number): Board {
+  const allPositions = board.flatMap((l, line) => (
+    l.map((_, col) =>
+      <GridPosition> (
+        { col, line }
+      )
+    )
+  ));
+  const mines: GridPosition[] = sampleSize(allPositions, minesAmount);
+  mines.forEach((pos) => {
+    board[pos.line][pos.col].isMine = true;
+  });
+
+  return board;
+}
+
+const sampleSize = <A>(list: A[], amount: number) => (
+  times(amount)
+    .map(() => randPosition(list))
+    .map((pos) => list[pos])
+);
+
+const times = (num: number) => {
+  return Array.from({ length: num });
+};
+
+const randPosition = <T>(list: T[]): number =>
+  Math.ceil(Math.random() * list.length);
