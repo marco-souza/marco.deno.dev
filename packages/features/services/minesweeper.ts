@@ -42,8 +42,10 @@ export class MinesweeperGame {
     const cell = this.game.board[pos.line][pos.col];
     if (cell.state === "closed") {
       cell.state = "visible";
-    } else if (cell.state === "visible") {
-      // TODO: open neighbors recursively
+      // open neighbors recursively
+      if (cell.content === "") {
+        cell.neighbors.forEach((p) => this.open(p));
+      }
     }
     this.#gameEvents.post(this.game);
   }
