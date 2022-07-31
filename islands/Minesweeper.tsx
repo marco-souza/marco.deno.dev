@@ -1,9 +1,13 @@
 /** @jsx h */
-import { h } from "preact";
+import { Fragment, h } from "preact";
 import { tw } from "~/configs/twind.ts";
 import { Lazy } from "~/shared/components.tsx";
-import { GameLevel, getCellContent } from "~features/entities/minesweeper.ts";
+import { Game, GameLevel } from "~features/entities/minesweeper.ts";
 import { useMinesweeper } from "~features/use-cases/useMinesweeper.tsx";
+import {
+  GameStatus,
+  MinesweeperGame,
+} from "../packages/features/services/minesweeper.ts";
 
 interface MinesweeperProps {
   level: GameLevel;
@@ -19,6 +23,7 @@ export default function Minesweeper(
     open,
     cols,
     lines,
+    status,
     startStop,
   } = useMinesweeper(level);
   const visibleCell =
@@ -31,38 +36,65 @@ export default function Minesweeper(
 
   return (
     <Lazy>
-      <div class={tw`flex gap-4 my-4`}>
+      <div class={tw`flex gap-4 py-4`}>
         <h1 class={tw`text-2xl`}>Minesweeper</h1>
         <button onClick={startStop} title="New Game">
-          ▶️
+          {status === "running" ? " ⏸️" : "▶️"}
         </button>
+        <span class={tw`text-gray-300 text-sm py-2`}>
+          <ContentByStatus status={status} />
+          {` - ${time}s`}
+        </span>
       </div>
-      <p class={tw`text-gray-300 text-sm`}>time: {time}s</p>
       <div
         class={tw(
           `grid gap-2 grid-cols-[repeat(${cols},1fr)] grid-rows-[repeat(${lines},3rem)]`,
         )}
       >
-        {board.map((row, line) =>
-          row.map((cell, col) => {
-            let content = "";
-            if (cell.state === "visible") content = cell.content;
-            if (cell.state === "flagged") content = "🚩";
-            return (
-              <div
-                onClick={() => open({ line, col })}
-                onContextMenu={(e) => {
-                  e?.preventDefault();
-                  mark({ line, col });
-                }}
-                class={cell.state === "visible" ? visibleCell : closedCell}
-              >
-                {content}
-              </div>
-            );
-          })
-        )}
+        {status !== "paused"
+          ? board.map((row, line) =>
+            row.map((cell, col) => {
+              let content = "";
+              if (cell.state === "flagged") content = "🚩";
+
+              // make all visible if user lost the game
+              const isVisible = cell.state === "visible" ||
+                (status === "lost" && cell.content != "");
+              if (isVisible) content = cell.content;
+
+              return (
+                <div
+                  onClick={() => {
+                    if (status === "lost") return;
+                    open({ line, col });
+                  }}
+                  onContextMenu={(e) => {
+                    if (status === "lost") return;
+                    e?.preventDefault();
+                    mark({ line, col });
+                  }}
+                  class={isVisible ? visibleCell : closedCell}
+                >
+                  {content}
+                </div>
+              );
+            })
+          )
+          : null}
       </div>
     </Lazy>
   );
 }
+
+const ContentByStatus = ({ status }: Pick<MinesweeperGame, "status">) => {
+  switch (status) {
+    case "lost":
+      return <span>You lost :(</span>;
+    case "won":
+      return <span>You Won! :D</span>;
+    case "paused":
+      return <span>Paused</span>;
+    case "running":
+      return <span>Running</span>;
+  }
+};

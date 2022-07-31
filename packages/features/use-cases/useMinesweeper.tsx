@@ -21,6 +21,7 @@ export const useMinesweeper = (level: GameLevel) => {
     ...gameStore,
     cols: game.cols,
     lines: game.lines,
+    status: game.status,
     startStop: () => game.playPause(),
     open: (pos: GridPosition) => game.open(pos),
     mark: (pos: GridPosition) => game.mark(pos),

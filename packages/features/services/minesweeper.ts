@@ -30,6 +30,7 @@ export class MinesweeperGame {
       clearInterval(this.intervalId);
       this.intervalId = null;
       this.status = "paused";
+      this.gameEvents.post(this.game);
       return;
     }
 
@@ -41,6 +42,7 @@ export class MinesweeperGame {
       SECOND,
     );
     this.status = "running";
+    this.gameEvents.post(this.game);
   }
 
   // TODO: add Winning condition
