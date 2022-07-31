@@ -39,15 +39,33 @@ export class MinesweeperGame {
   }
 
   open(pos: GridPosition) {
+    this.openRecursive(pos);
+    this.#gameEvents.post(this.game);
+  }
+
+  openRecursive(pos: GridPosition) {
     const cell = this.game.board[pos.line][pos.col];
+    if (cell.state === "flagged") return;
     if (cell.state === "closed") {
       cell.state = "visible";
       // open neighbors recursively
       if (cell.content === "") {
-        cell.neighbors.forEach((p) => this.open(p));
+        cell.neighbors.forEach((p) => this.openRecursive(p));
+      }
+    } else if (cell.state === "visible") {
+      // count flagged neighbors
+      const countFlagged = cell.neighbors.reduce(
+        (acc, { col, line }) =>
+          this.game.board[line][col].state === "flagged" ? acc + 1 : acc,
+        0,
+      );
+      // if all marked, open closed neighbors
+      if (countFlagged.toString() === cell.content) {
+        cell.neighbors
+          .filter((p) => this.game.board[p.line][p.col].state === "closed")
+          .forEach((p) => this.openRecursive(p));
       }
     }
-    this.#gameEvents.post(this.game);
   }
 
   mark(pos: GridPosition) {
