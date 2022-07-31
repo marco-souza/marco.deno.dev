@@ -17,8 +17,6 @@ export const useMinesweeper = (level: GameLevel) => {
     game.game,
   );
 
-  console.log(gameStore);
-
   return {
     ...gameStore,
     cols: game.cols,

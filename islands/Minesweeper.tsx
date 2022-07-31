@@ -24,9 +24,13 @@ export default function Minesweeper(
   const visibleCell = tw`bg-gray-300 text-center py-2 cursor-pointer`;
   const closedCell = tw`bg-gray-500 text-center py-2 cursor-pointer`;
 
+  // TODO: select level
+  // TODO: hide board until isRunning
+
   return (
     <Lazy>
       <div class={tw`flex gap-4 my-4`}>
+        <h1 class={tw`text-2xl`}>Minesweeper</h1>
         <button onClick={startStop} title="New Game">
           ▶️
         </button>

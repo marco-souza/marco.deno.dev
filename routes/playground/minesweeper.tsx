@@ -10,9 +10,8 @@ export default function Home(props: PageProps) {
   const level: GameLevel = searchPrams.get("level") as GameLevel || "easy";
 
   return (
-    <Fragment>
-      <h1 class={tw`text-2xl`}>Minesweeper</h1>
+    <div class={tw`container px-6`}>
       <Minesweeper level={level} />
-    </Fragment>
+    </div>
   );
 }
