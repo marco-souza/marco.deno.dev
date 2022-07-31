@@ -7,8 +7,8 @@ import { tw } from "~/configs/twind.ts";
 export default function Home(props: PageProps) {
   const searchPrams = new URLSearchParams(props.url.search);
   const boardProps = {
-    width: Number(searchPrams.get("width") || "30"),
-    height: Number(searchPrams.get("height") || "10"),
+    width: Number(searchPrams.get("width") || "50"),
+    height: Number(searchPrams.get("height") || "15"),
   };
 
   return (
