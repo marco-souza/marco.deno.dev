@@ -18,7 +18,7 @@ export default function Home() {
         </p>
       </h1>
 
-      <div class={tw`flex justify-center`}>
+      <div class={tw`flex justify-center flex-wrap`}>
         {links.map((item) => (
           <a href={item.link}>
             <div class={cardStyle}>
