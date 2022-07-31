@@ -22,8 +22,9 @@ export default function Minesweeper(
     startStop,
   } = useMinesweeper(level);
   const visibleCell =
-    tw`bg-gray-300 text-center py-2 cursor-pointer text-gray-800`;
-  const closedCell = tw`bg-gray-500 text-center py-2 cursor-pointer`;
+    tw`bg-gray-200 text-center py-2 cursor-pointer text-gray-800 hover:shadow-xl hover:bg-gray-300`;
+  const closedCell =
+    tw`bg-gray-400 text-center py-2 cursor-pointer hover:shadow-xl hover:bg-gray-300`;
 
   // TODO: select level
   // TODO: hide board until isRunning
@@ -39,7 +40,7 @@ export default function Minesweeper(
       <p class={tw`text-gray-300 text-sm`}>time: {time}s</p>
       <div
         class={tw(
-          `grid gap-1 grid-cols-[repeat(${cols},1fr)] grid-rows-[repeat(${lines},3rem)]`,
+          `grid gap-2 grid-cols-[repeat(${cols},1fr)] grid-rows-[repeat(${lines},3rem)]`,
         )}
       >
         {board.map((row, line) =>
