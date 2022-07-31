@@ -65,7 +65,8 @@ export function makeGameOfLife(
   };
 }
 
-const randomLife = () => Math.random() > 0.7;
+const LIFE_RATE = 0.3;
+const randomLife = () => Math.random() > LIFE_RATE;
 
 export function getNextGeneration(board: Board): Board {
   return board.map((line) =>
