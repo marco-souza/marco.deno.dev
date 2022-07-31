@@ -21,7 +21,8 @@ export default function Minesweeper(
     lines,
     startStop,
   } = useMinesweeper(level);
-  const visibleCell = tw`bg-gray-300 text-center py-2 cursor-pointer`;
+  const visibleCell =
+    tw`bg-gray-300 text-center py-2 cursor-pointer text-gray-800`;
   const closedCell = tw`bg-gray-500 text-center py-2 cursor-pointer`;
 
   // TODO: select level
@@ -42,18 +43,23 @@ export default function Minesweeper(
         )}
       >
         {board.map((row, line) =>
-          row.map((cell, col) => (
-            <div
-              onClick={() => open({ line, col })}
-              onContextMenu={(e) => {
-                e?.preventDefault();
-                mark({ line, col });
-              }}
-              class={cell.state === "visible" ? visibleCell : closedCell}
-            >
-              {getCellContent(cell)}
-            </div>
-          ))
+          row.map((cell, col) => {
+            let content = "";
+            if (cell.state === "visible") content = cell.content;
+            if (cell.state === "flagged") content = "🚩";
+            return (
+              <div
+                onClick={() => open({ line, col })}
+                onContextMenu={(e) => {
+                  e?.preventDefault();
+                  mark({ line, col });
+                }}
+                class={cell.state === "visible" ? visibleCell : closedCell}
+              >
+                {content}
+              </div>
+            );
+          })
         )}
       </div>
     </Lazy>
