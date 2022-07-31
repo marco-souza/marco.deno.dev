@@ -7,11 +7,11 @@ import { GameLevel } from "~features/entities/minesweeper.ts";
 
 export default function Home(props: PageProps) {
   const searchPrams = new URLSearchParams(props.url.search);
-  const level: GameLevel = searchPrams.get("level") || "easy";
+  const level: GameLevel = searchPrams.get("level") as GameLevel || "easy";
 
   return (
     <Fragment>
-      <h1 class={tw`text-2xl`}>Game Of Life</h1>
+      <h1 class={tw`text-2xl`}>Minesweeper</h1>
       <Minesweeper level={level} />
     </Fragment>
   );

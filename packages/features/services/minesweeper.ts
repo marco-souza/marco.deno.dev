@@ -32,10 +32,10 @@ export class MinesweeperGame {
     this.#intervalId = setInterval(
       () => {
         this.game.time++;
+        this.#gameEvents.post(this.game);
       },
       SECOND,
     );
-    this.#gameEvents.post(this.game);
   }
 
   open(pos: GridPosition) {
