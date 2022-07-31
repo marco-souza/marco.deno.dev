@@ -1,9 +1,9 @@
 /** @jsx h */
-import { useMemo } from "preact/hooks";
-import { useExternalSync } from "~/shared/hooks.ts";
+import { useEffect, useMemo } from "preact/hooks";
+import { useExternalSync, useKeyboardHandler } from "~/shared/hooks.ts";
 import { GameLevel } from "~features/entities/minesweeper.ts";
 import { MinesweeperGame } from "~features/services/minesweeper.ts";
-import { GridPosition } from "../../shared/types.ts";
+import { GridPosition } from "~/shared/types.ts";
 
 export const useMinesweeper = (level: GameLevel) => {
   const game = useMemo(
@@ -16,6 +16,10 @@ export const useMinesweeper = (level: GameLevel) => {
     () => game.game,
     game.game,
   );
+
+  useKeyboardHandler({
+    " ": () => game.playPause(),
+  });
 
   return {
     ...gameStore,

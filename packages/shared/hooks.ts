@@ -34,3 +34,14 @@ export const useExternalSync = <T>(
 
   return store;
 };
+
+export type KeyHandlerMap = Record<string, () => void>;
+
+export function useKeyboardHandler(keyboardMap: KeyHandlerMap) {
+  useEffect(() => {
+    document.onkeydown = (event) => {
+      const handler = keyboardMap[event.key];
+      if (handler) handler();
+    };
+  }, []);
+}
