@@ -67,9 +67,9 @@ export function makeGameOfLife(
 
 const randomLife = () => Math.random() > 0.7;
 
-export function getNextGeneration(board: Board) {
-  for (const line of board) {
-    for (const cell of line) {
+export function getNextGeneration(board: Board): Board {
+  return board.map((line) =>
+    line.map((cell) => {
       const neighbors = cell.getNeighborsPositions();
       const aliveNeighbors = neighbors.filter((pos) =>
         board[pos.line][pos.col].isAlive
@@ -77,14 +77,15 @@ export function getNextGeneration(board: Board) {
 
       if (cell.isAlive) {
         if (aliveNeighbors < 2 || aliveNeighbors > 3) {
-          cell.isAlive = false;
-          continue;
+          return { ...cell, isAlive: false };
         }
       }
 
       if (aliveNeighbors === 3) {
         cell.isAlive = true;
+        return { ...cell, isAlive: true };
       }
-    }
-  }
+      return cell;
+    })
+  );
 }

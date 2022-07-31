@@ -39,9 +39,10 @@ export class GameBoard {
 
   next() {
     logger.info("next running");
-    this.generation++;
+
     const game = this.#getGame();
-    getNextGeneration(game.board);
+    game.board = getNextGeneration(game.board);
+    this.generation++;
 
     // broadcast to listeners
     this.#broadcast();
