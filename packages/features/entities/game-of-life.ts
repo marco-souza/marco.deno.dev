@@ -47,7 +47,6 @@ export interface GameOfLife {
 
 export function makeGameOfLife(
   { height = 0, width = 0 }: Partial<GameOfLife>,
-  life?: boolean,
 ): GameOfLife {
   const dim = { col: width, line: height };
   const board = Array.from(
@@ -55,7 +54,7 @@ export function makeGameOfLife(
     (_, line) =>
       Array.from(
         { length: width },
-        (_, col) => makeCell({ line, col }, life ?? randomLife(), dim),
+        (_, col) => makeCell({ line, col }, randomLife(), dim),
       ),
   );
 
@@ -68,26 +67,24 @@ export function makeGameOfLife(
 
 const randomLife = () => Math.random() > 0.7;
 
-export function getNextGeneration(board: Board): Board {
-  return board.map((row, line) => {
-    return row.map((cell, col) => {
+export function getNextGeneration(board: Board) {
+  for (const line of board) {
+    for (const cell of line) {
       const neighbors = cell.getNeighborsPositions();
       const aliveNeighbors = neighbors.filter((pos) =>
         board[pos.line][pos.col].isAlive
       ).length;
-      const dim = { line: board.length, col: row.length };
 
       if (cell.isAlive) {
         if (aliveNeighbors < 2 || aliveNeighbors > 3) {
-          return makeCell({ line, col }, false, dim);
-        }
-      } else {
-        if (aliveNeighbors === 3) {
-          return makeCell(cell.pos, true, dim);
+          cell.isAlive = false;
+          continue;
         }
       }
 
-      return cell;
-    });
-  });
+      if (aliveNeighbors === 3) {
+        cell.isAlive = true;
+      }
+    }
+  }
 }

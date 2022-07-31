@@ -31,7 +31,9 @@ export class GameBoard {
   }
 
   cleanup() {
-    this.#game = makeGameOfLife(this.#game, false);
+    this.#game.board.forEach((row) =>
+      row.forEach((col) => col.isAlive = false)
+    );
     this.#broadcast();
   }
 
@@ -39,7 +41,7 @@ export class GameBoard {
     logger.info("next running");
     this.generation++;
     const game = this.#getGame();
-    game.board = getNextGeneration(game.board);
+    getNextGeneration(game.board);
 
     // broadcast to listeners
     this.#broadcast();
