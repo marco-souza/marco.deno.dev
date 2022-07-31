@@ -76,7 +76,7 @@ interface GameConfig {
 }
 
 export const GameLevelConfigMap: Record<GameLevel, GameConfig> = {
-  "easy": { cols: 9, lines: 9, minesAmount: 10 },
+  "easy": { cols: 16, lines: 9, minesAmount: 20 },
   "medium": { cols: 16, lines: 16, minesAmount: 40 },
   "hard": { cols: 30, lines: 16, minesAmount: 99 },
 };
@@ -106,14 +106,15 @@ function makeRandomMines(board: Board, minesAmount: number): Board {
   return board;
 }
 
-const sampleSize = <A>(list: A[], amount: number) => (
-  times(amount)
-    .map(() => randPosition(list))
-    .map((pos) => list[pos])
-);
+const sampleSize = <A>(list: A[], amount: number): A[] => {
+  const sampleSet = new Set<A>();
 
-const times = (num: number) => {
-  return Array.from({ length: num });
+  while (sampleSet.size < amount) {
+    const pos = randPosition(list);
+    sampleSet.add(list[pos]);
+  }
+
+  return [...sampleSet];
 };
 
 const randPosition = <T>(list: T[]): number =>
