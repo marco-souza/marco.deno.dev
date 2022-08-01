@@ -31,7 +31,7 @@ function NavBar() {
         className={tw`logo flex items-center hover:underline`}
         href="/playground"
       >
-        🛝 Playground
+        Playground 🛝
       </a>
 
       <a href={site.repository} target="_blank" class={tw`hover:shadow-md`}>
