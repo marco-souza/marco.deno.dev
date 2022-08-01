@@ -67,7 +67,7 @@ function makeBoard(lines: number, cols: number): Board {
   );
 }
 
-export type GameLevel = "easy" | "medium" | "hard";
+export type GameLevel = "baby" | "easy" | "medium" | "hard";
 
 interface GameConfig {
   lines: number;
@@ -76,6 +76,7 @@ interface GameConfig {
 }
 
 export const GameLevelConfigMap: Record<GameLevel, GameConfig> = {
+  "baby": { cols: 9, lines: 9, minesAmount: 10 },
   "easy": { cols: 16, lines: 9, minesAmount: 20 },
   "medium": { cols: 16, lines: 16, minesAmount: 40 },
   "hard": { cols: 30, lines: 16, minesAmount: 99 },
