@@ -83,18 +83,16 @@ export const GameLevelConfigMap: Record<GameLevel, GameConfig> = {
 };
 
 function makeRandomMines(board: Board, minesAmount: number): Board {
-  const allPositions = board.flatMap((l, line) => (
-    l.map((_, col) =>
-      <GridPosition> (
-        { col, line }
-      )
-    )
+  const allPositions = board.flatMap((row, line) => (
+    row.map((_, col): GridPosition => (
+      { col, line }
+    ))
   ));
 
   // populate mines
   const mines: GridPosition[] = sampleSize(allPositions, minesAmount);
-  mines.forEach((pos) => {
-    board[pos.line][pos.col].isMine = true;
+  mines.forEach(({ line, col }) => {
+    board[line][col].isMine = true;
   });
 
   // calculate mines close
@@ -119,7 +117,7 @@ const sampleSize = <A>(list: A[], amount: number): A[] => {
 };
 
 const randPosition = <T>(list: T[]): number =>
-  Math.ceil(Math.random() * list.length);
+  Math.ceil(Math.random() * (list.length - 1));
 
 const NEIGHBORS_POSITIONS = [-1, 0, 1];
 const neighborsPositions = (
