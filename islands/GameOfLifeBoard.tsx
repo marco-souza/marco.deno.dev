@@ -34,7 +34,9 @@ export default function GameOfLifeBoard({ width, height }: Props) {
         <button onClick={restart} title="restart (N)">♻️</button>
       </div>
       <p class={tw`text-gray-300 text-sm`}>Generation {generation}</p>
-      <div class={tw(`grid gap-1 grid-cols-[repeat(${width},1fr)]`)}>
+      <div
+        class={tw(`grid gap-1 grid-cols-[repeat(${width},1fr)] overflow-auto`)}
+      >
         {board.map((row, line) =>
           row.map((cell, col) => (
             <div

@@ -13,24 +13,18 @@ interface MinesweeperProps {
   level: GameLevel;
 }
 
-export default function Minesweeper(
-  { level }: MinesweeperProps,
-) {
-  const {
-    board,
-    time,
-    mark,
-    open,
-    cols,
-    lines,
-    status,
-    newGame,
-    startStop,
-  } = useMinesweeper(level);
+export default function Minesweeper({ level }: MinesweeperProps) {
+  const { board, time, mark, open, cols, lines, status, newGame, startStop } =
+    useMinesweeper(level);
   const visibleCell =
     tw`bg-gray-200 text-center py-2 cursor-pointer text-gray-800 hover:shadow-xl hover:bg-gray-300`;
   const closedCell =
     tw`bg-gray-400 text-center py-2 cursor-pointer hover:shadow-xl hover:bg-gray-300`;
+
+  const boardStyles = tw(`
+    grid gap-2 overflow-auto
+    grid-cols-[repeat(${cols},minmax(3rem,1fr))] grid-rows-[repeat(${lines},minmax(3rem,1fr))]
+  `);
 
   // TODO: select level
   // TODO: hide board until isRunning
@@ -52,11 +46,7 @@ export default function Minesweeper(
           {` - ${time}s`}
         </span>
       </div>
-      <div
-        class={tw(
-          `grid gap-2 grid-cols-[repeat(${cols},1fr)] grid-rows-[repeat(${lines},3rem)]`,
-        )}
-      >
+      <div class={tw(boardStyles)}>
         {status !== "paused"
           ? board.map((row, line) =>
             row.map((cell, col) => {
