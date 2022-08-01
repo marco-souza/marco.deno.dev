@@ -15,9 +15,19 @@ export class MinesweeperGame {
   private gameEvents: Evt<Game>;
   private intervalId: Maybe<number> = null;
 
-  constructor(public lines: number, public cols: number, minesAmount: number) {
+  constructor(
+    public lines: number,
+    public cols: number,
+    private minesAmount: number,
+  ) {
     this.game = makeGame(lines, cols, minesAmount);
     this.gameEvents = Evt.create<Game>();
+  }
+
+  reset() {
+    this.stop();
+    this.game = makeGame(this.lines, this.cols, this.minesAmount);
+    this.start();
   }
 
   subscribe(handler: (game: Game) => void) {
@@ -25,24 +35,11 @@ export class MinesweeperGame {
   }
 
   playPause() {
+    // is running
     if (this.intervalId != null) {
-      // is running
-      clearInterval(this.intervalId);
-      this.intervalId = null;
-      this.status = "paused";
-      this.gameEvents.post(this.game);
-      return;
+      return this.stop();
     }
-
-    this.intervalId = setInterval(
-      () => {
-        this.game.time++;
-        this.gameEvents.post(this.game);
-      },
-      SECOND,
-    );
-    this.status = "running";
-    this.gameEvents.post(this.game);
+    this.start();
   }
 
   // TODO: add Winning condition
@@ -61,6 +58,29 @@ export class MinesweeperGame {
 
   open(pos: GridPosition) {
     this.openRecursive(pos);
+    this.gameEvents.post(this.game);
+  }
+
+  private start() {
+    if (this.intervalId != null) return;
+    // is not running
+    this.intervalId = setInterval(
+      () => {
+        this.game.time++;
+        this.gameEvents.post(this.game);
+      },
+      SECOND,
+    );
+    this.status = "running";
+    this.gameEvents.post(this.game);
+  }
+
+  private stop() {
+    if (this.intervalId == null) return;
+    // is running
+    clearInterval(this.intervalId);
+    this.intervalId = null;
+    this.status = "paused";
     this.gameEvents.post(this.game);
   }
 

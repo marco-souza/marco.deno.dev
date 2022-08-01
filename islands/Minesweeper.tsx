@@ -24,6 +24,7 @@ export default function Minesweeper(
     cols,
     lines,
     status,
+    newGame,
     startStop,
   } = useMinesweeper(level);
   const visibleCell =
@@ -38,9 +39,14 @@ export default function Minesweeper(
     <Lazy>
       <div class={tw`flex gap-4 py-4`}>
         <h1 class={tw`text-2xl`}>Minesweeper</h1>
-        <button onClick={startStop} title="New Game">
+
+        <button onClick={startStop} title="Start/Stop (Space)">
           {status === "running" ? " ⏸️" : "▶️"}
         </button>
+        <button onClick={newGame} title="New Game (N)">
+          ♻️
+        </button>
+
         <span class={tw`text-gray-300 text-sm py-2`}>
           <ContentByStatus status={status} />
           {` - ${time}s`}

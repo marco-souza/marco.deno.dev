@@ -19,6 +19,7 @@ export const useMinesweeper = (level: GameLevel) => {
 
   useKeyboardHandler({
     " ": () => game.playPause(),
+    "N": () => game.reset(),
   });
 
   return {
@@ -26,6 +27,7 @@ export const useMinesweeper = (level: GameLevel) => {
     cols: game.cols,
     lines: game.lines,
     status: game.status,
+    newGame: () => game.reset(),
     startStop: () => game.playPause(),
     open: (pos: GridPosition) => game.open(pos),
     mark: (pos: GridPosition) => game.mark(pos),
