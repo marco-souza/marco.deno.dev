@@ -8,7 +8,7 @@ const Layout: FunctionComponent = ({ children }) => {
     <div class={tw`bg-gray-600 text-blue-100 min-h-screen relative`}>
       <NavBar />
 
-      <div class={tw`container max-w-4xl py-32 min-h-screen mx-auto`}>
+      <div class={tw`container max-w-4xl py-24 min-h-screen mx-auto`}>
         <div class="p-10">{children}</div>
       </div>
     </div>

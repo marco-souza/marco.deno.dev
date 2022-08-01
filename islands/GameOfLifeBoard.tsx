@@ -25,7 +25,7 @@ export default function GameOfLifeBoard({ width, height }: Props) {
 
   return (
     <Lazy>
-      <div class={tw`flex gap-4 my-4`}>
+      <div class={tw`flex gap-4 py-4`}>
         <button onClick={playPause} title="Play/Pause (Space)">
           {isRunning ? " ⏸️" : "▶️"}
         </button>
