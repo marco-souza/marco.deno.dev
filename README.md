@@ -1,4 +1,8 @@
-# fresh project
+# Personal Playground
+
+This is my personal site/playground which I'm constantly building/rebuilding
+
+[![Made with Fresh](https://fresh.deno.dev/fresh-badge-dark.svg)](https://fresh.deno.dev)
 
 ### Usage
 
