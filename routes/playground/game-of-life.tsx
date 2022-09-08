@@ -1,8 +1,5 @@
-/** @jsx h */
-import { Fragment, h } from "preact";
 import { PageProps } from "$fresh/server.ts";
 import GameOfLifeBoard from "~islands/GameOfLifeBoard.tsx";
-import { tw } from "~/configs/twind.ts";
 
 export default function Home(props: PageProps) {
   const searchPrams = new URLSearchParams(props.url.search);
@@ -12,9 +9,9 @@ export default function Home(props: PageProps) {
   };
 
   return (
-    <Fragment>
-      <h1 class={tw`text-2xl`}>Game Of Life</h1>
+    <>
+      <h1 class="text-2xl">Game Of Life</h1>
       <GameOfLifeBoard {...boardProps} />
-    </Fragment>
+    </>
   );
 }

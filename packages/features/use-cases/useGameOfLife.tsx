@@ -1,4 +1,3 @@
-/** @jsx h */
 import { useEffect, useState } from "preact/hooks";
 import { GameBoard } from "~features/services/game-of-life.ts";
 import { Board, Position } from "../entities/game-of-life.ts";

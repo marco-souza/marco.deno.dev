@@ -1,24 +1,7 @@
-import { makeStore, useStore } from "statery";
-// import { Game, makeGame } from '~features/entities/minesweeper.ts'
+import { signal } from "@preact/signals";
 
-interface IStore {
-  counter: number;
-}
+export const counter = signal(0);
 
-const store = makeStore<IStore>({
-  counter: 1,
-});
+export const inc = (amount = 1) => counter.value += amount;
 
-export const inc = (amount = 1) =>
-  store.set((state) => ({
-    counter: state.counter + amount,
-  }));
-
-export const dec = (amount = 1) =>
-  store.set((state) => ({
-    counter: state.counter - amount,
-  }));
-
-export const state = () => useStore(store);
-
-store.subscribe(console.log);
+export const dec = (amount = 1) => counter.value -= amount;

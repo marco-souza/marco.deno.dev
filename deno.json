@@ -8,7 +8,9 @@
       "deno.ns",
       "deno.unstable"
     ],
-    "strict": true
+    "strict": true,
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
   },
   "tasks": {
     "start": "deno run -A --watch=static/,routes/ dev.ts"

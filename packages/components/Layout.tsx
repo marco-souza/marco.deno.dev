@@ -1,14 +1,12 @@
-/** @jsx h */
-import { FunctionComponent, h } from "preact";
-import { tw } from "twind";
+import { FunctionComponent } from "preact";
 import { site } from "@settings";
 
 const Layout: FunctionComponent = ({ children }) => {
   return (
-    <div class={tw`bg-gray-600 text-blue-100 min-h-screen relative`}>
+    <div class="bg-gray-600 text-blue-100 min-h-screen relative">
       <NavBar />
 
-      <div class={tw`container max-w-4xl py-24 px-6 min-h-screen mx-auto`}>
+      <div class="container max-w-4xl py-24 px-6 min-h-screen mx-auto">
         <div class="p-10">{children}</div>
       </div>
     </div>
@@ -19,22 +17,20 @@ export default Layout;
 
 function NavBar() {
   return (
-    <div
-      class={tw`fixed left-0 right-0 top-0 p-6 bg-gray-700 shadow-md flex justify-between`}
-    >
-      <a className={tw`logo flex items-center`} href="/">
+    <div class="fixed left-0 right-0 top-0 p-6 bg-gray-700 shadow-md flex justify-between">
+      <a className="logo flex items-center" href="/">
         m.
-        <span class={tw`text-yellow-300`}>labs 🧑🏽‍🔬</span>
+        <span class="text-yellow-300">labs 🧑🏽‍🔬</span>
       </a>
 
       <a
-        className={tw`logo flex items-center hover:underline`}
+        className="logo flex items-center hover:underline"
         href="/playground"
       >
         playground 🛝
       </a>
 
-      <a href={site.repository} target="_blank" class={tw`hover:shadow-md`}>
+      <a href={site.repository} target="_blank" class="hover:shadow-md">
         <svg
           viewBox="0 0 1024 1024"
           fill="currentColor"

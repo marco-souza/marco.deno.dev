@@ -1,4 +1,3 @@
-/** @jsx h */
 import { useEffect, useMemo } from "preact/hooks";
 import { useExternalSync, useKeyboardHandler } from "~/shared/hooks.ts";
 import { GameLevel } from "~features/entities/minesweeper.ts";

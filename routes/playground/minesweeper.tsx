@@ -1,8 +1,5 @@
-/** @jsx h */
-import { h } from "preact";
 import { PageProps } from "$fresh/server.ts";
 import Minesweeper from "~islands/Minesweeper.tsx";
-import { tw } from "~/configs/twind.ts";
 import { GameLevel } from "~features/entities/minesweeper.ts";
 
 export default function Home(props: PageProps) {
@@ -10,7 +7,7 @@ export default function Home(props: PageProps) {
   const level: GameLevel = searchPrams.get("level") as GameLevel || "easy";
 
   return (
-    <div class={tw`container`}>
+    <div class="container">
       <Minesweeper level={level} />
     </div>
   );

@@ -1,6 +1,3 @@
-/** @jsx h */
-import { Fragment, h } from "preact";
-import { tw } from "~/configs/twind.ts";
 import { Lazy } from "~/shared/components.tsx";
 import { Game, GameLevel } from "~features/entities/minesweeper.ts";
 import { useMinesweeper } from "~features/use-cases/useMinesweeper.tsx";
@@ -17,11 +14,11 @@ export default function Minesweeper({ level }: MinesweeperProps) {
   const { board, time, mark, open, cols, lines, status, newGame, startStop } =
     useMinesweeper(level);
   const visibleCell =
-    tw`bg-gray-200 text-center py-1 cursor-pointer text-gray-800 hover:shadow-xl hover:bg-gray-300`;
+    `bg-gray-200 text-center py-1 cursor-pointer text-gray-800 hover:shadow-xl hover:bg-gray-300`;
   const closedCell =
-    tw`bg-gray-400 text-center py-1 cursor-pointer hover:shadow-xl hover:bg-gray-300`;
+    `bg-gray-400 text-center py-1 cursor-pointer hover:shadow-xl hover:bg-gray-300`;
 
-  const boardStyles = tw(`
+  const boardStyles = (`
     grid-cols-[repeat(${cols},2rem)] grid-rows-[repeat(${lines},2rem)]
     grid gap-1 overflow-auto
   `);
@@ -31,8 +28,8 @@ export default function Minesweeper({ level }: MinesweeperProps) {
 
   return (
     <Lazy>
-      <div class={tw`flex gap-4 py-4`}>
-        <h1 class={tw`text-2xl`}>Minesweeper</h1>
+      <div class="flex gap-4 py-4">
+        <h1 class="text-2xl">Minesweeper</h1>
 
         <button onClick={startStop} title="Start/Stop (Space)">
           {status === "running" ? " ⏸️" : "▶️"}
@@ -41,7 +38,7 @@ export default function Minesweeper({ level }: MinesweeperProps) {
           ♻️
         </button>
 
-        <span class={tw`text-gray-300 text-sm py-2`}>
+        <span class="text-gray-300 text-sm py-2">
           <ContentByStatus status={status} />
           {` - ${time}s`}
         </span>
