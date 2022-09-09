@@ -3,25 +3,20 @@ on: [push]
 
 jobs:
   deploy:
-    name: Deploy
     runs-on: ubuntu-latest
-    environment: deno-deploy
+
     permissions:
-      id-token: write # Needed for auth with Deno Deploy
-      contents: read # Needed to clone the repository
+      id-token: write
+      contents: read
 
     steps:
       - name: Clone repository
-        uses: actions/checkout@v2
-
-      - name: Install Deno
-        uses: denoland/setup-deno@v1
+        uses: actions/checkout@v3
 
       - name: Deploy to Deno Deploy
-        run: >
-          deno install --allow-read --allow-write --allow-env --allow-net --allow-run --no-check -r -f https://deno.land/x/deploy/deployctl.ts;
-          deployctl deploy --import-map=import_map.json --project=$project $entrypoint --prod
-        env: # Or as an environment variable
-          DENO_DEPLOY_TOKEN: ${{ secrets.DENO_DEPLOY_TOKEN }}
-          project: marco # todo: change this to your project name in https://dash.deno.com
-          entrypoint: main.ts
+        uses: denoland/deployctl@v1
+        with:
+          project: marco
+          entrypoint: main.ts # the entrypoint to deploy
+          import-map: import_map.json
+
