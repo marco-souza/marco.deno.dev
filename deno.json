@@ -8,7 +8,6 @@
       "deno.ns",
       "deno.unstable"
     ],
-    "strict": true,
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
   },
