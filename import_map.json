@@ -1,23 +1,24 @@
 {
   "imports": {
     "#/": "./",
-    "$fresh/": "https://deno.land/x/fresh@1.1.0/",
-    "@hooks": "./packages/shared/hooks.ts",
-    "@settings": "./packages/configs/settings.ts",
-    "evt": "https://deno.land/x/evt@v2.3.1/mod.ts",
-    "logger": "https://deno.land/std@0.150.0/log/logger.ts",
-    "preact": "https://esm.sh/preact@10.10.6",
-    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@5.2.3/",
-    "preact/": "https://esm.sh/preact@10.10.6/",
+    "$fresh/": "https://deno.land/x/fresh@1.1.1/",
+    "preact": "https://esm.sh/preact@10.11.0",
+    "preact/": "https://esm.sh/preact@10.11.0/",
+    "preact-render-to-string": "https://esm.sh/*preact-render-to-string@5.2.4",
+    "@preact/signals": "https://esm.sh/*@preact/signals@1.0.3",
+    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.0.1",
     "twind": "https://esm.sh/twind@0.16.17",
     "twind/": "https://esm.sh/twind@0.16.17/",
+    "evt": "https://deno.land/x/evt@v2.3.1/mod.ts",
+    "logger": "https://deno.land/std@0.150.0/log/logger.ts",
     "zod": "https://deno.land/x/zod@v3.16.1/mod.ts",
+
+    "@hooks": "./packages/shared/hooks.ts",
+    "@settings": "./packages/configs/settings.ts",
     "~/": "./packages/",
     "~components/": "./packages/components/",
     "~features/": "./packages/features/",
     "~islands/": "./islands/",
-    "~logger": "./packages/shared/logger.ts",
-    "@preact/signals": "https://esm.sh/*@preact/signals@1.0.3",
-    "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.0.1"
+    "~logger": "./packages/shared/logger.ts"
   }
 }
