@@ -1,7 +1,7 @@
 import { AppProps } from "$fresh/server.ts";
 import { Head } from "$fresh/runtime.ts";
 import Layout from "~components/Layout.tsx";
-import { site } from "@settings";
+import { site } from "~settings";
 
 export default function App({ Component }: AppProps) {
   const headers = (

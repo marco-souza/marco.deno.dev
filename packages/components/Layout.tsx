@@ -1,5 +1,5 @@
 import { FunctionComponent } from "preact";
-import { site } from "@settings";
+import { site } from "~settings";
 
 const Layout: FunctionComponent = ({ children }) => {
   return (

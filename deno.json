@@ -1,18 +1,10 @@
 {
-  "compilerOptions": {
-    "allowJs": false,
-    "lib": [
-      "deno.window",
-      "dom",
-      "dom.asynciterable",
-      "deno.ns",
-      "deno.unstable"
-    ],
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact"
-  },
   "tasks": {
     "start": "deno run -A --watch=static/,routes/ dev.ts"
   },
-  "importMap": "./import_map.json"
+  "importMap": "./import_map.json",
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "jsxImportSource": "preact"
+  }
 }
