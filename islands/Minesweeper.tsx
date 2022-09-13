@@ -1,18 +1,16 @@
 import { Lazy } from "~/shared/components.tsx";
-import { Game, GameLevel } from "~features/entities/minesweeper.ts";
+import { GameLevel } from "~features/entities/minesweeper.ts";
+import { GameStatus } from "~features/services/minesweeper.ts";
 import { useMinesweeper } from "~features/use-cases/useMinesweeper.tsx";
-import {
-  GameStatus,
-  MinesweeperGame,
-} from "../packages/features/services/minesweeper.ts";
 
 interface MinesweeperProps {
   level: GameLevel;
 }
 
 export default function Minesweeper({ level }: MinesweeperProps) {
-  const { board, time, mark, open, cols, lines, status, newGame, startStop } =
+  const { gameState, mark, open, cols, lines, status, newGame, startStop } =
     useMinesweeper(level);
+  const { board, time, mines } = gameState.value;
   const visibleCell =
     `bg-gray-200 text-center py-1 cursor-pointer text-gray-800 hover:shadow-xl hover:bg-gray-300`;
   const closedCell =
@@ -43,6 +41,9 @@ export default function Minesweeper({ level }: MinesweeperProps) {
           {` - ${time}s`}
         </span>
       </div>
+      <p>
+        mines: {mines.remaining}/{mines.amount}
+      </p>
       <div class={boardStyles}>
         {status.value !== "paused"
           ? board.map((row, line) =>

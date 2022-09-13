@@ -16,10 +16,10 @@ export const useMinesweeper = (level: GameLevel) => {
   });
 
   return {
-    ...game.gameState.value,
     cols: game.cols,
     lines: game.lines,
     status: game.status,
+    gameState: game.gameState,
     newGame: () => game.reset(),
     startStop: () => game.playPause(),
     open: (pos: GridPosition) => game.open(pos),

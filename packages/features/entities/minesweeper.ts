@@ -48,7 +48,7 @@ export function makeGame(
   return {
     time: 0,
     board: makeRandomMines(board, minesAmount),
-    mines: { amount: minesAmount, remaining: 0 },
+    mines: { amount: minesAmount, remaining: minesAmount },
   };
 }
 
