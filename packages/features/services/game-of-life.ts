@@ -7,45 +7,44 @@ import {
 } from "~features/entities/game-of-life.ts";
 import { Maybe } from "~/shared/types.ts";
 import { logger } from "~logger";
+import { Signal, signal } from "@preact/signals";
 
 export class GameBoard {
   generation = 1;
   isRunning = false;
-  #game: GameOfLife;
+  gameState: Signal<GameOfLife>;
   #intervalId: Maybe<number> = null;
-  #listenersMap: Record<string, Handler> = {};
 
   constructor(width: number, height: number) {
-    this.#game = makeGameOfLife({ height, width });
+    this.gameState = signal(makeGameOfLife({ height, width }));
   }
 
   restart() {
-    this.#game = makeGameOfLife(this.#game);
-    this.#broadcast();
+    this.gameState.value = makeGameOfLife(this.gameState.value);
   }
 
   toggleLife(pos: Position) {
-    const cell = this.#getGame().board[pos.line][pos.col];
+    const { board } = this.gameState.value;
+    const cell = board[pos.line][pos.col];
     cell.isAlive = !cell.isAlive;
-    this.#broadcast();
+
+    this.#setBoard([...board]);
   }
 
   cleanup() {
-    this.#game.board.forEach((row) =>
-      row.forEach((col) => col.isAlive = false)
+    const newBoard: Board = this.gameState.value.board.map((row) =>
+      row.map((col) => ({ ...col, isAlive: false }))
     );
-    this.#broadcast();
+    this.#setBoard(newBoard);
   }
 
   next() {
     logger.info("next running");
 
-    const game = this.#getGame();
-    game.board = getNextGeneration(game.board);
+    this.#setBoard(
+      getNextGeneration(this.gameState.value.board),
+    );
     this.generation++;
-
-    // broadcast to listeners
-    this.#broadcast();
   }
 
   startGame(interval = 300) {
@@ -65,29 +64,11 @@ export class GameBoard {
     }
   }
 
-  subscribe(id: string, handler: Handler) {
-    logger.info("Subscribing", id);
-    this.#listenersMap[id] = handler;
-    handler(this.#getGame().board);
-  }
-
-  unsubscribe(id: string) {
-    delete this.#listenersMap[id];
-  }
-
-  #getGame() {
-    if (this.#game == null) {
-      throw new Error("Please define the board size with");
-    }
-    return this.#game;
-  }
-
-  #broadcast() {
-    const game = this.#getGame();
-    // broadcast to listeners
-    Object.values(this.#listenersMap).forEach((handler) =>
-      handler([...game.board])
-    );
+  #setBoard(board: Board) {
+    this.gameState.value = {
+      ...this.gameState.value,
+      board,
+    };
   }
 
   static getInstance(width: number, height: number): GameBoard {

@@ -1,11 +1,10 @@
 import { useEffect, useState } from "preact/hooks";
 import { GameBoard } from "~features/services/game-of-life.ts";
-import { Board, Position } from "../entities/game-of-life.ts";
+import { Position } from "~features/entities/game-of-life.ts";
 
 export function useGameOfLife(width: number, height: number) {
   const game = GameBoard.getInstance(width, height);
   const [isRunning, setIsRunning] = useState(game.isRunning);
-  const [board, setBoard] = useState<Board>([]);
 
   const playPause = () => {
     // TODO: sync with game isRunning state
@@ -14,9 +13,6 @@ export function useGameOfLife(width: number, height: number) {
   };
 
   useEffect(() => {
-    const subID = "gol-hook-id";
-    game.subscribe(subID, setBoard);
-
     document.onkeydown = (event) => {
       switch (event.key) {
         case " ":
@@ -32,10 +28,10 @@ export function useGameOfLife(width: number, height: number) {
   }, []);
 
   return {
-    board,
     isRunning,
-    generation: game.generation,
     playPause,
+    board: game.gameState.value.board,
+    generation: game.generation,
     next: () => game.next(),
     cleanup: () => game.cleanup(),
     restart: () => game.restart(),
