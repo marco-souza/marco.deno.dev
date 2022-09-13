@@ -32,19 +32,19 @@ export default function Minesweeper({ level }: MinesweeperProps) {
         <h1 class="text-2xl">Minesweeper</h1>
 
         <button onClick={startStop} title="Start/Stop (Space)">
-          {status === "running" ? " ⏸️" : "▶️"}
+          {status.value === "running" ? " ⏸️" : "▶️"}
         </button>
         <button onClick={newGame} title="New Game (N)">
           ♻️
         </button>
 
         <span class="text-gray-300 text-sm py-2">
-          <ContentByStatus status={status} />
+          <ContentByStatus status={status.value} />
           {` - ${time}s`}
         </span>
       </div>
       <div class={boardStyles}>
-        {status !== "paused"
+        {status.value !== "paused"
           ? board.map((row, line) =>
             row.map((cell, col) => {
               let content = "";
@@ -52,17 +52,17 @@ export default function Minesweeper({ level }: MinesweeperProps) {
 
               // make all visible if user lost the game
               const isVisible = cell.state === "visible" ||
-                (status === "lost" && cell.content != "");
+                (status.value === "lost" && cell.content != "");
               if (isVisible) content = cell.content;
 
               return (
                 <div
                   onClick={() => {
-                    if (status === "lost") return;
+                    if (status.value === "lost") return;
                     open({ line, col });
                   }}
                   onContextMenu={(e) => {
-                    if (status === "lost") return;
+                    if (status.value === "lost") return;
                     e?.preventDefault();
                     mark({ line, col });
                   }}
@@ -79,7 +79,7 @@ export default function Minesweeper({ level }: MinesweeperProps) {
   );
 }
 
-const ContentByStatus = ({ status }: Pick<MinesweeperGame, "status">) => {
+const ContentByStatus = ({ status }: { status: GameStatus }) => {
   switch (status) {
     case "lost":
       return <span>You lost :(</span>;

@@ -1,5 +1,5 @@
-import { useEffect, useMemo } from "preact/hooks";
-import { useExternalSync, useKeyboardHandler } from "~/shared/hooks.ts";
+import { useMemo } from "preact/hooks";
+import { useKeyboardHandler } from "~hooks";
 import { GameLevel } from "~features/entities/minesweeper.ts";
 import { MinesweeperGame } from "~features/services/minesweeper.ts";
 import { GridPosition } from "~/shared/types.ts";
@@ -10,19 +10,13 @@ export const useMinesweeper = (level: GameLevel) => {
     [level],
   );
 
-  const gameStore = useExternalSync(
-    game.subscribe.bind(game),
-    () => game.game,
-    game.game,
-  );
-
   useKeyboardHandler({
     " ": () => game.playPause(),
     "N": () => game.reset(),
   });
 
   return {
-    ...gameStore,
+    ...game.gameState.value,
     cols: game.cols,
     lines: game.lines,
     status: game.status,

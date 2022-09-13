@@ -1,18 +1,18 @@
-import { Evt } from "evt";
 import {
+  Cell,
   Game,
   GameLevel,
   GameLevelConfigMap,
   makeGame,
 } from "~features/entities/minesweeper.ts";
 import { GridPosition, Maybe } from "~/shared/types.ts";
+import { Signal, signal } from "@preact/signals";
 
 export type GameStatus = "running" | "paused" | "won" | "lost";
 
 export class MinesweeperGame {
-  game: Game;
-  status: GameStatus = "paused";
-  private gameEvents: Evt<Game>;
+  gameState: Signal<Game>;
+  status: Signal<GameStatus>;
   private intervalId: Maybe<number> = null;
 
   constructor(
@@ -20,18 +20,14 @@ export class MinesweeperGame {
     public cols: number,
     private minesAmount: number,
   ) {
-    this.game = makeGame(lines, cols, minesAmount);
-    this.gameEvents = Evt.create<Game>();
+    this.gameState = signal(makeGame(lines, cols, minesAmount));
+    this.status = signal<GameStatus>("paused");
   }
 
   reset() {
     this.stop();
-    this.game = makeGame(this.lines, this.cols, this.minesAmount);
+    this.gameState.value = makeGame(this.lines, this.cols, this.minesAmount);
     this.start();
-  }
-
-  subscribe(handler: (game: Game) => void) {
-    this.gameEvents.attach(handler);
   }
 
   playPause() {
@@ -46,19 +42,22 @@ export class MinesweeperGame {
 
   mark(pos: GridPosition) {
     const cell = this.getCellByPosition(pos);
+    const { mines } = this.gameState.value;
     if (cell.state === "closed") {
       cell.state = "flagged";
-      this.game.mines.remaining--;
+      mines.remaining--;
     } else if (cell.state === "flagged") {
       cell.state = "closed";
-      this.game.mines.remaining++;
+      mines.remaining++;
     }
-    this.gameEvents.post(this.game);
+    this.setGameState({
+      mines: { ...mines },
+    });
+    this.setCellInBoardByPosition(pos, cell);
   }
 
   open(pos: GridPosition) {
     this.openRecursive(pos);
-    this.gameEvents.post(this.game);
   }
 
   private start() {
@@ -66,13 +65,13 @@ export class MinesweeperGame {
     // is not running
     this.intervalId = setInterval(
       () => {
-        this.game.time++;
-        this.gameEvents.post(this.game);
+        let { time } = this.gameState.value;
+        time++;
+        this.setGameState({ time });
       },
       SECOND,
     );
-    this.status = "running";
-    this.gameEvents.post(this.game);
+    this.status.value = "running";
   }
 
   private stop() {
@@ -80,8 +79,7 @@ export class MinesweeperGame {
     // is running
     clearInterval(this.intervalId);
     this.intervalId = null;
-    this.status = "paused";
-    this.gameEvents.post(this.game);
+    this.status.value = "paused";
   }
 
   private openRecursive(pos: GridPosition) {
@@ -91,7 +89,8 @@ export class MinesweeperGame {
       cell.state = "visible";
       if (cell.isMine) {
         this.playPause();
-        this.status = "lost";
+        this.status.value = "lost";
+        this.setCellInBoardByPosition(pos, cell);
         return;
       }
       // open neighbors recursively
@@ -112,10 +111,26 @@ export class MinesweeperGame {
           .forEach((p) => this.openRecursive(p));
       }
     }
+    this.setCellInBoardByPosition(pos, cell);
+  }
+
+  private setCellInBoardByPosition(pos: GridPosition, cell: Cell) {
+    const { board } = this.gameState.value;
+    board[pos.line][pos.col] = cell;
+    this.setGameState({
+      board: board.map((line) => line.map((x) => x)),
+    });
   }
 
   private getCellByPosition(pos: GridPosition) {
-    return this.game.board[pos.line][pos.col];
+    return this.gameState.value.board[pos.line][pos.col];
+  }
+
+  private setGameState(state: Partial<Game>) {
+    this.gameState.value = {
+      ...this.gameState.value,
+      ...state,
+    };
   }
 
   static createGame(level: GameLevel): MinesweeperGame {
