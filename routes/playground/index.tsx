@@ -1,6 +1,6 @@
 export default function Home() {
   const cardStyle = `
-    px-8 m-2 py-4 max-w-sm rounded-md border
+    px-8 m-2 py-4 max-w-sm rounded-md border shadow
     hover:border-pink-300 hover:text-pink-300
     hover:underline hover:shadow-md
   `;
@@ -14,7 +14,7 @@ export default function Home() {
         </p>
       </h1>
 
-      <div class="flex justify-center flex-wrap">
+      <div class="flex flex-row justify-center flex-wrap">
         {links.map((item) => (
           <a href={item.link}>
             <div class={cardStyle}>

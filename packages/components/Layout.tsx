@@ -6,8 +6,8 @@ const Layout: FunctionComponent = ({ children }) => {
     <div class="bg-gray-600 text-blue-100 min-h-screen relative">
       <NavBar />
 
-      <div class="container max-w-4xl py-24 px-6 min-h-screen mx-auto">
-        <div class="p-10">{children}</div>
+      <div class="container max-w-4xl mx-auto md:pt-0 min-h-screen flex justify-center">
+        <div class="flex flex-col justify-center">{children}</div>
       </div>
     </div>
   );
@@ -18,13 +18,13 @@ export default Layout;
 function NavBar() {
   return (
     <div class="fixed left-0 right-0 top-0 p-6 bg-gray-700 shadow-md flex justify-between">
-      <a className="logo flex items-center" href="/">
+      <a className="flex items-center" href="/">
         m.
         <span class="text-yellow-300">labs 🧑🏽‍🔬</span>
       </a>
 
       <a
-        className="logo flex items-center hover:underline"
+        className="flex items-center hover:underline"
         href="/playground"
       >
         playground 🛝
