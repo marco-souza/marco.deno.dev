@@ -5,6 +5,10 @@ export interface PropsWithChildren {
   children: JSX.Element | JSX.Element[];
 }
 
+export type PropsWithClass = {
+  class?: string;
+};
+
 interface LazyProps extends PropsWithChildren {
   fallback?: JSX.Element;
 }

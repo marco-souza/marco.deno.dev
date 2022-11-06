@@ -8,7 +8,7 @@ export default function Home() {
       <h1 class="text-2xl text-center py-16">
         <p>Welcome to</p>
         <p class="text-4xl">
-          my <span class="text-yellow-300">lab</span>
+          Marco's <span class="text-yellow-300">lab</span>
           🧑🏽‍🔬
         </p>
       </h1>
