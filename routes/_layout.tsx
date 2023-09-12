@@ -1,10 +1,10 @@
 import { defineLayout } from "$fresh/server.ts";
 import ThemeSwitcher from "#/islands/ThemeSwitcher.tsx";
-import { site } from "~/settings.ts";
+import { Logo } from "~/components/Logo.tsx";
 
 export default defineLayout((_req, ctx) => {
   return (
-    <div class="grid gap-8">
+    <div class="grid gap-24 container mx-auto">
       <NavBar />
 
       <ctx.Component />
@@ -34,7 +34,7 @@ const NavBar = () => (
     </div>
 
     <div class="flex-1 flex justify-center">
-      <a class="btn btn-ghost normal-case text-xl">{site.name}</a>
+      <Logo />
     </div>
 
     <div class="flex-none">
