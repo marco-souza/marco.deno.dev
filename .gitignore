@@ -1,0 +1,10 @@
+# Mac
+.DS_Store
+
+# dotenv
+.env
+
+# fresh
+_fresh/
+tailwind*
+postcss*
