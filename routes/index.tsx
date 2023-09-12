@@ -1,7 +1,6 @@
 import { site } from "~/settings.ts";
 import { defineRoute } from "$fresh/server.ts";
 import TremTecLogo from "~/icon/TremTecLogo.tsx";
-import ThemeSwitcher from "#/islands/ThemeSwitcher.tsx";
 
 export default defineRoute(() => {
   return (
@@ -13,7 +12,6 @@ export default defineRoute(() => {
         </h1>
 
         <h2 class="text-sm">{site.subTitle}</h2>
-        <ThemeSwitcher />
       </div>
     </>
   );
