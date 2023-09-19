@@ -16,6 +16,15 @@ export const site = {
     paradigm: "https://paradigm.co/",
     tremtec: "https://tremtec.com/",
   },
+
+  cta: {
+    primary: {
+      text: "Let's have a Coffee ☕️",
+      link:
+        "mailto:marco@tremtec.com?subject=Hi Marco?body=Hey Marco, let's have a coffee?",
+    },
+    secondary: { text: "Resume", link: "/resume" },
+  },
 };
 
 const VarEnvSchema = z.object({
