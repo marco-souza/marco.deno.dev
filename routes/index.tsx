@@ -2,6 +2,12 @@ import { site } from "~/settings.ts";
 import { defineRoute } from "$fresh/server.ts";
 import { parseBioText } from "~/shared/formatters.ts";
 import { github } from "~/services/github.ts";
+import { css } from "@twind/core";
+
+const zoomIn = css`
+  transition: transform .2s;
+  transform: scale(1.1);
+`;
 
 export default defineRoute(async () => {
   const profile = await github.fetchProfile();
@@ -26,13 +32,13 @@ export default defineRoute(async () => {
         <div class="grid gap-8 grid-cols-1 sm:mx-20 sm:grid-cols-2 w-full">
           <a
             href={site.cta.primary.link}
-            class="btn btn-outline text-pink-400 animate-bounce repeat-[2]"
+            class={`btn btn-outline btn-accent hover:${zoomIn}`}
           >
             {site.cta.primary.text}
           </a>
           <a
             href={site.cta.secondary.link}
-            class="btn btn-outline text-pink-50 animate-bounce repeat-[2] delay-200"
+            class={`btn btn-outline hover:${zoomIn}`}
           >
             {site.cta.secondary.text}
           </a>
