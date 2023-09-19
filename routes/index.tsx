@@ -4,7 +4,7 @@ import { parseBioText } from "~/shared/formatters.ts";
 import { github } from "~/services/github.ts";
 import { apply, tw } from "twind";
 
-const container = apply`max-w-xl px-8 mx-auto min-h-[80vh]`
+const container = apply`max-w-xl px-8 mx-auto min-h-[80vh]`;
 
 export default defineRoute(async () => {
   const profile = await github.fetchProfile();

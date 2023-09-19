@@ -27,7 +27,11 @@ const NavBar = () => (
     <div class="navbar-end">
       <ThemeSwitcher />
 
-      <a href={site.repository} target="_black" class="btn btn-ghost btn-circle">
+      <a
+        href={site.repository}
+        target="_black"
+        class="btn btn-ghost btn-circle"
+      >
         <GithubIcon />
       </a>
     </div>
@@ -38,7 +42,7 @@ const menuLinks = [
   { href: "/", name: "Home" },
   { href: "/resume", name: "Resume" },
   { href: "/blog", name: "Blog" },
-]
+];
 
 const Menu = () => (
   <div class="dropdown" role="button" as="button">
@@ -49,7 +53,7 @@ const Menu = () => (
       tabIndex={0}
       class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
     >
-      {menuLinks.map(link => (
+      {menuLinks.map((link) => (
         <li>
           <a href={link.href}>{link.name}</a>
         </li>
