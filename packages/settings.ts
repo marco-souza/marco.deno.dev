@@ -7,7 +7,8 @@ export const site = {
   subTitle: "Code Craftsman",
   description: "Marco Labs",
   keywords: "Marco,sfotware,engineer,PodCodar,TremTec,code,craftsman",
-  repository: "https://github.com/marco-souza/marco.deno.dev",
+  repository: "https://github.com/marco-souza/",
+
   links: {
     stackoverflow: "https://stackoverflow.com/users/7988674/marco-antônio/",
     linkedin: "https://www.linkedin.com/in/masouzajunior",
