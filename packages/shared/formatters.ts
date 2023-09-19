@@ -14,8 +14,6 @@ export function parseBioText(text: string | undefined): string {
     }
     return originalText;
   });
-  return result
-    .split("\n")
-    .map((line) => `<p>${line}</p>`)
-    .join("");
+
+  return result;
 }
