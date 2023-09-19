@@ -6,7 +6,6 @@ This project is my [personal site](https://marco.deno.dev).
 
 - [Deno](https://deno.land/)
 - [Fresh](https://fresh.deno.dev/)
-- [Ansible Vault](https://docs.ansible.com/ansible/latest/vault_guide/)
 
 ### Install CLI
 

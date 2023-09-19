@@ -1,7 +1,7 @@
 {
   "tasks": {
-    "encrypt": "ansible-vault encrypt .env --output .env.encrypted",
-    "decrypt": "ansible-vault decrypt .env.encrypted --output .env",
+    "encrypt": "gpg -c .env",
+    "decrypt": "gpg -d .env.gpg > .env",
     "start": "deno run --unstable -A --watch=static/,routes/ dev.ts",
     "test": "deno test --unstable -A",
     "build": "deno run -A --unstable dev.ts build",
