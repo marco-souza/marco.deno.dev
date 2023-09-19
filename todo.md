@@ -2,10 +2,10 @@ Backlog:
 
 - [x] setup project
 - [x] setup layout
-- [o] move home page
-  - [X] add favicon
-  - [X] fetch / update use profile data
-  - [ ] add footer (?)
+- [O] move home page
+  - [x] add favicon
+  - [x] fetch / update use profile data
+  - [x] add footer (?)
   - [ ] add buttons with animation
 - [ ] move resume page
 - [ ] move blog page

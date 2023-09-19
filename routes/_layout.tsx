@@ -10,9 +10,19 @@ export default defineLayout((_req, ctx) => {
       <NavBar />
 
       <ctx.Component />
+
+      <Footer />
     </div>
   );
 });
+
+export const Footer = () => {
+  return (
+    <footer class="py-10">
+      <p class="text-center text-white text-sm">Made with ☕️ + 🍋 + ❤️</p>
+    </footer>
+  );
+};
 
 const NavBar = () => (
   <div class="navbar">
