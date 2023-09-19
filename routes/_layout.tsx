@@ -17,7 +17,7 @@ export default defineLayout((_req, ctx) => {
 const NavBar = () => (
   <div class="navbar">
     <div class="navbar-start">
-      <ExpandableMenu />
+      <Menu />
     </div>
 
     <div class="navbar-center">
@@ -34,7 +34,13 @@ const NavBar = () => (
   </div>
 );
 
-const ExpandableMenu = () => (
+const menuLinks = [
+  { href: "/", name: "Home" },
+  { href: "/resume", name: "Resume" },
+  { href: "/blog", name: "Blog" },
+]
+
+const Menu = () => (
   <div class="dropdown" role="button" as="button">
     <label tabIndex={0} class="btn btn-ghost btn-circle">
       <MenuIcon />
@@ -43,15 +49,11 @@ const ExpandableMenu = () => (
       tabIndex={0}
       class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
     >
-      <li>
-        <a>Homepage</a>
-      </li>
-      <li>
-        <a>Portfolio</a>
-      </li>
-      <li>
-        <a>About</a>
-      </li>
+      {menuLinks.map(link => (
+        <li>
+          <a href={link.href}>{link.name}</a>
+        </li>
+      ))}
     </ul>
   </div>
 );
