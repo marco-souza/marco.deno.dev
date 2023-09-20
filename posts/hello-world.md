@@ -9,7 +9,8 @@ created_at: 06-10-2022
 
 ![Hey there](https://c.tenor.com/mGgWY8RkgYMAAAAC/hello-world.gif)
 
-Hi there 👋, this is the first post of my static blog made with SolidJS, TailwindCSS and Github Actions
+Hi there 👋, this is the first post of my static blog made with SolidJS,
+TailwindCSS and Github Actions
 
-You can check the code [here](https://github.dev/marco-souza/marco-souza.github.io).
-
+You can check the code
+[here](https://github.dev/marco-souza/marco-souza.github.io).
