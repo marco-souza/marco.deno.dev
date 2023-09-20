@@ -22,7 +22,7 @@ export const site = {
     primary: {
       text: "Let's have a Coffee ☕️",
       link:
-        "mailto:marco@tremtec.com?subject=Hi Marco?body=Hey Marco, let's have a coffee?",
+        "mailto:marco@tremtec.com?subject=Hi Marco, let's have a coffee!",
     },
     secondary: { text: "Resume", link: "/resume" },
   },
