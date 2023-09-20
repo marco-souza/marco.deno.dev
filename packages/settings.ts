@@ -21,8 +21,7 @@ export const site = {
   cta: {
     primary: {
       text: "Let's have a Coffee ☕️",
-      link:
-        "mailto:marco@tremtec.com?subject=Hi Marco, let's have a coffee!",
+      link: "mailto:marco@tremtec.com?subject=Hi Marco, let's have a coffee!",
     },
     secondary: { text: "Resume", link: "/resume" },
   },

@@ -8,4 +8,4 @@ Backlog:
   - [x] add footer (?)
   - [x] add buttons with animation
 - [ ] move resume page
-- [ ] move blog page
+- [x] move blog page

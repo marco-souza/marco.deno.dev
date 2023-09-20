@@ -9,7 +9,9 @@ export default defineLayout((_req, ctx) => {
     <div class="grid gap-24 container mx-auto">
       <NavBar />
 
-      <ctx.Component />
+      <div class="px-8">
+        <ctx.Component />
+      </div>
 
       <Footer />
     </div>
@@ -19,7 +21,7 @@ export default defineLayout((_req, ctx) => {
 export const Footer = () => {
   return (
     <footer class="py-10">
-      <p class="text-center text-white text-sm">Made with ☕️ + 🍋 + ❤️</p>
+      <p class="text-center text-sm">Made with ☕️ + 🍋 + ❤️</p>
     </footer>
   );
 };
