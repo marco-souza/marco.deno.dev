@@ -8,4 +8,5 @@ export default defineConfig({
     await setupDaisy(),
     twindPlugin(twindConfig),
   ],
+  hostname: Deno.env.get("HOST") ?? "localhost",
 });

@@ -16,6 +16,9 @@ RUN addgroup --gid 1000 deno \
 ENV DENO_DIR /deno-dir/
 ENV DENO_INSTALL_ROOT /usr/local
 
+# unique hash of the project (ideally commit has)
+ENV DENO_DEPLOYMENT_ID=1
+
 ARG DENO_VERSION
 ENV DENO_VERSION=${DENO_VERSION}
 COPY --from=bin /deno /bin/deno
