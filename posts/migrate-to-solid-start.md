@@ -1,6 +1,6 @@
 ---
 title: Migrating from SolidJS to Solid-Start
-summary: Hi there 👋, this is the second post of my blog made with SolidJS, TailwindCSS and Github Actions. It explains how did I migrated the original blog to solid-start
+description: This is the second post of my blog made with SolidJS, TailwindCSS and Github Actions. It explains how did I migrated the original blog to solid-start
 author: Marco Antonio
 email: marco@tremtec.com
 author_url: https://marco.tremtec.com
