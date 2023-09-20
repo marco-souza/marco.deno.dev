@@ -22,6 +22,7 @@
     "#/": "./",
     "~/": "./packages/",
     "$std/": "https://deno.land/std@0.197.0/",
+    "$gfm": "https://deno.land/x/gfm@0.2.5/mod.ts",
     "$fresh/": "https://deno.land/x/fresh@1.4.3/",
     "zod": "https://deno.land/x/zod@v3.21.4/mod.ts",
     "preact": "https://esm.sh/preact@10.15.1",

@@ -7,8 +7,10 @@ import * as $1 from "./routes/_500.tsx";
 import * as $2 from "./routes/_app.tsx";
 import * as $3 from "./routes/_layout.tsx";
 import * as $4 from "./routes/api/logout.ts";
-import * as $5 from "./routes/index.tsx";
-import * as $6 from "./routes/install.tsx";
+import * as $5 from "./routes/blog/[slug].tsx";
+import * as $6 from "./routes/blog/index.tsx";
+import * as $7 from "./routes/index.tsx";
+import * as $8 from "./routes/install.tsx";
 import * as $$0 from "./islands/ThemeSwitcher.tsx";
 
 const manifest = {
@@ -18,8 +20,10 @@ const manifest = {
     "./routes/_app.tsx": $2,
     "./routes/_layout.tsx": $3,
     "./routes/api/logout.ts": $4,
-    "./routes/index.tsx": $5,
-    "./routes/install.tsx": $6,
+    "./routes/blog/[slug].tsx": $5,
+    "./routes/blog/index.tsx": $6,
+    "./routes/index.tsx": $7,
+    "./routes/install.tsx": $8,
   },
   islands: {
     "./islands/ThemeSwitcher.tsx": $$0,
