@@ -4,9 +4,9 @@ import { defineRoute } from "$fresh/src/server/defines.ts";
 import { blog } from "~/services/blog.ts";
 
 export default defineRoute(async (_req, ctx) => {
-  const slug = ctx.params.slug ?? ""
-  const post = await blog.readPost(slug).catch(() => null)
-  if (!post) return ctx.renderNotFound()
+  const slug = ctx.params.slug ?? "";
+  const post = await blog.readPost(slug).catch(() => null);
+  if (!post) return ctx.renderNotFound();
 
   return (
     <>
@@ -14,9 +14,13 @@ export default defineRoute(async (_req, ctx) => {
         <style dangerouslySetInnerHTML={{ __html: CSS }} />
       </Head>
       <main class="grid gap-8">
+        <a href="/blog" class="hover:underline">← Blog</a>
+
         <div>
-          <a href="/blog" class="hover:underline">← Blog</a>
+          <h1 class="text-4xl">{post.attrs.title ?? ""}</h1>
+          <h2>{post.attrs.description ?? ""}</h2>
         </div>
+
         <div
           class="markdown-body"
           style={{ background: "transparent" }}
@@ -28,5 +32,4 @@ export default defineRoute(async (_req, ctx) => {
       </main>
     </>
   );
-})
-
+});
