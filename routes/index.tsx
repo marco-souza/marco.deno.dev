@@ -32,7 +32,7 @@ export default defineRoute(async () => {
         <div class="grid gap-8 grid-cols-1 sm:mx-20 sm:grid-cols-2 w-full">
           <a
             href={site.cta.primary.link}
-            class={`btn btn-outline btn-accent hover:${zoomIn}`}
+            class={`btn btn-outline btn-accent text-pink-400 hover:${zoomIn}`}
           >
             {site.cta.primary.text}
           </a>
