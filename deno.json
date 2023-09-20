@@ -2,9 +2,11 @@
   "tasks": {
     "encrypt": "gpg -c .env",
     "decrypt": "gpg -d .env.gpg > .env",
+    "fly": "fly launch --now",
     "start": "deno run --unstable -A --watch=static/,routes/ dev.ts",
     "test": "deno test --unstable -A",
     "build": "deno run -A --unstable dev.ts build",
+    "prod": "deno task build && deno run -A --unstable main.ts",
     "preview": "deno run -A --unstable main.ts"
   },
   "compilerOptions": {
