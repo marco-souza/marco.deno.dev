@@ -11,7 +11,7 @@ export default defineRoute(async () => {
   const posts = await blog.listPosts();
   return (
     <div class="grid gap-8">
-      <h1 class="text-4xl">👋 Welcome to my blog</h1>
+      <h1 class="text-4xl">👋 Marco's Blog</h1>
       {posts
         .sort((p1, p2) =>
           Date.parse(p2.attrs.created_at as string) -
