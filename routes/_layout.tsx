@@ -9,7 +9,9 @@ export default defineLayout((_req, ctx) => {
     <div class="grid gap-24 container mx-auto">
       <NavBar />
 
-      <ctx.Component />
+      <div class="px-8">
+        <ctx.Component />
+      </div>
 
       <Footer />
     </div>
