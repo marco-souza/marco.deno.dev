@@ -7,9 +7,9 @@ author_url: https://marco.tremtec.com
 created_at: 09-20-2023
 ---
 
-![And here we are again](https://deno.com/blog/fresh-1.4/lemon.jpg)
+![And here we are again](https://images.unsplash.com/photo-1609639643505-3c158a56de42?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1412&q=80)
 
-# Migrating a SolidJS App to Deno with "fresh"
+# Migrating a SolidJS App to Fresh 🍋
 
 Migrating my SolidJS app to Deno using the "fresh" module was a challenging but
 rewarding experience. Here's how it went:
