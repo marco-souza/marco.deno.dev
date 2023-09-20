@@ -92,6 +92,13 @@ function applyDocumentClass() {
     "data-theme",
     isDark ? "dark" : "light",
   );
+
+  document.querySelectorAll(".markdown-body").forEach(
+    el => el.setAttribute(
+      "data-color-mode",
+      isDark ? "dark" : "light",
+    )
+  )
 }
 
 export const initialLoadTheme = `(${String(applyDocumentClass)})()`;
