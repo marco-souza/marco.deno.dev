@@ -12,7 +12,7 @@ primary_region = "gru"
   PORT = "8000"
 
 [processes]
-  app = "deno run --unstable -A main.ts"
+  app = "run --unstable -A main.ts"
 
 [http_service]
   internal_port = 8000
