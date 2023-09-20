@@ -1,3 +1,10 @@
-node_modules
-# Keep environment variables out of version control
+# Mac
+.DS_Store
+
+# dotenv
 .env
+
+# fresh
+_fresh/
+tailwind*
+postcss*

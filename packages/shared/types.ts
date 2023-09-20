@@ -1,39 +1,13 @@
-export type Maybe<T> = T | null;
+import { JSX } from "preact/jsx-runtime";
 
-export type GridPosition = {
-  line: number;
-  col: number;
+export type WithChildren = {
+  children: JSX.Element | JSX.Element[] | string;
 };
 
-// Observable Pattern
+export type Falsy = undefined | false | null;
 
-export interface Event {
-  type: string;
-}
+export type Theme = "dark" | "light" | "system";
 
-export interface Subscriber {
-  update(event: Event): void;
-}
-
-export class AbsPublisher<State, S extends Subscriber> {
-  private subscribers: Subscriber[] = [];
-
-  constructor(public state: State) {}
-
-  notifySubscribers = (event: Event) => {
-    this.subscribers.forEach((s) => s.update(event));
-  };
-
-  subscribe = (sub: S) => toImplement("subscribe");
-
-  unsubscribe = (sub: S) => toImplement("unsubscribe");
-
-  start = () => {
-    // TODO: main business logic
-    toImplement("start");
-  };
-}
-
-const toImplement = (methodName: string) => {
-  throw new Error(`'${methodName}' method needs to be implemented!`);
+export type WithTheme = {
+  theme: Theme;
 };
