@@ -12,7 +12,7 @@ const zoomIn = css`
 export default defineRoute(async () => {
   const profile = await github.fetchProfile();
   return (
-    <div class="max-w-2xl px-8 mx-auto min-h-[80vh] mx-8">
+    <div class="max-w-2xl px-8 mx-auto mx-8">
       <div class="flex flex-col gap-10 my-8 xl:my-16 2xl:my-32 items-center text-center text-gray-200">
         <div class="gap-2 flex flex-col">
           <img
