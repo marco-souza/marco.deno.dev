@@ -12,16 +12,11 @@ export default defineRoute(async () => {
   return (
     <div class="grid gap-8">
       <h1 class="text-4xl">👋 Marco's Blog</h1>
-      {posts
-        .sort((p1, p2) =>
-          Date.parse(p2.attrs.created_at as string) -
-          Date.parse(p1.attrs.created_at as string)
-        )
-        .map((post) => (
-          <a href={post.href} class={`hover:${zoomIn}`}>
-            <Card {...post.attrs} />
-          </a>
-        ))}
+      {posts.map((post) => (
+        <a href={post.href} class={`hover:${zoomIn}`}>
+          <Card {...post.attrs} />
+        </a>
+      ))}
     </div>
   );
 });
