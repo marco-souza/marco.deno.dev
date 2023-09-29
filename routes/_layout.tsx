@@ -52,8 +52,9 @@ const NavBar = () => (
 
 const menuLinks = [
   { href: "/", name: "Home" },
-  { href: "/resume", name: "Resume" },
   { href: "/blog", name: "Blog" },
+  { href: "/resume", name: "Resume" },
+  { href: "/playground", name: "Playground" },
 ];
 
 const Menu = () => (
