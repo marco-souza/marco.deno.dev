@@ -6,6 +6,7 @@ export default function App({ Component }: AppProps) {
   return (
     <html>
       <Meta>
+        <script src="/htmx.js" />
         <script dangerouslySetInnerHTML={{ __html: initialLoadTheme }} />
       </Meta>
 
