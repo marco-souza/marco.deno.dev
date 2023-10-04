@@ -1,4 +1,5 @@
 import { defineRoute } from "$fresh/server.ts";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 
 export default defineRoute(() => {
   return (
@@ -7,7 +8,7 @@ export default defineRoute(() => {
         <h1 className="text-2xl">Playground</h1>
 
         <button
-          hx-get="/api/clicked"
+          hx-get="/api/click"
           hx-swap="innerHTML"
           hx-target=".output"
           hx-indicator="#indicator"
