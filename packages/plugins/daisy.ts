@@ -1,6 +1,6 @@
 import { Plugin } from "$fresh/server.ts";
 
-const DAISY_UI_CDN = "https://cdn.jsdelivr.net/npm/daisyui@3.6.4/dist/full.css";
+const DAISY_UI_CDN = "https://cdn.jsdelivr.net/npm/daisyui@3.9.4/dist/full.css";
 // const TW_SCRIPT = "https://cdn.tailwindcss.com";
 
 const minify = (content: string) =>
