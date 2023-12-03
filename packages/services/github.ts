@@ -14,7 +14,7 @@ export type GitHubProfile = z.infer<typeof GitHubProfileSchema>;
 
 class GitHub {
   private expireIn = 3 * 60 * 60 * 1000; // 3h
-  private username = settings.GITHUB_PROFILE;
+  private username = settings.GH_PROFILE;
   private profileKey = ["gh:profile", this.username];
 
   async fetchProfile() {

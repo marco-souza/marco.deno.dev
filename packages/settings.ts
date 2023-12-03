@@ -28,7 +28,7 @@ export const site = {
 };
 
 const VarEnvSchema = z.object({
-  GITHUB_PROFILE: z.string().trim().min(1),
+  GH_PROFILE: z.string().trim().min(1),
 });
 
 // validate if var envs are processed
