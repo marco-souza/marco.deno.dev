@@ -1,7 +1,7 @@
-import { ErrorPageProps } from "$fresh/server.ts";
+import { PageProps } from "$fresh/server.ts";
 import ErrorPage from "~/components/ErrorPage.tsx";
 
-export default function InternalErrorPage({ error }: ErrorPageProps) {
+export default function InternalErrorPage({ error }: PageProps) {
   return (
     <ErrorPage
       code={500}

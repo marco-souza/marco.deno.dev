@@ -1,7 +1,7 @@
-import { UnknownPageProps } from "$fresh/server.ts";
+import { defineRoute } from "$fresh/server.ts";
 import ErrorPage from "~/components/ErrorPage.tsx";
 
-export default function NotFoundPage({ url }: UnknownPageProps) {
+export default defineRoute(({ url }) => {
   return (
     <ErrorPage
       code={404}
@@ -13,4 +13,4 @@ export default function NotFoundPage({ url }: UnknownPageProps) {
       </a>
     </ErrorPage>
   );
-}
+});
