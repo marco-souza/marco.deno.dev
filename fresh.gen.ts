@@ -2,37 +2,38 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $0 from "./routes/_404.tsx";
-import * as $1 from "./routes/_500.tsx";
-import * as $2 from "./routes/_app.tsx";
-import * as $3 from "./routes/_layout.tsx";
-import * as $4 from "./routes/api/click.tsx";
-import * as $5 from "./routes/api/logout.ts";
-import * as $6 from "./routes/blog/[slug].tsx";
-import * as $7 from "./routes/blog/index.tsx";
-import * as $8 from "./routes/index.tsx";
-import * as $9 from "./routes/install.tsx";
-import * as $10 from "./routes/playground/index.tsx";
-import * as $$0 from "./islands/ThemeSwitcher.tsx";
+import * as $_404 from "./routes/_404.tsx";
+import * as $_500 from "./routes/_500.tsx";
+import * as $_app from "./routes/_app.tsx";
+import * as $_layout from "./routes/_layout.tsx";
+import * as $api_click from "./routes/api/click.tsx";
+import * as $api_logout from "./routes/api/logout.ts";
+import * as $blog_slug_ from "./routes/blog/[slug].tsx";
+import * as $blog_index from "./routes/blog/index.tsx";
+import * as $index from "./routes/index.tsx";
+import * as $install from "./routes/install.tsx";
+import * as $playground_index from "./routes/playground/index.tsx";
+import * as $ThemeSwitcher from "./islands/ThemeSwitcher.tsx";
+import { type Manifest } from "$fresh/server.ts";
 
 const manifest = {
   routes: {
-    "./routes/_404.tsx": $0,
-    "./routes/_500.tsx": $1,
-    "./routes/_app.tsx": $2,
-    "./routes/_layout.tsx": $3,
-    "./routes/api/click.tsx": $4,
-    "./routes/api/logout.ts": $5,
-    "./routes/blog/[slug].tsx": $6,
-    "./routes/blog/index.tsx": $7,
-    "./routes/index.tsx": $8,
-    "./routes/install.tsx": $9,
-    "./routes/playground/index.tsx": $10,
+    "./routes/_404.tsx": $_404,
+    "./routes/_500.tsx": $_500,
+    "./routes/_app.tsx": $_app,
+    "./routes/_layout.tsx": $_layout,
+    "./routes/api/click.tsx": $api_click,
+    "./routes/api/logout.ts": $api_logout,
+    "./routes/blog/[slug].tsx": $blog_slug_,
+    "./routes/blog/index.tsx": $blog_index,
+    "./routes/index.tsx": $index,
+    "./routes/install.tsx": $install,
+    "./routes/playground/index.tsx": $playground_index,
   },
   islands: {
-    "./islands/ThemeSwitcher.tsx": $$0,
+    "./islands/ThemeSwitcher.tsx": $ThemeSwitcher,
   },
   baseUrl: import.meta.url,
-};
+} satisfies Manifest;
 
 export default manifest;
