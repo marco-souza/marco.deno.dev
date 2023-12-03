@@ -1,11 +1,5 @@
 import { defineRoute } from "$fresh/server.ts";
-import { css } from "@twind/core";
 import { blog } from "~/services/blog.ts";
-
-const zoomIn = css`
-  transition: transform .2s;
-  transform: scale(1.1);
-`;
 
 export default defineRoute(async () => {
   const posts = await blog.listPosts();
@@ -13,7 +7,7 @@ export default defineRoute(async () => {
     <div class="grid gap-8">
       <h1 class="text-4xl">👋 Marco's Blog</h1>
       {posts.map((post) => (
-        <a href={post.href} class={`hover:${zoomIn}`}>
+        <a href={post.href} class="hover:animate-zoom-in">
           <Card {...post.attrs} />
         </a>
       ))}

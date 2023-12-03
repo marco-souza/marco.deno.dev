@@ -6,5 +6,4 @@
 
 # fresh
 _fresh/
-tailwind*
-postcss*
+node_modules/

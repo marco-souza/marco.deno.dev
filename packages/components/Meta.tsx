@@ -13,6 +13,8 @@ export function Meta({ children }: WithChildren) {
       <meta name="description" content={site.description} />
       <meta name="keywords" content={site.keywords} />
 
+      <link rel="stylesheet" href="/styles.css" />
+
       {children}
     </Head>
   );
