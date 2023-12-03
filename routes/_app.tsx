@@ -1,8 +1,11 @@
-import { AppProps } from "$fresh/server.ts";
+import { defineApp } from "$fresh/server.ts";
 import { initialLoadTheme } from "#/islands/ThemeSwitcher.tsx";
 import { Meta } from "~/components/Meta.tsx";
+import { logger } from "~/shared/logging.ts";
 
-export default function App({ Component }: AppProps) {
+export default defineApp((req, ctx) => {
+  logger.info(req);
+
   return (
     <html>
       <Meta>
@@ -11,8 +14,8 @@ export default function App({ Component }: AppProps) {
       </Meta>
 
       <body>
-        <Component />
+        <ctx.Component />
       </body>
     </html>
   );
-}
+});
