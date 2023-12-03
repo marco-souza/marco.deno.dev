@@ -1,8 +1,10 @@
 import { type Config } from "tailwindcss";
+import daisyui from "daisyui";
 
 export default {
   darkMode: "class",
   selfURL: import.meta.url,
+  plugins: [daisyui],
   content: [
     "{routes,islands,packages}/**/*.{ts,tsx}",
   ],

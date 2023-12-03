@@ -3,6 +3,7 @@
   "packages": {
     "specifiers": {
       "npm:cssnano@6.0.1": "npm:cssnano@6.0.1_postcss@8.4.31",
+      "npm:daisyui@latest": "npm:daisyui@4.4.18_postcss@8.4.31",
       "npm:postcss@8.4.31": "npm:postcss@8.4.31",
       "npm:tailwindcss@3.3.5": "npm:tailwindcss@3.3.5_postcss@8.4.31"
     },
@@ -171,6 +172,13 @@
           "nth-check": "nth-check@2.1.1"
         }
       },
+      "css-selector-tokenizer@0.8.0": {
+        "integrity": "sha512-Jd6Ig3/pe62/qe5SBPTN8h8LeUg/pT4lLgtavPf7updwwHpvFzxvOQBHYj2LZDMjUnBzgvIUSjRcf6oT5HzHFg==",
+        "dependencies": {
+          "cssesc": "cssesc@3.0.0",
+          "fastparse": "fastparse@1.1.2"
+        }
+      },
       "css-tree@2.2.1": {
         "integrity": "sha512-OA0mILzGc1kCOCSJerOeqDxDQ4HOh+G8NbOJFOTgOCzpw7fCBubk0fEyxp8AgOL/jvLgYA/uV0cMbe43ElF1JA==",
         "dependencies": {
@@ -248,6 +256,19 @@
           "css-tree": "css-tree@2.2.1"
         }
       },
+      "culori@3.3.0": {
+        "integrity": "sha512-pHJg+jbuFsCjz9iclQBqyL3B2HLCBF71BwVNujUYEvCeQMvV97R59MNK3R2+jgJ3a1fcZgI9B3vYgz8lzr/BFQ==",
+        "dependencies": {}
+      },
+      "daisyui@4.4.18_postcss@8.4.31": {
+        "integrity": "sha512-7e9gHo8swozeYMrXR10Mjo0QoBt7rAhKZZ1gQKiu+FxuSW8tinSV//O/rMQAw3liVBxkxWNYD/g2vrNQ8h/ThQ==",
+        "dependencies": {
+          "css-selector-tokenizer": "css-selector-tokenizer@0.8.0",
+          "culori": "culori@3.3.0",
+          "picocolors": "picocolors@1.0.0",
+          "postcss-js": "postcss-js@4.0.1_postcss@8.4.31"
+        }
+      },
       "didyoumean@1.2.2": {
         "integrity": "sha512-gxtyfqMg7GKyhQmb056K7M3xszy/myH8w+B4RT+QXBQsvAOdc3XymqDDPHx1BgPgsdAA5SIifona89YtRATDzw==",
         "dependencies": {}
@@ -303,6 +324,10 @@
           "merge2": "merge2@1.4.1",
           "micromatch": "micromatch@4.0.5"
         }
+      },
+      "fastparse@1.1.2": {
+        "integrity": "sha512-483XLLxTVIwWK3QTrMGRqUfUpoOs/0hbQrl2oz4J0pAcm3A3bu84wxTFqGqkJzewCLdME38xJLJAxBABfQT8sQ==",
+        "dependencies": {}
       },
       "fastq@1.15.0": {
         "integrity": "sha512-wBrocU2LCXXa+lWBt8RoIRD89Fi8OdABODa/kEnyeyjS5aZO5/GNvI5sEINADqP/h8M29UHTHUb53sUu5Ihqdw==",
