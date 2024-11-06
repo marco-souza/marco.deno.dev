@@ -3,6 +3,7 @@
     "hono": "jsr:@hono/hono@^4.6.9"
   },
   "tasks": {
+    "fmt": "deno fmt && deno lint",
     "start": "deno run -REN --watch main.ts"
   },
   "compilerOptions": {
