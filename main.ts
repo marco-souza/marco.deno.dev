@@ -2,6 +2,7 @@ import { Hono } from "hono";
 import { serveStatic } from "hono/deno";
 import { cacheMiddleware } from "~/middlewares/cache.ts";
 import { time } from "~/constants.ts";
+import { generateTailwindTokens } from "~/tailwind.ts";
 
 const app = new Hono();
 
@@ -11,6 +12,8 @@ app.use("/static/*", serveStatic({ root: "./" }));
 // setup cache
 app.use("/static/*", cacheMiddleware());
 app.use("/static/css/*", cacheMiddleware(7 * time.DAY)); // 1 week
+
+await generateTailwindTokens();
 
 // setup route pages
 const routesDir = Deno.env.get("ROUTES_DIR") || "routes";

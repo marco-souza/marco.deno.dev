@@ -11,6 +11,8 @@ const Layout: FC = (props) => {
         <script src="/static/htmx.min.js"></script>
 
         <title>Hello Hono!</title>
+
+        <link rel="stylesheet" href="/static/css/styles.min.css" />
       </head>
 
       <body>{props.children}</body>
@@ -51,6 +53,6 @@ export function definePage(app: Hono) {
   app.post("/clicked", (ctx: Context) => {
     const now = Date.now();
     console.log("POST /clicked", now);
-    return ctx.html(<p>Clicked now: {now}</p>);
+    return ctx.html(<p class="bg-red-800">Clicked now: {now}</p>);
   });
 }

@@ -1,13 +1,14 @@
 {
   "imports": {
     "hono": "jsr:@hono/hono@^4.6.9",
+    "tailwindcss": "npm:tailwindcss@^3.4.14",
     "typed-htmx": "npm:typed-htmx@^0.3.1",
     "#/": "./",
     "~/": "./src/"
   },
   "tasks": {
     "fmt": "deno fmt && deno lint",
-    "start": "deno run -REN --watch main.ts"
+    "start": "deno run -REN --allow-run='deno' --watch main.ts"
   },
   "compilerOptions": {
     "jsx": "precompile",
