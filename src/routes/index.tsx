@@ -13,7 +13,6 @@ const Layout: FC = (props) => {
         <title>Hello Hono!</title>
 
         <link rel="stylesheet" href="/static/css/styles.min.css" />
-        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </head>
 
       <body>{props.children}</body>

@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 
 export async function registerPageRoutes(app: Hono) {
-  const routesDir = Deno.env.get("ROUTES_DIR") || "routes";
+  const routesDir = Deno.env.get("ROUTES_DIR") || "src/routes";
   try {
     for await (const page of Deno.readDir(routesDir)) {
       const importPath = `#/${routesDir}/${page.name}`;
