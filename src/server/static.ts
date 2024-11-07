@@ -7,7 +7,7 @@ import { Hono } from "hono";
 export async function setupStaticFiles(app: Hono) {
   // serving static files
   app.use("/static/*", serveStatic({ root: "./" }));
-  app.use("/favicon.ico", serveStatic({ path: "./favicon.ico" }));
+  app.use("/favicon.ico", serveStatic({ path: "./static/favicon.ico" }));
 
   // setup cache
   app.use("/static/js/*", cacheMiddleware());
