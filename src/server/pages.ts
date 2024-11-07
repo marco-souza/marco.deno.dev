@@ -2,11 +2,20 @@ import { Hono } from "hono";
 import { jsxMiddleware } from "~/middlewares/jsx.ts";
 
 export async function registerPageRoutes(app: Hono) {
-  try {
-    app.use("/*", jsxMiddleware);
+  app.use("/*", jsxMiddleware); // enhanced jsx
 
+  const isDenoDeploy = Deno.env.get("DENO_DEPLOYMENT_ID") ?? false;
+  if (isDenoDeploy) {
+    console.info("I: Skipping page routes registration on Deno Deploy");
+
+    await import("~/routes/index.tsx").then((m) => m.definePage(app));
+
+    return;
+  }
+
+  try {
     for await (const page of Deno.readDir("./src/routes")) {
-      const importPath = `../routes/${page.name}`;
+      const importPath = `~/routes/${page.name}`;
       const { definePage } = await import(importPath);
 
       definePage(app);
