@@ -1,5 +1,11 @@
 {
   "nodeModulesDir": "auto",
+  "lint": {
+    "exclude": ["node_modules/", "static/"]
+  },
+  "fmt": {
+    "exclude": ["node_modules/", "static/"]
+  },
   "imports": {
     "daisyui": "npm:daisyui@^4.12.14",
     "hono": "jsr:@hono/hono@^4.6.9",
