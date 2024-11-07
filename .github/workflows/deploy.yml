@@ -21,12 +21,15 @@ jobs:
       - name: Install Deno
         uses: denoland/setup-deno@v2
         with:
-          deno-version: v1.x
+          deno-version: v2.x
 
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
           node-version: lts/*
+
+      - name: Generate tailwindcss tokens
+        run: "deno task tw-tokens"
 
       - name: Install step
         run: "deno install"
@@ -36,6 +39,5 @@ jobs:
         with:
           project: "marco"
           entrypoint: "./main.ts"
-          root: ""
-          
-          
+          root: "."
+

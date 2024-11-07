@@ -15,6 +15,7 @@
     "~/": "./src/"
   },
   "tasks": {
+    "tw-tokens": "deno run -A npm:tailwindcss -i ./static/css/styles.css -o ./static/css/styles.min.css",
     "fmt": "deno fmt && deno lint",
     "start": "deno run -REN --allow-run='deno' --watch main.ts"
   },
