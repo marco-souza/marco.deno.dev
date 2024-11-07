@@ -36,6 +36,7 @@ const Top: FC<{ messages: string[] }> = (props: {
         hx-post="/clicked"
         hx-trigger="click"
         hx-swap="outerHTML"
+        class="btn btn-outlined"
       >
         Click Me!
       </button>

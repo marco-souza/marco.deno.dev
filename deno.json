@@ -1,5 +1,7 @@
 {
+  "nodeModulesDir": "auto",
   "imports": {
+    "daisyui": "npm:daisyui@^4.12.14",
     "hono": "jsr:@hono/hono@^4.6.9",
     "tailwindcss": "npm:tailwindcss@^3.4.14",
     "typed-htmx": "npm:typed-htmx@^0.3.1",
