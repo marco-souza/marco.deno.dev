@@ -8,11 +8,12 @@ const Layout: FC = (props) => {
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <script src="/static/htmx.min.js"></script>
+        <script src="/static/js/htmx.min.js"></script>
 
         <title>Hello Hono!</title>
 
         <link rel="stylesheet" href="/static/css/styles.min.css" />
+        <link rel="icon" type="image/x-icon" href="/favicon.ico" />
       </head>
 
       <body>{props.children}</body>

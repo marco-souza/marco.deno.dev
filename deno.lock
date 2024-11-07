@@ -2,6 +2,7 @@
   "version": "4",
   "specifiers": {
     "jsr:@hono/hono@^4.6.9": "4.6.9",
+    "npm:tailwindcss@*": "3.4.14_postcss@8.4.47",
     "npm:tailwindcss@^3.4.14": "3.4.14_postcss@8.4.47",
     "npm:typed-htmx@~0.3.1": "0.3.1"
   },

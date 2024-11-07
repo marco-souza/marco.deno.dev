@@ -1,33 +1,13 @@
 import { Hono } from "hono";
-import { serveStatic } from "hono/deno";
-import { cacheMiddleware } from "~/middlewares/cache.ts";
-import { time } from "~/constants.ts";
-import { generateTailwindTokens } from "~/tailwind.ts";
-
-const app = new Hono();
-
-// serving static files
-app.use("/static/*", serveStatic({ root: "./" }));
-
-// setup cache
-app.use("/static/*", cacheMiddleware());
-app.use("/static/css/*", cacheMiddleware(7 * time.DAY)); // 1 week
+import { generateTailwindTokens } from "~/server/tailwind.ts";
+import { setupStaticFiles } from "~/server/static.ts";
+import { registerPageRoutes } from "~/server/pages.ts";
 
 await generateTailwindTokens();
 
-// setup route pages
-const routesDir = Deno.env.get("ROUTES_DIR") || "routes";
-try {
-  for await (const page of Deno.readDir(routesDir)) {
-    const importPath = `./${routesDir}/${page.name}`;
-    const { definePage } = await import(importPath);
+const app = new Hono();
 
-    definePage(app);
-
-    console.info(`I: Registered: ${importPath}`);
-  }
-} catch (e) {
-  console.error("E: Registering route:", e);
-}
+await setupStaticFiles(app);
+await registerPageRoutes(app);
 
 Deno.serve(app.fetch);
