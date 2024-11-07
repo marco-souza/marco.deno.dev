@@ -1,11 +1,14 @@
 import { Hono } from "hono";
 import { serveStatic } from "hono/deno";
+import { cacheMiddleware } from "./src/middlewares/cache.ts";
 
 const app = new Hono();
 
 // serving static files
 app.use("/static/*", serveStatic({ root: "./" }));
-app.use("/favicon.ico", serveStatic({ path: "./favicon.ico" }));
+
+// setup cache
+app.use("/static/*", cacheMiddleware);
 
 // setup route pages
 const routesDir = Deno.env.get("ROUTES_DIR") || "routes";
