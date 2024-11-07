@@ -6,10 +6,9 @@ export async function generateTailwindTokens() {
   console.info("I: Environment variables:");
   console.info(allEnvs);
 
-  const allFilesInDir = Deno.readDir(".");
-  for await (const file of allFilesInDir) {
-    console.info("I: File in dir:", file.name);
-  }
+  ls("./src");
+  ls("./src/routes");
+  ls("./static");
 
   if (isDenoDeploy) {
     console.info("I: Skipping Tailwind tokens generation on Deno Deploy");
@@ -28,4 +27,13 @@ export async function generateTailwindTokens() {
   }
 
   console.info("I: Tailwind tokens generated");
+}
+
+async function ls(path: string) {
+  console.log(`I: Listing files in ${path}`);
+
+  const allFilesInDir = Deno.readDir(path);
+  for await (const file of allFilesInDir) {
+    console.log(file.name);
+  }
 }
