@@ -1,7 +1,12 @@
 // deno-lint-ignore-file
-import { Context } from "hono";
+import { createMiddleware } from "hono/factory";
+import { time } from "~/constants.ts";
 
-export async function cacheMiddleware(ctx: Context) {
-  const maxAge = 60 * 60 * 24 * 365;
-  ctx.header("Cache-Control", `public, max-age=${maxAge}`);
-}
+const MAX_AGE = 365 * time.DAY;
+
+export const cacheMiddleware = (maxAge = MAX_AGE) =>
+  createMiddleware(async (ctx, next) => {
+    ctx.header("Cache-Control", `public, max-age=${maxAge}`);
+
+    await next();
+  });
