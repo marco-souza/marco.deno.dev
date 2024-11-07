@@ -1,4 +1,6 @@
 {
+  "version": "0.1.0",
+  "name": "marco.deno.dev",
   "nodeModulesDir": "auto",
   "lint": {
     "exclude": ["node_modules/", "static/"]
