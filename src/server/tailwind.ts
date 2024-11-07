@@ -6,6 +6,11 @@ export async function generateTailwindTokens() {
   console.info("I: Environment variables:");
   console.info(allEnvs);
 
+  const allFilesInDir = Deno.readDir(".");
+  for await (const file of allFilesInDir) {
+    console.info("I: File in dir:", file.name);
+  }
+
   if (isDenoDeploy) {
     console.info("I: Skipping Tailwind tokens generation on Deno Deploy");
     return;
