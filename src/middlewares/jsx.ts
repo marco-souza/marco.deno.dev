@@ -11,7 +11,13 @@ export const jsxMiddleware = createMiddleware(async (ctx, next) => {
         .replace(/\s+/g, " ") // remove extra spaces
     );
 
-  if (!sanitizedHtml.includes("onclick=")) return;
+  if (!sanitizedHtml.includes("onclick=")) {
+    ctx.res = new Response(
+      sanitizedHtml,
+      ctx.res,
+    );
+    return;
+  }
 
   // make onclick event handlers IIFE
   const parsedHtml = sanitizedHtml.replace(
