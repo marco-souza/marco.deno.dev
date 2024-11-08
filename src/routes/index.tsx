@@ -1,9 +1,13 @@
-import { Context, Hono } from "hono";
-import { FC } from "hono/jsx";
+import type { Context, Hono } from "hono";
+import type { FC } from "hono/jsx";
+import type { PropsWithChildren } from "hono/jsx";
+import { getCookie, setCookie } from "hono/cookie";
 
-const Layout: FC = (props) => {
+type Theme = "system" | "light" | "dark";
+
+const Layout: FC<PropsWithChildren<{ theme: Theme }>> = (props) => {
   return (
-    <html>
+    <html data-theme={props.theme}>
       <head>
         <meta charSet="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,35 +24,37 @@ const Layout: FC = (props) => {
   );
 };
 
-const Top: FC<{ messages: string[] }> = (props: {
-  messages: string[];
-}) => {
+const Top: FC<{
+  theme: Theme;
+}> = ({ theme }) => {
   function toggleTheme() {
-    const htmlElement = document.documentElement;
-    const systemTheme =
+    const appliedTheme =
       globalThis.matchMedia("(prefers-color-scheme: light)")?.matches
         ? "light"
         : "dark";
 
-    const selectedTheme = htmlElement.dataset.theme ?? systemTheme;
+    console.log(appliedTheme);
 
-    htmlElement.dataset.theme = selectedTheme === "dark" ? "light" : "dark";
+    const htmlElement = document.documentElement;
+    const selectedTheme = htmlElement.dataset.theme ?? appliedTheme;
+    const newTheme = selectedTheme === "dark" ? "light" : "dark";
+
+    htmlElement.dataset.theme = newTheme;
+    document.cookie = `selected-theme=${newTheme}`;
   }
 
   return (
-    <Layout>
+    <Layout theme={theme}>
       <h1>Hello Hono!</h1>
 
-      <ul>
-        {props.messages.map((message) => {
-          return <li>{message}!!</li>;
-        })}
-      </ul>
+      <h1>Selected theme: {theme}</h1>
 
-      <h1>Toggle Dark Mode</h1>
       <button
         id="toggle-theme"
+        // theme is not switching
         class="btn btn-primary"
+        hx-post="/toggle-theme"
+        hx-trigger="click"
         onClick={toggleTheme}
       >
         Toggle Theme
@@ -66,11 +72,12 @@ const Top: FC<{ messages: string[] }> = (props: {
   );
 };
 
+const COOKIE_THEME = "selected-theme";
+
 export function definePage(app: Hono) {
   app.get("/", (ctx: Context) => {
-    console.log("GET /");
-    const messages = ["Good Morning", "Good Evening", "Good Night"];
-    return ctx.render(<Top messages={messages} />);
+    const theme = setThemeCookie(ctx);
+    return ctx.render(<Top theme={theme} />);
   });
 
   app.post("/clicked", (ctx: Context) => {
@@ -80,4 +87,22 @@ export function definePage(app: Hono) {
       <p class="rounded-full p-4 bg-red-800">Clicked now: {now}</p>,
     );
   });
+
+  app.post("/toggle-theme", (ctx: Context) => {
+    const theme = setThemeCookie(ctx);
+    return ctx.text("Them Switched to: " + theme);
+  });
+}
+
+function setThemeCookie(ctx: Context) {
+  const themeCookie = getCookie(ctx, COOKIE_THEME);
+
+  let theme: Theme = "system";
+  if (themeCookie) {
+    theme = themeCookie as Theme;
+  }
+
+  setCookie(ctx, COOKIE_THEME, theme);
+
+  return theme;
 }
