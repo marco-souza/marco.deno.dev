@@ -2,8 +2,9 @@ import GithubIcon from "~/components/icons/GitHubIcon.tsx";
 import { configs } from "~/constants.ts";
 import { Logo } from "~/components/Logo.tsx";
 import { ThemeSwitcher } from "~/components/ThemeSwitcher.tsx";
+import type { Theme } from "~/shared/theme.ts";
 
-export const NavBar = () => (
+export const NavBar = ({ theme }: { theme: Theme }) => (
   <div class="navbar">
     <div class="navbar-start">
       <Menu />
@@ -14,7 +15,7 @@ export const NavBar = () => (
     </div>
 
     <div class="navbar-end">
-      <ThemeSwitcher />
+      <ThemeSwitcher theme={theme} />
 
       <a
         href={configs.repo}

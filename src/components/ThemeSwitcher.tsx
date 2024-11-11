@@ -1,6 +1,7 @@
 import type { FC } from "hono/jsx";
+import type { Theme } from "~/shared/theme.ts";
 
-export const ThemeSwitcher: FC = () => {
+export const ThemeSwitcher: FC<{ theme: Theme }> = ({ theme }) => {
   function toggleTheme() {
     const htmlElement = document.documentElement;
 
@@ -16,15 +17,20 @@ export const ThemeSwitcher: FC = () => {
 
     htmlElement.dataset.theme = newTheme;
     document.cookie = `selected-theme=${newTheme}`;
+
+    const btn = document.getElementById("toggle-theme");
+    if (!btn) return;
+
+    btn.innerText = newTheme === "dark" ? "🌙" : "☀️";
   }
 
   return (
     <button
       id="toggle-theme"
-      class="btn btn-primary"
+      class="btn btn-ghost btn-circle"
       onClick={toggleTheme}
     >
-      Toggle Theme
+      {theme === "system" ? "⚙️" : theme === "dark" ? "🌙" : "☀️"}
     </button>
   );
 };

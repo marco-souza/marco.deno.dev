@@ -25,7 +25,7 @@ export const Layout: FC<Props> = (props) => {
 
       <body>
         <div class="grid gap-24 container mx-auto">
-          <NavBar />
+          <NavBar theme={props.theme ?? "system"} />
 
           <div class="px-8">
             {props.children}
