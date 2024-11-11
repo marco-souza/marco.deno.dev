@@ -1,8 +1,10 @@
 import { Hono } from "hono";
 import { jsxMiddleware } from "~/middlewares/jsx.ts";
+import { themeMiddleware } from "~/middlewares/theme.ts";
 
 export async function registerPageRoutes(app: Hono) {
   app.use("/*", jsxMiddleware); // enhanced jsx
+  app.use("/*", themeMiddleware); // handle theme
 
   const isDenoDeploy = Deno.env.get("DENO_DEPLOYMENT_ID") ?? false;
   if (isDenoDeploy) {
