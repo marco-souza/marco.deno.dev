@@ -5,7 +5,7 @@ import ErrorPage from "~/components/ErrorPage.tsx";
 import { GitHubProfileView } from "~/components/GitHubProfile.tsx";
 import { Layout } from "~/layouts/main.tsx";
 import { github } from "~/services/github.ts";
-import { COOKIE_THEME, getThemeCookie } from "~/shared/theme.ts";
+import { getThemeCookie } from "~/shared/theme.ts";
 
 export function registerPageRoutes(app: Hono) {
   app.use("/*", jsxMiddleware); // enhanced jsx
@@ -21,7 +21,7 @@ export function registerPageRoutes(app: Hono) {
   });
 
   app.get("/", async (ctx: Context) => {
-    const theme = ctx.get(COOKIE_THEME);
+    const theme = getThemeCookie(ctx);
     const profile = await github.fetchProfile();
     return ctx.render(
       <Layout theme={theme} title="Hello World 🌎">
