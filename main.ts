@@ -1,13 +1,7 @@
-import { Hono } from "hono";
-import { generateTailwindTokens } from "~/server/tailwind.ts";
-import { setupStaticFiles } from "~/server/static.ts";
-import { registerPageRoutes } from "~/server/pages.ts";
+import { start } from "~/server/server.ts";
 
-await generateTailwindTokens();
-
-const app = new Hono();
-
-await setupStaticFiles(app);
-await registerPageRoutes(app);
-
-Deno.serve(app.fetch);
+if (import.meta.main) {
+  start().catch((err) => {
+    console.error("E: failed to start server", err);
+  });
+}
