@@ -1,6 +1,8 @@
 import type { PropsWithChildren } from "hono/jsx";
 import type { FC } from "hono/jsx";
 import type { Theme } from "~/shared/theme.ts";
+import { Footer } from "~/components/Footer.tsx";
+import { NavBar } from "~/components/NavBar.tsx";
 
 type Props = PropsWithChildren<{
   title?: string;
@@ -21,7 +23,17 @@ export const Layout: FC<Props> = (props) => {
         <link rel="stylesheet" href="/static/css/styles.min.css" />
       </head>
 
-      <body>{props.children}</body>
+      <body>
+        <div class="grid gap-24 container mx-auto">
+          <NavBar />
+
+          <div class="px-8">
+            {props.children}
+          </div>
+
+          <Footer />
+        </div>
+      </body>
     </html>
   );
 };
