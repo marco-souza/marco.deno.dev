@@ -8,7 +8,7 @@ export const time = {
 };
 
 export const configs = {
-  repo: "https://github.com/marco-souza/marco.deno.dev",
+  repo: "https://github.com/marco-souza/marco.deno.dev/tree/hono",
   username: "marco-souza",
 
   links: {
