@@ -9,4 +9,15 @@ export const time = {
 
 export const configs = {
   repo: "https://github.com/marco-souza/marco.deno.dev",
+  username: "marco-souza",
+
+  links: {
+    stackoverflow: "https://stackoverflow.com/users/7988674/marco-antônio/",
+    linkedin: "https://www.linkedin.com/in/masouzajunior",
+    github: "https://github.com/marco-souza",
+    podcodar: "https://podcodar.com/",
+    mongodb: "https://mongodb.com/",
+    paradigm: "https://paradigm.co/",
+    tremtec: "https://tremtec.com/",
+  },
 };

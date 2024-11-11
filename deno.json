@@ -15,6 +15,7 @@
     "tailwindcss": "npm:tailwindcss@^3.4.14",
     "typed-htmx": "npm:typed-htmx@^0.3.1",
     "#/": "./",
+    "zod": "https://deno.land/x/zod@v3.16.1/mod.ts",
     "~/": "./src/"
   },
   "tasks": {
