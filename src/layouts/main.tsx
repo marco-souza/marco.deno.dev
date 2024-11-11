@@ -16,7 +16,7 @@ export const Layout: FC<Props> = (props) => {
 
         <script src="/static/js/htmx.min.js"></script>
 
-        <title>{props.theme ?? "Hello Hono!"}</title>
+        <title>{props.title ?? "Hello Hono!"}</title>
 
         <link rel="stylesheet" href="/static/css/styles.min.css" />
       </head>
