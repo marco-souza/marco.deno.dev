@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { configs } from "~/constants.ts";
+import { markdownToHTML } from "~/services/markdown.ts";
 
 const GitHubProfileSchema = z.object({
   bio: z.string(),
@@ -29,10 +30,8 @@ class GitHub {
     const resp = await fetch(configs.github.resume);
     const body = await resp.text();
 
-    // TODO: parse content
-
     // parse
-    return body;
+    return markdownToHTML(body);
   }
 }
 
