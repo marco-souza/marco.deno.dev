@@ -20,4 +20,9 @@ export const configs = {
     paradigm: "https://paradigm.co/",
     tremtec: "https://tremtec.com/",
   },
+
+  github: {
+    resume:
+      "https://raw.githubusercontent.com/marco-souza/resume/main/RESUME.md",
+  },
 };

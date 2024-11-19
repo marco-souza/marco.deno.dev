@@ -23,6 +23,17 @@ class GitHub {
 
     return profile;
   }
+
+  async fetchResume() {
+    // fetch
+    const resp = await fetch(configs.github.resume);
+    const body = await resp.text();
+
+    // TODO: parse content
+
+    // parse
+    return body;
+  }
 }
 
 export const github = new GitHub();
