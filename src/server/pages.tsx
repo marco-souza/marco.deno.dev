@@ -8,8 +8,23 @@ import { github } from "~/services/github.ts";
 import { getThemeCookie } from "~/shared/theme.ts";
 
 import { jsxRenderer, useRequestContext } from "hono/jsx-renderer";
+import { ResumePage } from "~/components/ResumePage.tsx";
 
 export function registerPageRoutes(app: Hono) {
+  const partials = partialRouter();
+  app.route("/partials", partials);
+
+  const pages = pageRouter();
+  app.route("/", pages);
+
+  app.notFound((ctx) => {
+    return ctx.render(
+      <ErrorPage description="Could not find your page :(" />,
+    );
+  });
+}
+
+function pageRouter(): Hono {
   const pages = new Hono();
 
   pages.use("/*", jsxMiddleware); // enhanced jsx
@@ -29,7 +44,13 @@ export function registerPageRoutes(app: Hono) {
     }),
   );
 
-  // setup pages
+  pages.get("/resume", async (ctx: Context) => {
+    const profile = await github.fetchProfile();
+    return ctx.render(
+      <ResumePage profile={profile} />,
+    );
+  });
+
   pages.get("/", async (ctx: Context) => {
     const profile = await github.fetchProfile();
     return ctx.render(
@@ -37,12 +58,21 @@ export function registerPageRoutes(app: Hono) {
     );
   });
 
-  // setup main router
-  app.route("/", pages);
+  return pages;
+}
 
-  app.notFound((ctx) => {
+function partialRouter(): Hono {
+  const partials = new Hono();
+
+  partials.get("resume", async (ctx) => {
+    const content = await github.fetchResume();
+
     return ctx.render(
-      <ErrorPage description="Could not find your page :(" />,
+      <div class="markdown-body card shadow-md bg-primary">
+        <div class="card-body">{content}</div>
+      </div>,
     );
   });
+
+  return partials;
 }
