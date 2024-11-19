@@ -28,6 +28,7 @@ export const ThemeSwitcher: FC<{ theme: Theme }> = ({ theme }) => {
     <button
       id="toggle-theme"
       class="btn btn-ghost btn-circle"
+      aria-label="Toggle theme"
       onClick={toggleTheme}
     >
       {theme === "system" ? "⚙️" : theme === "dark" ? "🌙" : "☀️"}
