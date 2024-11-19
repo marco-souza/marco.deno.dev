@@ -1,4 +1,4 @@
-import type { Context, Hono } from "hono";
+import { type Context, Hono } from "hono";
 import { jsxMiddleware } from "~/middlewares/jsx.ts";
 import { themeMiddleware } from "~/middlewares/theme.ts";
 import ErrorPage from "~/components/ErrorPage.tsx";
@@ -7,26 +7,42 @@ import { Layout } from "~/layouts/main.tsx";
 import { github } from "~/services/github.ts";
 import { getThemeCookie } from "~/shared/theme.ts";
 
-export function registerPageRoutes(app: Hono) {
-  app.use("/*", jsxMiddleware); // enhanced jsx
-  app.use("/*", themeMiddleware); // handle theme
+import { jsxRenderer, useRequestContext } from "hono/jsx-renderer";
 
-  app.notFound((ctx) => {
-    const theme = getThemeCookie(ctx);
+export function registerPageRoutes(app: Hono) {
+  const pages = new Hono();
+
+  pages.use("/*", jsxMiddleware); // enhanced jsx
+  pages.use("/*", themeMiddleware); // handle theme
+
+  // setup layout
+  pages.use(
+    "/*",
+    jsxRenderer(({ children }) => {
+      const ctx = useRequestContext();
+      const theme = getThemeCookie(ctx);
+      return (
+        <Layout theme={theme} title="Hello World 🌎">
+          {children}
+        </Layout>
+      );
+    }),
+  );
+
+  // setup pages
+  pages.get("/", async (ctx: Context) => {
+    const profile = await github.fetchProfile();
     return ctx.render(
-      <Layout theme={theme} title="Hello World 🌎">
-        <ErrorPage description="Could not find your page :(" />,
-      </Layout>,
+      <GitHubProfileView profile={profile} />,
     );
   });
 
-  app.get("/", async (ctx: Context) => {
-    const theme = getThemeCookie(ctx);
-    const profile = await github.fetchProfile();
+  // setup main router
+  app.route("/", pages);
+
+  app.notFound((ctx) => {
     return ctx.render(
-      <Layout theme={theme} title="Hello World 🌎">
-        <GitHubProfileView profile={profile} />,
-      </Layout>,
+      <ErrorPage description="Could not find your page :(" />,
     );
   });
 }

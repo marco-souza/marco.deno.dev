@@ -24,7 +24,7 @@
     "start": "deno run -REN --allow-run='deno' --watch main.ts"
   },
   "compilerOptions": {
-    "jsx": "precompile",
+    "jsx": "react-jsx",
     "lib": ["deno.ns", "deno.unstable", "dom"],
     "jsxImportSource": "hono/jsx"
   }
