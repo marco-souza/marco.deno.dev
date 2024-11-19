@@ -17,14 +17,12 @@ const tailwindThemePlugin: Plugin = {
     function findNodeClassname(node: any) {
       let className = classMap[node.type];
       if (className) {
-        console.log("type found", node.type);
         return className;
       }
 
       const key = `${node.type}[depth=${node.depth}]`;
       className = classMap[key];
       if (className) {
-        console.log("composed key found", key);
         return className;
       }
     }
