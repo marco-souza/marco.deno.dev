@@ -10,21 +10,23 @@
     "exclude": ["node_modules/", "static/"]
   },
   "imports": {
+    "@libs/markdown": "jsr:@libs/markdown@^2.0.0",
     "daisyui": "npm:daisyui@^4.12.14",
     "hono": "jsr:@hono/hono@^4.6.9",
     "tailwindcss": "npm:tailwindcss@^3.4.14",
     "typed-htmx": "npm:typed-htmx@^0.3.1",
     "#/": "./",
+    "unist-util-visit": "npm:unist-util-visit@^5.0.0",
     "zod": "https://deno.land/x/zod@v3.16.1/mod.ts",
     "~/": "./src/"
   },
   "tasks": {
     "tw-tokens": "deno run -A npm:tailwindcss -i ./static/css/styles.css -o ./static/css/styles.min.css",
     "fmt": "deno fmt && deno lint",
-    "start": "deno run -REN --allow-run='deno' --watch main.ts"
+    "start": "deno run -REN --allow-run='deno' --allow-sys --watch main.ts"
   },
   "compilerOptions": {
-    "jsx": "react-jsx",
+    "jsx": "precompile",
     "lib": ["deno.ns", "deno.unstable", "dom"],
     "jsxImportSource": "hono/jsx"
   }

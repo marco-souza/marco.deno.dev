@@ -4,7 +4,7 @@ console.log(daisyPlugin);
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ["./src/**/*.tsx"],
+  content: ["./src/**/*.tsx", "./src/**/*.ts"],
   theme: {
     extend: {},
   },
