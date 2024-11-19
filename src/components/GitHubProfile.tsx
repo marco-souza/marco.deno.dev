@@ -8,7 +8,7 @@ type Props = {
 
 export const GitHubProfileView: FC<Props> = ({ profile }) => {
   return (
-    <div class="max-w-2xl px-8 mx-auto mx-8">
+    <div class="max-w-2xl px-8 mx-auto">
       <div class="flex flex-col gap-10 my-8 xl:my-16 2xl:my-32 items-center text-center">
         <div class="gap-2 flex flex-col">
           <img
@@ -21,7 +21,7 @@ export const GitHubProfileView: FC<Props> = ({ profile }) => {
         </div>
 
         <div
-          class="opacity-70 font-extralight text-md px-10 sm:px-20 md:px-32"
+          class="opacity-70 font-extralight text-md px-4 sm:px-20 md:px-32"
           dangerouslySetInnerHTML={{ __html: parseBioText(profile.bio) }}
         />
 
