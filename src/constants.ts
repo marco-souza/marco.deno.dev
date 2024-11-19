@@ -7,9 +7,22 @@ export const time = {
   DAY: 24 * 60 * 60 * 1000,
 };
 
+function contactEmail(email = "marco+site@tremtec.com") {
+  const mailUrl = new URL(`mailto:${email}`);
+
+  mailUrl.searchParams.set("subject", "Hey, Marco! Let's have a coffee ☕️");
+  mailUrl.searchParams.set(
+    "body",
+    "Hey, Marco! I'm reaching out to you because...",
+  );
+
+  return mailUrl.toString().replace(/\+/g, "%20");
+}
+
 export const configs = {
   repo: "https://github.com/marco-souza/marco.deno.dev/tree/hono",
   username: "marco-souza",
+  contact_me: contactEmail(),
 
   links: {
     stackoverflow: "https://stackoverflow.com/users/7988674/marco-antônio/",

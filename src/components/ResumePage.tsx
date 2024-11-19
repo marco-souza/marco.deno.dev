@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from "hono/jsx";
 import { GitHubProfileCard } from "~/components/GitHubProfile.tsx";
 import type { GitHubProfile } from "~/services/github.ts";
+import { configs } from "~/constants.ts";
 
 type Props = PropsWithChildren<{
   profile: GitHubProfile;
@@ -12,7 +13,7 @@ const ProfileSideBar = ({ profile }: Props) => (
       <GitHubProfileCard profile={profile} />
 
       <a
-        href="#"
+        href={configs.contact_me}
         class="btn btn-outline text-pink-400 hover:text-white hover:bg-pink-400 hover:animate-zoom-in mx-4"
       >
         Let's have a Coffee ☕️

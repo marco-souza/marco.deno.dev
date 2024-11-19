@@ -35,7 +35,7 @@ export const GitHubProfileView: FC<Props> = (
 
         <div class="grid gap-8 grid-cols-1 sm:mx-20 sm:grid-cols-2 w-full">
           <a
-            href="#"
+            href={configs.contact_me}
             class="btn btn-outline text-pink-400 hover:text-white hover:bg-pink-400 hover:animate-zoom-in"
           >
             Let's have a Coffee ☕️
