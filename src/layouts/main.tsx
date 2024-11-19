@@ -23,7 +23,7 @@ export const Layout: FC<Props> = (props) => {
         <link rel="stylesheet" href="/static/css/styles.min.css" />
       </head>
 
-      <body>
+      <body hx-boost="true">
         <div class="grid gap-16 sm:gap-24 container mx-auto">
           <NavBar theme={props.theme ?? "system"} />
 
