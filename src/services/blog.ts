@@ -1,10 +1,5 @@
 import { z } from "zod";
-import { markdownMetadata } from "~/services/markdown.ts";
-
-const PostSchema = z.object({
-  title: z.string(),
-  content: z.string(),
-});
+import { markdownMetadata, markdownToHTML } from "~/services/markdown.ts";
 
 const PostMetadataSchema = z.object({
   title: z.string(),
@@ -14,6 +9,13 @@ const PostMetadataSchema = z.object({
   created_at: z.string().transform((date) => new Date(date)),
   author_url: z.string().url().nullable(),
   href: z.string(),
+});
+
+const PostSchema = z.object({
+  content: z.string(),
+  metadata: z.object({
+    arrayOf: z.array(PostMetadataSchema),
+  }),
 });
 
 export type Post = z.infer<typeof PostSchema>;
@@ -29,16 +31,7 @@ class Blog {
 
     const posts: PostMetadata[] = [];
     for await (const file of files) {
-      // read file
-      const content = Deno.readTextFileSync(`${filepath}/${file.name}`);
-      const metadata = markdownMetadata(content);
-      console.log(metadata);
-
-      // parse
-      posts.push(PostMetadataSchema.parse({
-        ...metadata,
-        href: `/blog/${file.name.replace(/\.md$/, "")}`,
-      }));
+      posts.push(readMarkdownMetadata(`${filepath}/${file.name}`, file.name));
     }
 
     // sort DESC by date
@@ -47,18 +40,28 @@ class Blog {
     );
   }
 
-  async loadPost() {
-    // TODO: fetch
-    const post = PostSchema.parse({
-      title: "Hello World",
-      content: "Hello World!",
-    });
+  async loadPost(slug: string) {
+    const filename = `${slug}.md`;
+    const filepath = `${this.path}/${filename}`;
+    const metadata = readMarkdownMetadata(filepath, filename);
 
-    // TODO: parse
-    // return markdownToHTML(body);
+    const fileContent = await Deno.readTextFile(filepath);
+    const content = await markdownToHTML(fileContent);
 
-    return post;
+    return {
+      metadata,
+      content,
+    };
   }
 }
 
 export const blog = new Blog();
+
+function readMarkdownMetadata(filepath: string, name: string) {
+  const content = Deno.readTextFileSync(filepath);
+  const metadata = markdownMetadata(content);
+  return PostMetadataSchema.parse({
+    ...metadata,
+    href: `/blog/${name.replace(/\.md$/, "")}`,
+  });
+}

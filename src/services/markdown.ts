@@ -52,15 +52,16 @@ const tailwindThemePlugin: Plugin = {
 };
 
 export function markdownMetadata(md: string) {
-  const [_, metadataString] = md.split("---");
+  const [metadataString] = md.split("---").slice(1);
   return parse(metadataString) as any;
 }
 
 export function markdownToHTML(md: string) {
+  const [content] = md.split("---").slice(2);
   const markdownParser = new Renderer({
     plugins: [gfm, tailwindThemePlugin],
   });
 
   // parse
-  return markdownParser.render(md);
+  return markdownParser.render(content);
 }

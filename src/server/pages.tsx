@@ -58,11 +58,10 @@ function pageRouter(): Hono {
   // blog post
   pages.get("/blog/:slug", async (ctx: Context) => {
     const { slug } = ctx.req.param();
-    // FIXME: load content
-    const content = await github.fetchResume();
+    const content = await blog.loadPost(slug);
 
     return ctx.render(
-      <BlogPostPage slug={slug} content={content} />,
+      <BlogPostPage {...content} />,
     );
   });
 
