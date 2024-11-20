@@ -7,7 +7,7 @@
     "exclude": ["node_modules/", "static/"]
   },
   "fmt": {
-    "exclude": ["node_modules/", "static/"]
+    "exclude": ["node_modules/", "static/", "posts/*.md"]
   },
   "imports": {
     "@libs/markdown": "jsr:@libs/markdown@^2.0.0",
