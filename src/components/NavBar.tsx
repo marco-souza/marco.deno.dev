@@ -30,9 +30,7 @@ export const NavBar = ({ theme }: { theme: Theme }) => (
 
 const menuLinks = [
   { href: "/", name: "Home" },
-  //{ href: "/blog", name: "Blog" },
   { href: "/resume", name: "Resume" },
-  //{ href: "/playground", name: "Playground" },
 ];
 
 const Menu = () => (
