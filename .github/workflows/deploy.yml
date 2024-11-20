@@ -28,6 +28,9 @@ jobs:
         with:
           node-version: lts/*
 
+      - name: Generate tailwindcss tokens
+        run: "deno task tw-tokens"
+
       - name: Install step
         run: "deno install"
 
@@ -37,5 +40,3 @@ jobs:
           project: "marco"
           entrypoint: "./main.ts"
           root: "."
-          
-          
