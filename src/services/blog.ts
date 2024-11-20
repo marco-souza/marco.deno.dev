@@ -41,7 +41,10 @@ class Blog {
       }));
     }
 
-    return posts;
+    // sort DESC by date
+    return posts.sort(
+      (a, b) => b.created_at.getTime() - a.created_at.getTime(),
+    );
   }
 
   async loadPost() {
