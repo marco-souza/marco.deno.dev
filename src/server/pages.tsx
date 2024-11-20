@@ -9,6 +9,8 @@ import { getThemeCookie } from "~/shared/theme.ts";
 
 import { jsxRenderer, useRequestContext } from "hono/jsx-renderer";
 import { ResumePage } from "~/components/ResumePage.tsx";
+import { BlogPage } from "~/components/BlogPage.tsx";
+import { BlogPostPage } from "~/components/BlogPostPage.tsx";
 
 export function registerPageRoutes(app: Hono) {
   const partials = partialRouter();
@@ -43,6 +45,24 @@ function pageRouter(): Hono {
       );
     }),
   );
+
+  // blog
+  pages.get("/blog", (ctx: Context) => {
+    return ctx.render(
+      <BlogPage />,
+    );
+  });
+
+  // blog post
+  pages.get("/blog/:slug", async (ctx: Context) => {
+    const { slug } = ctx.req.param();
+    // FIXME: load content
+    const content = await github.fetchResume();
+
+    return ctx.render(
+      <BlogPostPage slug={slug} content={content} />,
+    );
+  });
 
   pages.get("/resume", async (ctx: Context) => {
     const profile = await github.fetchProfile();
