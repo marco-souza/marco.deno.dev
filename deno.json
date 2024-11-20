@@ -2,6 +2,7 @@
   "version": "0.2.2",
   "name": "marco.deno.dev",
   "exports": "./main.ts",
+  "unstable": ["cron"],
   "nodeModulesDir": "auto",
   "lint": {
     "exclude": [
