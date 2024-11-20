@@ -59,7 +59,12 @@ export function markdownMetadata(md: string) {
 }
 
 export function markdownToHTML(md: string) {
-  const [content] = md.split("---").slice(2);
+  let content = md;
+  if (md.startsWith("---")) {
+    // remove metadata
+    content = md.split("---").slice(2).join("---");
+  }
+
   const markdownParser = new Renderer({
     plugins: [gfm, tailwindThemePlugin],
   });
