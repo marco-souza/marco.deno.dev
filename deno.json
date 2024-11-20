@@ -1,8 +1,10 @@
 {
-  "version": "0.2.2",
+  "version": "0.2.3",
   "name": "marco.deno.dev",
   "exports": "./main.ts",
-  "unstable": ["cron"],
+  "unstable": [
+    "cron"
+  ],
   "nodeModulesDir": "auto",
   "lint": {
     "exclude": [
@@ -32,6 +34,7 @@
   "tasks": {
     "deploy": "deno install -gArf jsr:@deno/deployctl; deployctl deploy",
     "tw-tokens": "deno run -A npm:tailwindcss -i ./static/css/styles.css -o ./static/css/styles.min.css",
+    "release": "deno run -A jsr:@m3o/version",
     "fmt": "deno fmt && deno lint",
     "start": "deno run -REN --allow-run='deno' --allow-sys --watch main.ts"
   },
