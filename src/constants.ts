@@ -7,7 +7,7 @@ export const time = {
   DAY: 24 * 60 * 60 * 1000,
 };
 
-function contactEmail(email = "marco+site@tremtec.com") {
+function contactEmail(email = "marco@tremtec.com") {
   const mailUrl = new URL(`mailto:${email}`);
 
   mailUrl.searchParams.set("subject", "Hey, Marco! Let's have a coffee ☕️");
