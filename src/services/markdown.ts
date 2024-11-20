@@ -11,6 +11,7 @@ const classMap: Record<string, string> = {
   paragraph: "py-1",
   link: "text-pink-400",
   list: "list-disc pl-4 py-1",
+  image: "w-full h-80 object-cover",
 };
 
 const tailwindThemePlugin: Plugin = {
