@@ -1,5 +1,5 @@
 ---
-title: Migrating from Solid-Start to Fresh
+title: Migrating from Solid-Start to Fresh 🍋
 description: This migration is deprecating Node.js in favor of Deno, with the amazing Fresh framework 🍋
 author: Marco Antonio
 email: marco@tremtec.com
