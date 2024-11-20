@@ -11,6 +11,7 @@ import { jsxRenderer, useRequestContext } from "hono/jsx-renderer";
 import { ResumePage } from "~/components/ResumePage.tsx";
 import { BlogPage } from "~/components/BlogPage.tsx";
 import { BlogPostPage } from "~/components/BlogPostPage.tsx";
+import { blog } from "~/services/blog.ts";
 
 export function registerPageRoutes(app: Hono) {
   const partials = partialRouter();
@@ -47,9 +48,10 @@ function pageRouter(): Hono {
   );
 
   // blog
-  pages.get("/blog", (ctx: Context) => {
+  pages.get("/blog", async (ctx: Context) => {
+    const posts = await blog.listPosts();
     return ctx.render(
-      <BlogPage />,
+      <BlogPage posts={posts} />,
     );
   });
 
