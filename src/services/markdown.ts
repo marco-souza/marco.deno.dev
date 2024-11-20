@@ -1,3 +1,4 @@
+// deno-lint-ignore-file no-explicit-any
 import { type Plugin, Renderer } from "@libs/markdown";
 import { gfm } from "@libs/markdown/plugins";
 import { parse } from "@std/yaml";
