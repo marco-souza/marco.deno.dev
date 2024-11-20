@@ -57,8 +57,8 @@ fast, efficient, and user-friendly.
 
 ### JSX
 
-I'm using JSX, which is supported by Hono out of the box, but I'm not using
-**client components**. I'm using JSX as a Server-Side template engine, and when
+I'm using JSX, which is supported by Hono out of the box, but I'm **not using
+client components**. I'm using JSX as a Server-Side template engine, and when
 I need some JS, I add it as callback functions that changes DOM directly, no
 shadow DOM, no virtual DOM, just plain old DOM manipulation.
 
