@@ -6,6 +6,7 @@
     "jsr:@libs/typing@3": "3.1.1",
     "jsr:@std/text@1": "1.0.7",
     "jsr:@std/yaml@1": "1.0.5",
+    "jsr:@std/yaml@^1.0.5": "1.0.5",
     "npm:@types/hast@3": "3.0.4",
     "npm:@types/node@*": "22.5.4",
     "npm:daisyui@^4.12.14": "4.12.14",
@@ -45,7 +46,7 @@
       "dependencies": [
         "jsr:@libs/typing",
         "jsr:@std/text",
-        "jsr:@std/yaml",
+        "jsr:@std/yaml@1",
         "npm:@types/hast",
         "npm:hastscript",
         "npm:rehype-autolink-headings",
@@ -2776,6 +2777,7 @@
     "dependencies": [
       "jsr:@hono/hono@^4.6.9",
       "jsr:@libs/markdown@2",
+      "jsr:@std/yaml@^1.0.5",
       "npm:daisyui@^4.12.14",
       "npm:tailwindcss@^3.4.14",
       "npm:typed-htmx@~0.3.1",

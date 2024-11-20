@@ -1,5 +1,6 @@
 import { type Plugin, Renderer } from "@libs/markdown";
 import { gfm } from "@libs/markdown/plugins";
+import { parse } from "@std/yaml";
 import { visit } from "unist-util-visit";
 
 const classMap: Record<string, string> = {
@@ -49,6 +50,11 @@ const tailwindThemePlugin: Plugin = {
     return customProcessor;
   },
 };
+
+export function markdownMetadata(md: string) {
+  const [_, metadataString] = md.split("---");
+  return parse(metadataString) as any;
+}
 
 export function markdownToHTML(md: string) {
   const markdownParser = new Renderer({
