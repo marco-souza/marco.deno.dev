@@ -12,6 +12,11 @@ export async function start() {
 
   registerPageRoutes(app);
 
+  // register cron jobs
+  Deno.cron("tick", "* * * * *", () => {
+    console.log("Cron job tick");
+  });
+
   Deno.serve(app.fetch);
 
   showRoutes(app);
