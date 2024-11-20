@@ -4,7 +4,9 @@ import { gfm } from "@libs/markdown/plugins";
 import { parse } from "@std/yaml";
 import { visit } from "unist-util-visit";
 
-const classMap: Record<string, string> = {
+type ClassMap = Record<string, string>;
+
+const classMap: ClassMap = {
   "heading[depth=1]": "text-4xl font-bold py-4 pt-8",
   "heading[depth=2]": "text-2xl font-bold py-2 pt-6",
   "heading[depth=3]": "text-xl font-bold py-2 pt-4",
@@ -12,19 +14,20 @@ const classMap: Record<string, string> = {
   paragraph: "py-1",
   link: "text-pink-400",
   list: "list-disc pl-4 py-1",
-  image: "w-full h-80 object-cover",
 };
 
-const tailwindThemePlugin: Plugin = {
+const createTailwindThemePlugin = (
+  theme: ClassMap,
+): Plugin => ({
   remark(processor, _renderer) {
     function findNodeClassname(node: any) {
-      let className = classMap[node.type];
+      let className = theme[node.type];
       if (className) {
         return className;
       }
 
       const key = `${node.type}[depth=${node.depth}]`;
-      className = classMap[key];
+      className = theme[key];
       if (className) {
         return className;
       }
@@ -51,14 +54,14 @@ const tailwindThemePlugin: Plugin = {
 
     return customProcessor;
   },
-};
+});
 
 export function markdownMetadata(md: string) {
   const [metadataString] = md.split("---").slice(1);
   return parse(metadataString) as any;
 }
 
-export function markdownToHTML(md: string) {
+export function markdownToHTML(md: string, opts: ClassMap = {}) {
   let content = md;
   if (md.startsWith("---")) {
     // remove metadata
@@ -66,7 +69,7 @@ export function markdownToHTML(md: string) {
   }
 
   const markdownParser = new Renderer({
-    plugins: [gfm, tailwindThemePlugin],
+    plugins: [gfm, createTailwindThemePlugin({ ...classMap, ...opts })],
   });
 
   // parse

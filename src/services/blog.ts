@@ -46,7 +46,9 @@ class Blog {
     const metadata = readMarkdownMetadata(filepath, filename);
 
     const fileContent = await Deno.readTextFile(filepath);
-    const content = await markdownToHTML(fileContent);
+    const content = await markdownToHTML(fileContent, {
+      image: "w-full h-80 object-cover",
+    });
 
     return {
       metadata,
