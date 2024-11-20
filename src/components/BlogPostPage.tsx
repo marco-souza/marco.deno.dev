@@ -12,7 +12,13 @@ export function BlogPostPage({ content, metadata }: Props) {
       {metadata.author}
     </a>
   );
-  const date = metadata.created_at.toDateString();
+  // format as Sun Oct 10 2021
+  const date = metadata.created_at
+    .toUTCString() // 'Wed, 20 Nov 2024 16:16:43 GMT'
+    .split(" ")
+    .slice(0, 4) // ['Wed,', '20', 'Nov', '2024']
+    .join(" ");
+
   return (
     <div>
       <h1 class="flex gap-2 text-4xl">
