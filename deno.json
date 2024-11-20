@@ -1,13 +1,20 @@
 {
-  "version": "0.2.0",
+  "version": "0.2.1",
   "name": "marco.deno.dev",
   "exports": "./main.ts",
   "nodeModulesDir": "auto",
   "lint": {
-    "exclude": ["node_modules/", "static/"]
+    "exclude": [
+      "node_modules/",
+      "static/"
+    ]
   },
   "fmt": {
-    "exclude": ["node_modules/", "static/", "posts/*.md"]
+    "exclude": [
+      "node_modules/",
+      "static/",
+      "posts/*.md"
+    ]
   },
   "imports": {
     "@libs/markdown": "jsr:@libs/markdown@^2.0.0",
@@ -29,7 +36,11 @@
   },
   "compilerOptions": {
     "jsx": "precompile",
-    "lib": ["deno.ns", "deno.unstable", "dom"],
+    "lib": [
+      "deno.ns",
+      "deno.unstable",
+      "dom"
+    ],
     "jsxImportSource": "hono/jsx"
   }
 }
