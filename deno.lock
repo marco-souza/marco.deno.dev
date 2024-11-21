@@ -1,7 +1,7 @@
 {
   "version": "4",
   "specifiers": {
-    "jsr:@hono/hono@^4.6.9": "4.6.10",
+    "jsr:@hono/hono@^4.6.11": "4.6.11",
     "jsr:@libs/markdown@2": "2.0.0",
     "jsr:@libs/typing@3": "3.1.1",
     "jsr:@std/text@1": "1.0.7",
@@ -31,15 +31,14 @@
     "npm:remark-remove-comments@1": "1.1.1",
     "npm:remark-ruby@0.4.0": "0.4.0_remark-parse@9.0.0",
     "npm:remark-wiki-link@2": "2.0.1",
-    "npm:tailwindcss@*": "3.4.14_postcss@8.4.47",
-    "npm:tailwindcss@^3.4.14": "3.4.14_postcss@8.4.47",
+    "npm:tailwindcss@^3.4.15": "3.4.15_postcss@8.4.47",
     "npm:typed-htmx@~0.3.1": "0.3.1",
     "npm:unified@11": "11.0.5",
     "npm:unist-util-visit@5": "5.0.0"
   },
   "jsr": {
-    "@hono/hono@4.6.10": {
-      "integrity": "dae93ac8bb49881f99506aa8e01e5536d5d72cc3c2b556bde2816fdf25ca609c"
+    "@hono/hono@4.6.11": {
+      "integrity": "07399d911f09e94b7dc1e0e0a0577d35fe66578af20163d513958364c4e9e702"
     },
     "@libs/markdown@2.0.0": {
       "integrity": "0a83a57c151f3553c174712348e166c0ee3b89550afdf2084a29e6a4dd4299a8",
@@ -371,8 +370,8 @@
         "layout-base"
       ]
     },
-    "cross-spawn@7.0.5": {
-      "integrity": "sha512-ZVJrKKYunU38/76t0RMOulHOnUcbU9GbpWKAOZ0mhjr7CX6FVrH+4FrAapSOekrgFQ3f/8gwMEuIft0aKq6Hug==",
+    "cross-spawn@7.0.6": {
+      "integrity": "sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==",
       "dependencies": [
         "path-key",
         "shebang-command",
@@ -2452,8 +2451,8 @@
     "symbol-tree@3.2.4": {
       "integrity": "sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw=="
     },
-    "tailwindcss@3.4.14_postcss@8.4.47": {
-      "integrity": "sha512-IcSvOcTRcUtQQ7ILQL5quRDg7Xs93PdJEk1ZLbhhvJc7uj/OAhYOnruEiwnGgBvUtaUAJ8/mhSw1o8L2jCiENA==",
+    "tailwindcss@3.4.15_postcss@8.4.47": {
+      "integrity": "sha512-r4MeXnfBmSOuKUWmXe6h2CcyfzJCEk4F0pptO5jlnYSIViUkVmsawj80N5h2lO3gwcmSb4n3PuN+e+GC1Guylw==",
       "dependencies": [
         "@alloc/quick-lru",
         "arg",
@@ -2751,8 +2750,8 @@
     "xmldom-sre@0.1.31": {
       "integrity": "sha512-f9s+fUkX04BxQf+7mMWAp5zk61pciie+fFLC9hX9UVvCeJQfNHRHXpeo5MPcR0EUf57PYLdt+ZO4f3Ipk2oZUw=="
     },
-    "yaml@2.6.0": {
-      "integrity": "sha512-a6ae//JvKDEra2kdi1qzCyrJW/WZCgFi8ydDV+eXExl95t+5R+ijnqHJbz9tmMh8FUjx3iv2fCQ4dclAQlO2UQ=="
+    "yaml@2.6.1": {
+      "integrity": "sha512-7r0XPzioN/Q9kXBro/XPnA6kznR73DHq+GXh5ON7ZozRO6aMjbmiBuKste2wslTFkC5d1dw0GooOCepZXJ2SAg=="
     },
     "zwitch@1.0.5": {
       "integrity": "sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw=="
@@ -2775,11 +2774,11 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@hono/hono@^4.6.9",
+      "jsr:@hono/hono@^4.6.11",
       "jsr:@libs/markdown@2",
       "jsr:@std/yaml@^1.0.5",
       "npm:daisyui@^4.12.14",
-      "npm:tailwindcss@^3.4.14",
+      "npm:tailwindcss@^3.4.15",
       "npm:typed-htmx@~0.3.1",
       "npm:unist-util-visit@5"
     ]
