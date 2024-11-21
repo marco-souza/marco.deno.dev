@@ -4,7 +4,9 @@
     "jsr:@hono/hono@^4.6.11": "4.6.11",
     "jsr:@libs/markdown@2": "2.0.0",
     "jsr:@libs/typing@3": "3.1.1",
-    "jsr:@std/text@1": "1.0.7",
+    "jsr:@std/assert@^1.0.8": "1.0.8",
+    "jsr:@std/internal@^1.0.5": "1.0.5",
+    "jsr:@std/text@1": "1.0.8",
     "jsr:@std/yaml@1": "1.0.5",
     "jsr:@std/yaml@^1.0.5": "1.0.5",
     "npm:@types/hast@3": "3.0.4",
@@ -76,8 +78,20 @@
     "@libs/typing@3.1.1": {
       "integrity": "02a3b0e19d917c66f484b6a3d991e820880257bdf8939ff3f5708b7dab2da77d"
     },
+    "@std/assert@1.0.8": {
+      "integrity": "ebe0bd7eb488ee39686f77003992f389a06c3da1bbd8022184804852b2fa641b",
+      "dependencies": [
+        "jsr:@std/internal"
+      ]
+    },
+    "@std/internal@1.0.5": {
+      "integrity": "54a546004f769c1ac9e025abd15a76b6671ddc9687e2313b67376125650dc7ba"
+    },
     "@std/text@1.0.7": {
       "integrity": "344a820af99fde81ae1d4f9ce586da3f47a58cda25ac4c4dd688166cf5ed97f1"
+    },
+    "@std/text@1.0.8": {
+      "integrity": "40ba34caa095f393e78796e5eda37b8b4e2cc6cfd6f51f34658ad7487b1451e4"
     },
     "@std/yaml@1.0.5": {
       "integrity": "71ba3d334305ee2149391931508b2c293a8490f94a337eef3a09cade1a2a2742"
@@ -2782,6 +2796,14 @@
       "npm:tailwindcss@^3.4.15",
       "npm:typed-htmx@~0.3.1",
       "npm:unist-util-visit@5"
-    ]
+    ],
+    "members": {
+      "packages/auth": {
+        "dependencies": [
+          "jsr:@hono/hono@^4.6.11",
+          "jsr:@std/assert@^1.0.8"
+        ]
+      }
+    }
   }
 }

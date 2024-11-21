@@ -1,7 +1,8 @@
 {
   "version": "0.2.5",
-  "name": "marco.deno.dev",
+  "name": "@m3o/marco.deno.dev",
   "exports": "./main.ts",
+  "workspace": ["./packages/auth/"],
   "unstable": [
     "cron"
   ],
@@ -20,16 +21,15 @@
     ]
   },
   "imports": {
+    "~/": "./src/",
     "@libs/markdown": "jsr:@libs/markdown@^2.0.0",
     "@std/yaml": "jsr:@std/yaml@^1.0.5",
     "daisyui": "npm:daisyui@^4.12.14",
     "hono": "jsr:@hono/hono@^4.6.11",
     "tailwindcss": "npm:tailwindcss@^3.4.15",
     "typed-htmx": "npm:typed-htmx@^0.3.1",
-    "#/": "./",
     "unist-util-visit": "npm:unist-util-visit@^5.0.0",
-    "zod": "https://deno.land/x/zod@v3.16.1/mod.ts",
-    "~/": "./src/"
+    "zod": "https://deno.land/x/zod@v3.16.1/mod.ts"
   },
   "tasks": {
     "fmt": "deno fmt && deno lint",
