@@ -1,0 +1,12 @@
+name: Warm up server
+on:
+  schedule:
+    # every 10 minutes
+    - cron: '*/10 * * * *'
+
+jobs:
+  warm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Hit home page
+        run: curl https://marco.deno.dev
