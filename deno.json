@@ -2,7 +2,7 @@
   "version": "0.2.5",
   "name": "@m3o/marco.deno.dev",
   "exports": "./main.ts",
-  "workspace": ["./packages/auth/"],
+  "workspace": ["packages/auth/"],
   "unstable": [
     "cron"
   ],
