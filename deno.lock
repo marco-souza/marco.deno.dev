@@ -2790,6 +2790,11 @@
           "jsr:@hono/hono@^4.6.11",
           "jsr:@std/assert@^1.0.8"
         ]
+      },
+      "packages/errors": {
+        "dependencies": [
+          "jsr:@std/assert@^1.0.8"
+        ]
       }
     }
   }
