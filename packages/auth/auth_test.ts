@@ -1,8 +1,8 @@
 import { assertIsError, assertStringIncludes } from "@std/assert";
 import {
-  fetchAuthToken,
+  fetchAccessToken,
   generateRedirectUrl,
-  refreshAuthToken,
+  refreshAccessToken,
 } from "./auth.ts";
 
 Deno.test(function redirectUrlTest() {
@@ -21,7 +21,7 @@ const code = "code";
 const state = "any";
 
 Deno.test("fetch accessToken with invalid code", async () => {
-  await fetchAuthToken(code, state).catch((error) => {
+  await fetchAccessToken(code, state).catch((error) => {
     assertIsError(error);
   });
 });
@@ -29,7 +29,7 @@ Deno.test("fetch accessToken with invalid code", async () => {
 Deno.test("throw an error if state is invalid", async () => {
   const invalidState = "";
 
-  await fetchAuthToken(code, invalidState).catch((error) => {
+  await fetchAccessToken(code, invalidState).catch((error) => {
     assertIsError(error);
     assertStringIncludes(error.message, "Invalid state");
   });
@@ -37,14 +37,14 @@ Deno.test("throw an error if state is invalid", async () => {
 
 Deno.test("throw an error if refresh an invalid token", async () => {
   const refreshToken = "";
-  await refreshAuthToken(refreshToken).catch((error) => {
+  await refreshAccessToken(refreshToken).catch((error) => {
     assertIsError(error);
   });
 });
 
 Deno.test("throw an error if refresh token is invalid", async () => {
   const refreshToken = "valid-token";
-  await refreshAuthToken(refreshToken).catch((error) => {
+  await refreshAccessToken(refreshToken).catch((error) => {
     assertIsError(error);
   });
 });
