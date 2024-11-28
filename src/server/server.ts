@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { registerPageRoutes } from "~/server/pages.tsx";
+import { registerAuthRoutes } from "~/server/auth.tsx";
 import { setupStaticFiles } from "~/server/static.ts";
 import { generateTailwindTokens } from "~/server/tailwind.ts";
 import { showRoutes } from "hono/dev";
@@ -13,6 +14,7 @@ export async function start() {
   await setupStaticFiles(app);
 
   registerPageRoutes(app);
+  registerAuthRoutes(app);
 
   // register cron jobs
   Deno.cron("tick", "* * * * *", () => {

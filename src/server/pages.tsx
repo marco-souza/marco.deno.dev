@@ -15,10 +15,6 @@ import ErrorPage from "~/components/ErrorPage.tsx";
 import { ResumePage } from "~/components/ResumePage.tsx";
 import { BlogPage } from "~/components/BlogPage.tsx";
 import { BlogPostPage } from "~/components/BlogPostPage.tsx";
-import { LoginPage } from "~/components/LoginPage.tsx";
-
-import * as auth from "@m3o/auth";
-import { raise } from "@m3o/errors";
 
 export function registerPageRoutes(app: Hono) {
   const partials = partialRouter();
@@ -27,56 +23,11 @@ export function registerPageRoutes(app: Hono) {
   const pages = pageRouter();
   app.route("/", pages);
 
-  const authRoutes = authRouter();
-  app.route("/", authRoutes);
-
   app.notFound((ctx) => {
     return ctx.render(
       <ErrorPage description="Could not find your page :(" />,
     );
   });
-}
-
-function authRouter(): Hono {
-  const routes = new Hono();
-  const { urls } = auth.configs;
-
-  routes.get("/login", (ctx) => {
-    const url = new URL(ctx.req.url);
-    const errors = url.searchParams.get("errors") ?? "";
-    const username = url.searchParams.get("username") ?? "";
-
-    return ctx.render(<LoginPage username={username} errors={errors} />);
-  });
-
-  routes.get(urls.signIn, (ctx) => {
-    const reqUrl = new URL(ctx.req.url);
-
-    const username = reqUrl.searchParams.get("username");
-    if (username === "error") {
-      return ctx.redirect("/login?errors=Invalid username");
-    }
-
-    const authUrl = auth.generateRedirectUrl(reqUrl.origin);
-
-    console.log("User logged in", { username, authUrl });
-
-    return ctx.redirect(authUrl);
-  });
-
-  routes.get(urls.callback, async (ctx) => {
-    const reqUrl = new URL(ctx.req.url);
-    const code = reqUrl.searchParams.get("code") ?? raise("Missing code");
-    const state = reqUrl.searchParams.get("state") ?? raise("Missing state");
-
-    const token = await auth.fetchAccessToken(code, state);
-
-    console.log("User logged in", { token });
-
-    return ctx.redirect("/");
-  });
-
-  return routes;
 }
 
 function pageRouter(): Hono {
@@ -98,6 +49,13 @@ function pageRouter(): Hono {
       );
     }),
   );
+
+  pages.get("/", async (ctx: Context) => {
+    const profile = await github.fetchProfile();
+    return ctx.render(
+      <GitHubProfileView profile={profile} />,
+    );
+  });
 
   // blog
   pages.get("/blog", async (ctx: Context) => {
@@ -121,13 +79,6 @@ function pageRouter(): Hono {
     const profile = await github.fetchProfile();
     return ctx.render(
       <ResumePage profile={profile} />,
-    );
-  });
-
-  pages.get("/", async (ctx: Context) => {
-    const profile = await github.fetchProfile();
-    return ctx.render(
-      <GitHubProfileView profile={profile} />,
     );
   });
 
