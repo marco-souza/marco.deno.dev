@@ -3,16 +3,19 @@ import { jsxRenderer, useRequestContext } from "hono/jsx-renderer";
 
 import { jsxMiddleware } from "~/middlewares/jsx.ts";
 import { themeMiddleware } from "~/middlewares/theme.ts";
-import ErrorPage from "~/components/ErrorPage.tsx";
-import { GitHubProfileView } from "~/components/GitHubProfile.tsx";
-import { Layout } from "~/layouts/main.tsx";
+
+import { blog } from "~/services/blog.ts";
 import { github } from "~/services/github.ts";
 import { getThemeCookie } from "~/shared/theme.ts";
 
+import { Layout } from "~/layouts/main.tsx";
+import { GitHubProfileView } from "~/components/GitHubProfile.tsx";
+
+import ErrorPage from "~/components/ErrorPage.tsx";
 import { ResumePage } from "~/components/ResumePage.tsx";
 import { BlogPage } from "~/components/BlogPage.tsx";
 import { BlogPostPage } from "~/components/BlogPostPage.tsx";
-import { blog } from "~/services/blog.ts";
+import { LoginPage } from "~/components/LoginPage.tsx";
 
 import * as auth from "@m3o/auth";
 import { raise } from "@m3o/errors";
@@ -40,31 +43,10 @@ function authRouter(): Hono {
 
   routes.get("/login", (ctx) => {
     const url = new URL(ctx.req.url);
-    const errors = url.searchParams.get("errors");
+    const errors = url.searchParams.get("errors") ?? "";
     const username = url.searchParams.get("username") ?? "";
 
-    return ctx.render(
-      <div class="card shadow-md">
-        <div class="card-body">
-          <h1 class="text-2xl">Login</h1>
-
-          <form class="flex gap-4" action={urls.signIn} hx-boost="false">
-            <input
-              type="text"
-              name="username"
-              value={username}
-              class="input input-bordered flex-1"
-              placeholder="Enter your username"
-              autofocus
-              required
-            />
-            <button class="btn btn-primary" type="submit">Login</button>
-          </form>
-
-          {errors && <p class="text-red-500">{errors}</p>}
-        </div>
-      </div>,
-    );
+    return ctx.render(<LoginPage username={username} errors={errors} />);
   });
 
   routes.get(urls.signIn, (ctx) => {
