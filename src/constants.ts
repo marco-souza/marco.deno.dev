@@ -20,7 +20,7 @@ function contactEmail(email = "marco@tremtec.com") {
 }
 
 export const configs = {
-  repo: "https://github.com/marco-souza/marco.deno.dev/tree/hono",
+  repo: "https://github.com/marco-souza/marco.deno.dev",
   username: "marco-souza",
   contact_me: contactEmail(),
 
