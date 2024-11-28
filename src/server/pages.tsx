@@ -41,6 +41,7 @@ function authRouter(): Hono {
   routes.get("/login", (ctx) => {
     const url = new URL(ctx.req.url);
     const errors = url.searchParams.get("errors");
+    const username = url.searchParams.get("username") ?? "";
 
     return ctx.render(
       <div class="card shadow-md">
@@ -51,6 +52,7 @@ function authRouter(): Hono {
             <input
               type="text"
               name="username"
+              value={username}
               class="input input-bordered flex-1"
               placeholder="Enter your username"
               autofocus
