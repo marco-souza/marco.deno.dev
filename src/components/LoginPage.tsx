@@ -2,12 +2,12 @@ import { configs } from "@m3o/auth";
 
 export function LoginPage({ errors = "", username = "" }) {
   return (
-    <div class="card shadow-md">
+    <div class="card shadow-md max-w-96 mx-auto">
       <div class="card-body">
         <h1 class="text-2xl">Login</h1>
 
         <form
-          class="flex gap-4"
+          class="grid gap-4"
           action={configs.urls.signIn}
           hx-boost="false"
         >
@@ -15,13 +15,13 @@ export function LoginPage({ errors = "", username = "" }) {
             type="text"
             name="username"
             value={username}
-            class="input input-bordered flex-1"
+            class="input input-bordered w-full"
             placeholder="Enter your username"
             autofocus
             required
           />
 
-          <button class="btn btn-primary" type="submit">Login</button>
+          <button class="btn btn-primary w-full" type="submit">Login</button>
         </form>
 
         {errors && <p class="text-red-500">{errors}</p>}
