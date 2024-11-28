@@ -1,6 +1,6 @@
 import { assert, raise } from "@m3o/errors";
 
-const configs = {
+export const configs = {
   authUrl: "https://github.com/login/oauth",
   urls: {
     signIn: "/api/auth",
