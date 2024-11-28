@@ -3,9 +3,8 @@ import { registerPageRoutes } from "~/server/pages.tsx";
 import { setupStaticFiles } from "~/server/static.ts";
 import { generateTailwindTokens } from "~/server/tailwind.ts";
 import { showRoutes } from "hono/dev";
-import { add } from "@m3o/auth";
 
-console.log("Add 2 + 3 =", add(2, 3));
+import "@std/dotenv/load";
 
 export async function start() {
   const app = new Hono();
