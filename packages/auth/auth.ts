@@ -38,6 +38,8 @@ class GitHubAuth {
     callback: "/api/auth/callback",
   };
 
+  private validStates: Set<string> = new Set();
+
   private authUrl = "https://github.com/login/oauth";
   private headers = {
     "Accept": "application/json",
@@ -105,11 +107,20 @@ class GitHubAuth {
   }
 
   private createState(): string {
-    return Math.random().toString(36).substring(7);
+    const state = Math.random().toString(36).substring(7);
+
+    // TODO: set a timeout to remove the state
+
+    this.validStates.add(state);
+    return state;
   }
 
   private isValidState(state: string): boolean {
-    return state.length > 0;
+    if (state.trim().length === 0) return false;
+    if (!this.validStates.has(state)) return false;
+
+    this.validStates.delete(state);
+    return true;
   }
 }
 
@@ -118,9 +129,3 @@ export const auth = new GitHubAuth({
   client_id: Deno.env.get("GITHUB_CLIENT_ID") || "client_id",
   client_secret: Deno.env.get("GITHUB_CLIENT_SECRET") || "client_secret",
 });
-
-// TODO: Checklist
-// - [ ] improve typing from configs
-// - [x] make a class to share configs
-// - [ ] check for valid state
-// - [ ] store state in a database
