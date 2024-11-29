@@ -3,11 +3,17 @@ import { LoginPage } from "~/components/LoginPage.tsx";
 
 import * as auth from "@m3o/auth";
 import { raise } from "@m3o/errors";
+import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 
 export function registerAuthRoutes(app: Hono) {
   const authRoutes = authRouter();
   app.route("/", authRoutes);
 }
+
+const COOKIE_KEYS = {
+  authToken: "auth_token",
+  refreshToken: "refresh_token",
+};
 
 function authRouter(): Hono {
   const routes = new Hono();
@@ -19,6 +25,24 @@ function authRouter(): Hono {
     const username = url.searchParams.get("username") ?? "";
 
     return ctx.render(<LoginPage username={username} errors={errors} />);
+  });
+
+  routes.get("/dashboard", (ctx) => {
+    // TODO: create a middleware for private routes
+    const authTokenKey = getCookie(ctx, COOKIE_KEYS.authToken);
+    const refreshTokenKey = getCookie(ctx, COOKIE_KEYS.refreshToken);
+
+    if (!authTokenKey || !refreshTokenKey) {
+      return ctx.redirect("/login?errors=Unauthorized");
+    }
+
+    return ctx.render(
+      <div>
+        <h1>Dashboard</h1>
+        <p>Auth Token: {authTokenKey}</p>
+        <p>Refresh Token: {refreshTokenKey}</p>
+      </div>,
+    );
   });
 
   routes.get(urls.signIn, (ctx) => {
@@ -43,12 +67,30 @@ function authRouter(): Hono {
 
     const token = await auth.fetchAccessToken(code, state);
 
-    // TODO: store token in cookies
-    // TODO: validate auth token for private routes
-    // TODO: create a middleware for private routes
+    setCookie(
+      ctx,
+      COOKIE_KEYS.authToken,
+      token.access_token,
+      { maxAge: token.expires_in },
+    );
+
+    setCookie(
+      ctx,
+      COOKIE_KEYS.refreshToken,
+      token.refresh_token,
+      { maxAge: token.refresh_token_expires_in },
+    );
+
     console.log("User logged in", { token });
 
-    return ctx.redirect("/");
+    return ctx.redirect("/dashboard");
+  });
+
+  routes.get(urls.signOut, (ctx) => {
+    deleteCookie(ctx, COOKIE_KEYS.authToken);
+    deleteCookie(ctx, COOKIE_KEYS.refreshToken);
+
+    return ctx.redirect("/login");
   });
 
   return routes;

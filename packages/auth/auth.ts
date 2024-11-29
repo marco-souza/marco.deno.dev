@@ -4,7 +4,7 @@ export const configs = {
   authUrl: "https://github.com/login/oauth",
   urls: {
     signIn: "/api/auth",
-    logout: "/api/auth/logout",
+    signOut: "/api/auth/logout",
     refresh: "/api/auth/refresh",
     callback: "/api/auth/callback",
   },
