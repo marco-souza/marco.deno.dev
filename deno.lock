@@ -1,7 +1,8 @@
 {
   "version": "4",
   "specifiers": {
-    "jsr:@hono/hono@^4.6.11": "4.6.11",
+    "jsr:@hono/hono@^4.6.11": "4.6.12",
+    "jsr:@hono/hono@^4.6.12": "4.6.12",
     "jsr:@libs/markdown@2": "2.0.0",
     "jsr:@libs/typing@3": "3.1.1",
     "jsr:@std/assert@^1.0.8": "1.0.8",
@@ -43,6 +44,9 @@
   "jsr": {
     "@hono/hono@4.6.11": {
       "integrity": "07399d911f09e94b7dc1e0e0a0577d35fe66578af20163d513958364c4e9e702"
+    },
+    "@hono/hono@4.6.12": {
+      "integrity": "fa0b97fa7c3292f0d9957109ac07a475fe485868795b71b8e3114c284152cdb5"
     },
     "@libs/markdown@2.0.0": {
       "integrity": "0a83a57c151f3553c174712348e166c0ee3b89550afdf2084a29e6a4dd4299a8",
@@ -2790,7 +2794,7 @@
   },
   "workspace": {
     "dependencies": [
-      "jsr:@hono/hono@^4.6.11",
+      "jsr:@hono/hono@^4.6.12",
       "jsr:@libs/markdown@2",
       "jsr:@std/dotenv@~0.225.2",
       "jsr:@std/yaml@^1.0.5",
