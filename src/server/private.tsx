@@ -2,9 +2,8 @@ import { Hono } from "hono";
 import { authMiddleware } from "~/middlewares/auth.ts";
 import { AUTH_KEYS, type AuthenticatedContext } from "~/constants.ts";
 
-export function registerAuthRoutes(app: Hono) {
-  const authRoutes = privateRouter();
-  app.route("/", authRoutes);
+export function registerPrivateRoutes(app: Hono) {
+  app.route("/", privateRouter());
 }
 
 function privateRouter() {
