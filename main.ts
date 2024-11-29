@@ -1,3 +1,5 @@
+import "@std/dotenv/load";
+
 import { start } from "~/server/server.ts";
 
 if (import.meta.main) {

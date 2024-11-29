@@ -1,2 +1,6 @@
 *.min.*
 node_modules
+
+# credentials
+.env
+.pass

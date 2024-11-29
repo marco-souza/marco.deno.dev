@@ -1,7 +1,8 @@
 {
   "version": "0.2.5",
-  "name": "marco.deno.dev",
+  "name": "@m3o/marco.deno.dev",
   "exports": "./main.ts",
+  "workspace": ["packages/auth/", "packages/errors/"],
   "unstable": [
     "cron"
   ],
@@ -20,13 +21,13 @@
     ]
   },
   "imports": {
+    "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
     "@libs/markdown": "jsr:@libs/markdown@^2.0.0",
     "@std/yaml": "jsr:@std/yaml@^1.0.5",
     "daisyui": "npm:daisyui@^4.12.14",
-    "hono": "jsr:@hono/hono@^4.6.11",
+    "hono": "jsr:@hono/hono@^4.6.12",
     "tailwindcss": "npm:tailwindcss@^3.4.15",
     "typed-htmx": "npm:typed-htmx@^0.3.1",
-    "#/": "./",
     "unist-util-visit": "npm:unist-util-visit@^5.0.0",
     "zod": "https://deno.land/x/zod@v3.16.1/mod.ts",
     "~/": "./src/"
@@ -34,6 +35,9 @@
   "tasks": {
     "fmt": "deno fmt && deno lint",
     "tw-tokens": "deno run -A npm:tailwindcss -i ./static/css/styles.css -o ./static/css/styles.min.css",
+
+    "encrypt": "pkg encrypt .env",
+    "decrypt": "pkg decrypt .env.gpg",
 
     "init": {
       "description": "generate task",
@@ -49,7 +53,7 @@
 
     "start": {
       "description": "Start the dev server",
-      "command": "deno run -REN --allow-run='deno' --allow-sys main.ts",
+      "command": "deno run -REN --allow-run='deno' --allow-sys --watch main.ts",
       "dependencies": ["init", "fmt"]
     }
   },
