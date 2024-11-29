@@ -53,8 +53,7 @@ export function generateRedirectUrl(origin: string): string {
   oAuthUrl.searchParams.append("response_type", "code");
   oAuthUrl.searchParams.append("state", state);
 
-  const redirectUrl = oAuthUrl.toString().replaceAll("+", "%20");
-  return redirectUrl;
+  return oAuthUrl.toString();
 }
 
 type FetchAccessToken = Credentials & {
