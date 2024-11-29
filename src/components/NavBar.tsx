@@ -32,6 +32,7 @@ const menuLinks = [
   { href: "/", name: "Home" },
   { href: "/blog", name: "Blog" },
   { href: "/resume", name: "Resume" },
+  { href: "/login", name: "Sign-in" },
 ];
 
 const Menu = () => (
