@@ -3,7 +3,7 @@ import { LoginPage } from "~/components/LoginPage.tsx";
 
 import { auth } from "@m3o/auth";
 import { raise } from "@m3o/errors";
-import { deleteCookie, setCookie } from "hono/cookie";
+import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { AUTH_KEYS } from "~/constants.ts";
 
 export function registerAuthRoutes(app: Hono) {
@@ -69,6 +69,35 @@ function authRouter(): Hono {
     deleteCookie(ctx, AUTH_KEYS.refreshToken);
 
     return ctx.redirect("/login");
+  });
+
+  routes.get(urls.refresh, async (ctx) => {
+    const refreshToken = getCookie(ctx, AUTH_KEYS.refreshToken);
+    if (!refreshToken) {
+      return ctx.redirect(
+        "/login?errors=Invalid refresh token, please login again",
+      );
+    }
+
+    const token = await auth.refreshAccessToken(refreshToken);
+
+    setCookie(
+      ctx,
+      AUTH_KEYS.authToken,
+      token.access_token,
+      { maxAge: token.expires_in },
+    );
+
+    setCookie(
+      ctx,
+      AUTH_KEYS.refreshToken,
+      token.refresh_token,
+      { maxAge: token.refresh_token_expires_in },
+    );
+
+    console.log("User refreshed token", { token });
+
+    return ctx.redirect("/dashboard");
   });
 
   return routes;
