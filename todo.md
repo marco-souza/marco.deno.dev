@@ -2,11 +2,11 @@
 
 ## Milestone 1: Basic Auth
 
-- [ ] OAuth (Google, Github) - 8 pts
-  - [ ] sign up
-  - [ ] sign in
-  - [ ] sign out
-  - [ ] refresh
+- [x] OAuth (Google, Github) - 8 pts
+  - [x] sign up
+  - [x] sign in
+  - [x] sign out
+  - [x] refresh
 
 ## Milestone 2: User Settings
 
