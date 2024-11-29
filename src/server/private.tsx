@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { authMiddleware } from "~/middlewares/auth.ts";
 import { AUTH_KEYS, type AuthenticatedContext } from "~/constants.ts";
-import { configs } from "@m3o/auth";
+import { auth } from "@m3o/auth";
 
 export function registerPrivateRoutes(app: Hono) {
   app.route("/", privateRouter());
@@ -21,7 +21,8 @@ function privateRouter() {
         <h1>Dashboard</h1>
         <p>Auth Token: {authTokenKey}</p>
         <p>Refresh Token: {refreshTokenKey}</p>
-        <a href={configs.urls.signOut} class="btn btn-secondary">
+
+        <a href={auth.urls.signOut} class="btn btn-secondary">
           Logout
         </a>
       </div>,

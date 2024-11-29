@@ -1,4 +1,4 @@
-import { configs } from "@m3o/auth";
+import { auth } from "@m3o/auth";
 
 export function LoginPage({ errors = "", username = "" }) {
   return (
@@ -8,7 +8,7 @@ export function LoginPage({ errors = "", username = "" }) {
 
         <form
           class="grid gap-4"
-          action={configs.urls.signIn}
+          action={auth.urls.signIn}
           hx-boost="false"
         >
           <input

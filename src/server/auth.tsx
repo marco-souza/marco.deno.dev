@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { LoginPage } from "~/components/LoginPage.tsx";
 
-import * as auth from "@m3o/auth";
+import { auth } from "@m3o/auth";
 import { raise } from "@m3o/errors";
 import { deleteCookie, setCookie } from "hono/cookie";
 import { AUTH_KEYS } from "~/constants.ts";
@@ -13,7 +13,7 @@ export function registerAuthRoutes(app: Hono) {
 
 function authRouter(): Hono {
   const routes = new Hono();
-  const { urls } = auth.configs;
+  const { urls } = auth;
 
   routes.get("/login", (ctx) => {
     const url = new URL(ctx.req.url);
@@ -31,7 +31,7 @@ function authRouter(): Hono {
       return ctx.redirect("/login?errors=Invalid username");
     }
 
-    const authUrl = auth.generateRedirectUrl(reqUrl.origin);
+    const authUrl = auth.generateAuthUrl(reqUrl.origin);
 
     console.log("User logged in", { username, authUrl });
 
