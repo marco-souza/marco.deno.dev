@@ -6,8 +6,6 @@ import { setupStaticFiles } from "~/server/static.ts";
 import { generateTailwindTokens } from "~/server/tailwind.ts";
 import { showRoutes } from "hono/dev";
 
-import "@std/dotenv/load";
-
 export async function start() {
   const app = new Hono();
 
