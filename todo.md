@@ -29,14 +29,14 @@
   - [ ] delete
 
 - [ ] [fea] user settings page - 8 pts
-  - [ ] display user info
-  - [ ] make user info editable
+  - [x] display user info
+  - [x] make user info editable
   - [ ] persist user info changes
-    - [ ] add error handling
+  - [ ] add error handling
 
 - [ ] [fea] user onboarding - 8 pts
-  - [ ] implement for to review users info (username, name, email, etc)
-  - [ ] implement partials - form
+  - [x] implement for to review users info (username, name, email, etc)
+  - [x] implement partials - form
   - [ ] implement partials - set initial values
   - [ ] implement partials - add error handling
   - [ ] implement success page
