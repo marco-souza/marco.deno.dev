@@ -38,6 +38,10 @@ export const configs = {
     resume:
       "https://raw.githubusercontent.com/marco-souza/resume/main/RESUME.md",
   },
+
+  navigation: {
+    settings: "/user/settings",
+  },
 };
 
 export type AuthenticatedContext = {

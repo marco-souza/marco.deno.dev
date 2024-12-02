@@ -1,6 +1,6 @@
 import { createMiddleware } from "hono/factory";
 import { getCookie } from "hono/cookie";
-import { AUTH_KEYS } from "~/constants.ts";
+import { AUTH_KEYS, configs } from "~/constants.ts";
 import { auth } from "../../packages/auth/auth.ts";
 
 export const authMiddleware = createMiddleware(async (ctx, next) => {
@@ -17,6 +17,12 @@ export const authMiddleware = createMiddleware(async (ctx, next) => {
 
   ctx.set(AUTH_KEYS.authToken, authTokenKey);
   ctx.set(AUTH_KEYS.refreshToken, refreshTokenKey);
+
+  // TODO: check if user has completed onboarding
+  const redirectToOnboarding = ctx.req.path != configs.navigation.settings;
+  if (redirectToOnboarding) {
+    return ctx.redirect(configs.navigation.settings);
+  }
 
   await next();
 });
