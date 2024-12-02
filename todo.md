@@ -23,10 +23,10 @@
   - [x] delete
 
 - [ ] [fea] user service - 5 pts
-    - [ ] create
-    - [ ] read
-    - [ ] update
-    - [ ] delete
+  - [ ] create
+  - [ ] read
+  - [ ] update
+  - [ ] delete
 
 - [ ] [fea] user settings page - 8 pts
   - [ ] display user info
@@ -35,11 +35,11 @@
     - [ ] add error handling
 
 - [ ] [fea] user onboarding - 8 pts
-    - [ ] implement for to review users info (username, name, email, etc)
-    - [ ] implement partials - form
-    - [ ] implement partials - set initial values
-    - [ ] implement partials - add error handling
-    - [ ] implement success page
+  - [ ] implement for to review users info (username, name, email, etc)
+  - [ ] implement partials - form
+  - [ ] implement partials - set initial values
+  - [ ] implement partials - add error handling
+  - [ ] implement success page
 
 ## Milestone 3: User Management
 
