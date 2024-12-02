@@ -2,7 +2,7 @@ name: Warm up server
 
 on:
   schedule:
-    - cron: "*/10 * * * *"
+    - cron: "*/5 * * * *"
 
 jobs:
   warm:
