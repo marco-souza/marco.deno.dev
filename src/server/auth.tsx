@@ -61,11 +61,6 @@ function authRouter(): Hono {
 
     console.log("User logged in", { token });
 
-    const redirectToOnboarding = true;
-    if (redirectToOnboarding) {
-      return ctx.redirect(configs.navigation.settings);
-    }
-
     return ctx.redirect(configs.navigation.dashboard);
   });
 

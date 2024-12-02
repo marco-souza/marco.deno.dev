@@ -54,6 +54,12 @@ export class UsersRepository implements Repository<User> {
     return users;
   }
 
+  genSocialId(provider: string, id: string) {
+    id = `${provider}@${id}`;
+
+    return { id, key: this.keys.key(id) };
+  }
+
   private get keys() {
     return {
       selector: ["users"],
