@@ -7,6 +7,7 @@ const GitHubProfileSchema = z.object({
   bio: z.string(),
   name: z.string(),
   login: z.string(),
+  email: z.string(),
   avatar_url: z.string(),
 });
 

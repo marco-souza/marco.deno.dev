@@ -139,6 +139,8 @@ function UserRegistrationCard({ profile }: { profile: GitHubProfile }) {
           </span>
         </h2>
 
+        <p class="text-xs font-light">{profile.email}</p>
+
         <p
           class="font-light"
           dangerouslySetInnerHTML={{ __html: parseBioText(profile.bio) }}
