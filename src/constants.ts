@@ -38,6 +38,12 @@ export const configs = {
     resume:
       "https://raw.githubusercontent.com/marco-souza/resume/main/RESUME.md",
   },
+
+  navigation: {
+    dashboard: "/dashboard",
+    settings: "/user/settings",
+    onboarding: "/user/onboarding",
+  },
 };
 
 export type AuthenticatedContext = {

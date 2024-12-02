@@ -4,7 +4,7 @@ import { LoginPage } from "~/components/LoginPage.tsx";
 import { auth } from "@m3o/auth";
 import { raise } from "@m3o/errors";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
-import { AUTH_KEYS } from "~/constants.ts";
+import { AUTH_KEYS, configs } from "~/constants.ts";
 
 export function registerAuthRoutes(app: Hono) {
   const authRoutes = authRouter();
@@ -61,7 +61,7 @@ function authRouter(): Hono {
 
     console.log("User logged in", { token });
 
-    return ctx.redirect("/dashboard");
+    return ctx.redirect(configs.navigation.dashboard);
   });
 
   routes.get(urls.signOut, (ctx) => {
