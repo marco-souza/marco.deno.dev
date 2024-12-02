@@ -2,7 +2,8 @@ import { Hono } from "hono";
 import { authMiddleware } from "~/middlewares/auth.ts";
 import { AUTH_KEYS, type AuthenticatedContext, configs } from "~/constants.ts";
 import { auth } from "@m3o/auth";
-import { github } from "~/services/github.ts";
+import { github, type GitHubProfile } from "~/services/github.ts";
+import { parseBioText } from "~/components/GitHubProfile.tsx";
 
 export function registerPrivateRoutes(app: Hono) {
   app.route("/", privateRouter());
@@ -95,5 +96,62 @@ function privateRouter() {
     );
   });
 
+  routes.get(configs.navigation.onboarding, async (ctx) => {
+    const authTokenKey = ctx.get(AUTH_KEYS.authToken);
+    const profile = await github.fetchAuthenticatedProfile(authTokenKey);
+
+    // TODO: register user in the database
+
+    return ctx.render(
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 md:gap-8">
+        <aside class="col-span-1 flex flex-col gap-4">
+          <h1 class="text-4xl">Onboarding</h1>
+
+          <h2 class="text-2xl">Welcome, {profile.name}! 🎉</h2>
+
+          <p class="font-light">
+            Please fill in the form below to complete your registration.
+          </p>
+        </aside>
+
+        <main class="col-span-3 p-4 flex gap-4">
+          <UserRegistrationCard profile={profile} />
+        </main>
+      </div>,
+    );
+  });
+
   return routes;
+}
+
+function UserRegistrationCard({ profile }: { profile: GitHubProfile }) {
+  return (
+    <div class="card bg-base-100 shadow-xl w-96">
+      <figure>
+        <img src={profile.avatar_url} alt="It's me" />
+      </figure>
+
+      <div class="card-body grid gap-4">
+        <h2 class="card-title">
+          {profile.name}
+          <span class="text-xs text-left text-gray-200 badge badge-primary">
+            @{profile.login}
+          </span>
+        </h2>
+
+        <p
+          class="font-light"
+          dangerouslySetInnerHTML={{ __html: parseBioText(profile.bio) }}
+        />
+
+        <div class="card-actions justify-center">
+          <form hx-post="/user/settings w-full">
+            <button type="submit" class="btn btn-primary w-full">
+              Register User
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
 }
