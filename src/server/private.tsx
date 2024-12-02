@@ -1,7 +1,8 @@
 import { Hono } from "hono";
 import { authMiddleware } from "~/middlewares/auth.ts";
-import { AUTH_KEYS, type AuthenticatedContext } from "~/constants.ts";
+import { AUTH_KEYS, type AuthenticatedContext, configs } from "~/constants.ts";
 import { auth } from "@m3o/auth";
+import { github } from "~/services/github.ts";
 
 export function registerPrivateRoutes(app: Hono) {
   app.route("/", privateRouter());
@@ -12,7 +13,7 @@ function privateRouter() {
 
   routes.use(authMiddleware);
 
-  routes.get("/dashboard", (ctx) => {
+  routes.get(configs.navigation.dashboard, (ctx) => {
     const authTokenKey = ctx.get(AUTH_KEYS.authToken);
     const refreshTokenKey = ctx.get(AUTH_KEYS.refreshToken);
 

@@ -40,6 +40,7 @@ export const configs = {
   },
 
   navigation: {
+    dashboard: "/dashboard",
     settings: "/user/settings",
   },
 };
