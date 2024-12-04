@@ -2,7 +2,7 @@ import type { PropsWithChildren } from "hono/jsx";
 import type { FC } from "hono/jsx";
 import type { Theme } from "~/shared/theme.ts";
 import { Footer } from "~/components/Footer.tsx";
-import { NavBar, NavBarProps } from "~/components/NavBar.tsx";
+import { NavBar, type NavBarProps } from "~/components/NavBar.tsx";
 
 type Props = PropsWithChildren<{
   theme: Theme;
