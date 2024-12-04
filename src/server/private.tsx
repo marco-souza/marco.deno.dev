@@ -103,8 +103,8 @@ function privateRouter() {
     // TODO: register user in the database
 
     return ctx.render(
-      <div class="grid grid-cols-1 gap-4 sm:grid-cols-3 md:grid-cols-4 md:gap-8">
-        <aside class="col-span-1 flex flex-col gap-4">
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-8">
+        <aside class="md:col-span-1 flex flex-col gap-4">
           <h1 class="text-4xl">Onboarding</h1>
 
           <h2 class="text-2xl">Welcome, {profile.name}! 🎉</h2>
@@ -114,7 +114,7 @@ function privateRouter() {
           </p>
         </aside>
 
-        <main class="col-span-3 p-4 flex gap-4">
+        <main class="md:col-span-3 p-4 flex gap-4">
           <UserRegistrationCard profile={profile} />
         </main>
       </div>,
@@ -126,7 +126,7 @@ function privateRouter() {
 
 function UserRegistrationCard({ profile }: { profile: GitHubProfile }) {
   return (
-    <div class="card bg-base-100 shadow-xl w-96">
+    <div class="card bg-base-100 shadow-xl md:w-96">
       <figure>
         <img src={profile.avatar_url} alt="It's me" />
       </figure>
