@@ -4,13 +4,17 @@ import { registerAuthRoutes } from "~/server/auth.tsx";
 import { registerPrivateRoutes } from "~/server/private.tsx";
 import { setupStaticFiles } from "~/server/static.ts";
 import { generateTailwindTokens } from "~/server/tailwind.ts";
+
 import { showRoutes } from "hono/dev";
+import { logger } from "hono/logger";
 
 export async function start() {
   const app = new Hono();
 
   await generateTailwindTokens();
   await setupStaticFiles(app);
+
+  app.use(logger());
 
   // setup routes
   registerPageRoutes(app);
