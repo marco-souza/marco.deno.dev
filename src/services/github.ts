@@ -15,7 +15,9 @@ export const GitHubAuthenticatedProfileSchema = GitHubProfileSchema.extend({
 });
 
 export type GitHubProfile = z.infer<typeof GitHubProfileSchema>;
-export type GitHubAuthenticatedProfile = z.infer<typeof GitHubProfileSchema>;
+export type GitHubAuthenticatedProfile = z.infer<
+  typeof GitHubAuthenticatedProfileSchema
+>;
 
 class GitHub {
   constructor(private username = configs.username) {}

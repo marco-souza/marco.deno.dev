@@ -2,7 +2,7 @@ import { Hono } from "hono";
 import { authMiddleware } from "~/middlewares/auth.ts";
 import { AUTH_KEYS, type AuthenticatedContext, configs } from "~/constants.ts";
 import { auth } from "@m3o/auth";
-import { github, type GitHubProfile } from "~/services/github.ts";
+import { github, type GitHubAuthenticatedProfile } from "~/services/github.ts";
 import { parseBioText } from "~/components/GitHubProfile.tsx";
 
 export function registerPrivateRoutes(app: Hono) {
@@ -124,7 +124,9 @@ function privateRouter() {
   return routes;
 }
 
-function UserRegistrationCard({ profile }: { profile: GitHubProfile }) {
+function UserRegistrationCard(
+  { profile }: { profile: GitHubAuthenticatedProfile },
+) {
   return (
     <div class="card bg-base-100 shadow-xl md:w-96">
       <figure>
@@ -134,7 +136,7 @@ function UserRegistrationCard({ profile }: { profile: GitHubProfile }) {
       <div class="card-body grid gap-4">
         <h2 class="card-title">
           {profile.name}
-          <span class="text-xs text-left text-gray-200 badge badge-primary">
+          <span class="text-xs text-left text-gray-200 badge badge-outline badge-primary">
             @{profile.login}
           </span>
         </h2>
