@@ -7,11 +7,15 @@ const GitHubProfileSchema = z.object({
   bio: z.string(),
   name: z.string(),
   login: z.string(),
-  email: z.string(),
   avatar_url: z.string(),
 });
 
+export const GitHubAuthenticatedProfileSchema = GitHubProfileSchema.extend({
+  email: z.string(),
+});
+
 export type GitHubProfile = z.infer<typeof GitHubProfileSchema>;
+export type GitHubAuthenticatedProfile = z.infer<typeof GitHubProfileSchema>;
 
 class GitHub {
   constructor(private username = configs.username) {}
@@ -26,7 +30,7 @@ class GitHub {
     });
 
     const body = await resp.json();
-    const profile = GitHubProfileSchema.parse(body);
+    const profile = GitHubAuthenticatedProfileSchema.parse(body);
 
     return profile;
   }
