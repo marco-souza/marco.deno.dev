@@ -4,10 +4,15 @@ import { Logo } from "~/components/Logo.tsx";
 import { ThemeSwitcher } from "~/components/ThemeSwitcher.tsx";
 import type { Theme } from "~/shared/theme.ts";
 
-export const NavBar = ({ theme }: { theme: Theme }) => (
+export type NavBarProps = {
+  theme: Theme;
+  isAuthenticated: boolean;
+};
+
+export const NavBar = ({ theme, isAuthenticated }: NavBarProps) => (
   <div class="navbar">
     <div class="navbar-start">
-      <Menu />
+      <Menu isAuthenticated={isAuthenticated} />
     </div>
 
     <div class="navbar-center">
@@ -28,30 +33,42 @@ export const NavBar = ({ theme }: { theme: Theme }) => (
   </div>
 );
 
-const menuLinks = [
-  { href: "/", name: "Home" },
-  { href: "/blog", name: "Blog" },
-  { href: "/resume", name: "Resume" },
-  { href: "/login", name: "Sign-in" },
-];
+type Link = { href: string; name: string; hide?: boolean };
 
-const Menu = () => (
-  <div class="dropdown" role="button" as="button">
-    <label tabIndex={0} class="btn btn-ghost btn-circle">
-      <MenuIcon />
-    </label>
-    <ul
-      tabIndex={0}
-      class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-    >
-      {menuLinks.map((link) => (
-        <li>
-          <a href={link.href}>{link.name}</a>
-        </li>
-      ))}
-    </ul>
-  </div>
-);
+function defineMenuLinks(...links: Link[]) {
+  return links.filter((link) => !link.hide);
+}
+
+const Menu = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
+  const menuLinks = defineMenuLinks(
+    { href: "/", name: "Home" },
+    { href: "/blog", name: "Blog" },
+    { href: "/resume", name: "Resume" },
+    // public
+    { href: "/login", name: "Sign in", hide: isAuthenticated },
+    // private
+    { href: "/dashboard", name: "Dashboard", hide: !isAuthenticated },
+    { href: "/api/auth/logout", name: "Sign out", hide: !isAuthenticated },
+  );
+
+  return (
+    <div class="dropdown" role="button" as="button">
+      <label tabIndex={0} class="btn btn-ghost btn-circle">
+        <MenuIcon />
+      </label>
+      <ul
+        tabIndex={0}
+        class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+      >
+        {menuLinks.map((link) => (
+          <li>
+            <a href={link.href}>{link.name}</a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 const MenuIcon = () => (
   <svg
