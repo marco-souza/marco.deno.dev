@@ -18,7 +18,10 @@ function authRouter(): Hono {
   const { urls } = auth;
 
   routes.get("/login", (ctx) => {
-    return ctx.render(<LoginPage />);
+    const url = new URL(ctx.req.url);
+    const errors = url.searchParams.get("errors") ?? "";
+
+    return ctx.render(<LoginPage errors={errors} />);
   });
 
   routes.get(urls.signIn, (ctx) => {
