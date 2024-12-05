@@ -3,6 +3,7 @@ import { configs } from "~/constants.ts";
 import { Logo } from "~/components/Logo.tsx";
 import { ThemeSwitcher } from "~/components/ThemeSwitcher.tsx";
 import type { Theme } from "~/shared/theme.ts";
+import { defineMenuLinks } from "~/shared/links.tsx";
 
 export type NavBarProps = {
   theme: Theme;
@@ -32,12 +33,6 @@ export const NavBar = ({ theme, isAuthenticated }: NavBarProps) => (
     </div>
   </div>
 );
-
-type Link = { href: string; name: string; hide?: boolean };
-
-function defineMenuLinks(...links: Link[]) {
-  return links.filter((link) => !link.hide);
-}
 
 const Menu = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
   const menuLinks = defineMenuLinks(
