@@ -7,6 +7,7 @@ import { generateTailwindTokens } from "~/server/tailwind.ts";
 
 import { showRoutes } from "hono/dev";
 import { logger } from "hono/logger";
+import { errorsMiddleware } from "~/middlewares/errors.tsx";
 
 export async function start() {
   const app = new Hono();
@@ -15,6 +16,7 @@ export async function start() {
   await setupStaticFiles(app);
 
   app.use(logger());
+  app.use(errorsMiddleware);
 
   // setup routes
   registerPageRoutes(app);

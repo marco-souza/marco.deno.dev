@@ -7,6 +7,8 @@
   - [x] sign in
   - [x] sign out
   - [x] refresh
+- [x] Block unauthorized access - 3 pts
+  - [x] allow only selected users
 
 ## Milestone 2: User Settings
 
@@ -31,15 +33,15 @@
 - [ ] [fea] user settings page - 8 pts
   - [x] display user info
   - [x] make user info editable
-  - [x] persist user info changes
-  - [ ] add error handling
+  - [ ] persist user info changes
+  - [x] add error handling
 
 - [ ] [fea] user onboarding - 8 pts
   - [x] implement for to review users info (username, name, email, etc)
   - [x] implement partials - form
-  - [ ] implement partials - set initial values
-  - [ ] implement partials - add error handling
-  - [ ] implement success page
+  - [x] implement partials - set initial values
+  - [x] implement partials - add error handling
+  - [ ] implement success feedback
 
 ### 2.1 Web notes
 

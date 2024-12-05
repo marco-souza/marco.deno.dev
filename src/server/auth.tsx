@@ -62,7 +62,6 @@ function authRouter(): Hono {
 
   routes.get(urls.refresh, async (ctx) => {
     const refreshToken = getCookie(ctx, AUTH_KEYS.refreshToken);
-    // TODO: move error handling to a middleware (redirect source with error)
     if (!refreshToken) {
       return ctx.redirect(
         "/login?errors=Invalid refresh token, please login again",
