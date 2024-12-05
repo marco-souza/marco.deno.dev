@@ -11,12 +11,14 @@ export function AuthenticatedUserProfile(
       </figure>
 
       <div class="card-body grid gap-4">
-        <h2 class="card-title">
-          {profile.name}
-          <span class="text-xs text-left text-gray-200 badge badge-outline badge-primary">
+        <div class="header flex flex-col gap-2">
+          <h2 class="card-title">
+            {profile.name}
+          </h2>
+          <p class="text-xs text-left text-gray-200 badge badge-outline badge-primary">
             @{profile.login}
-          </span>
-        </h2>
+          </p>
+        </div>
 
         <p class="text-xs font-light">{profile.email}</p>
 
@@ -24,14 +26,6 @@ export function AuthenticatedUserProfile(
           class="font-light"
           dangerouslySetInnerHTML={{ __html: parseBioText(profile.bio) }}
         />
-
-        <div class="card-actions justify-center">
-          <form hx-post="/user/settings w-full">
-            <button type="submit" class="btn btn-primary w-full">
-              Register User
-            </button>
-          </form>
-        </div>
       </div>
     </div>
   );
