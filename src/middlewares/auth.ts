@@ -1,9 +1,10 @@
 import { createMiddleware } from "hono/factory";
 import { getCookie } from "hono/cookie";
-import { AUTH_KEYS, configs } from "~/constants.ts";
+import { configs } from "~/constants.ts";
 import { auth } from "../../packages/auth/auth.ts";
 import { github } from "~/services/github.ts";
 import { db } from "~/services/db.ts";
+import { ALLOWED_USERS, AUTH_KEYS } from "~/shared/auth.ts";
 
 export const authMiddleware = createMiddleware(async (ctx, next) => {
   const authTokenKey = getCookie(ctx, AUTH_KEYS.authToken);

@@ -1,10 +1,11 @@
 import { Hono } from "hono";
 import { authMiddleware } from "~/middlewares/auth.ts";
-import { AUTH_KEYS, type AuthenticatedContext, configs } from "~/constants.ts";
+import { configs } from "~/constants.ts";
 import { raise } from "@m3o/errors";
 import { github } from "~/services/github.ts";
 import { AuthenticatedUserProfile } from "~/components/AuthenticatedUserProfile.tsx";
 import { db } from "~/services/db.ts";
+import { AUTH_KEYS, type AuthenticatedContext } from "~/shared/auth.ts";
 
 export function registerPrivateRoutes(app: Hono) {
   app.route("/", privateRouter());

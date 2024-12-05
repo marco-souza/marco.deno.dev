@@ -4,8 +4,9 @@ import { deleteCookie, getCookie, setCookie } from "hono/cookie";
 import { type AccessToken, auth } from "@m3o/auth";
 import { raise } from "@m3o/errors";
 
-import { AUTH_KEYS, configs } from "~/constants.ts";
+import { configs } from "~/constants.ts";
 import { LoginPage } from "~/components/LoginPage.tsx";
+import { AUTH_KEYS } from "~/shared/auth.ts";
 
 export function registerAuthRoutes(app: Hono) {
   const authRoutes = authRouter();

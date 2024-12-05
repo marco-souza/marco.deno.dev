@@ -16,7 +16,7 @@ import { ResumePage } from "~/components/ResumePage.tsx";
 import { BlogPage } from "~/components/BlogPage.tsx";
 import { BlogPostPage } from "~/components/BlogPostPage.tsx";
 import { getCookie } from "hono/cookie";
-import { AUTH_KEYS } from "~/constants.ts";
+import { AUTH_KEYS } from "~/shared/auth.ts";
 
 export function registerPageRoutes(app: Hono) {
   const partials = partialRouter();

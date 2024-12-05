@@ -45,13 +45,3 @@ export const configs = {
     onboarding: "/user/onboarding",
   },
 };
-
-export type AuthenticatedContext = {
-  auth_token: string;
-  refresh_token: string;
-};
-
-export const AUTH_KEYS = {
-  authToken: "auth_token",
-  refreshToken: "refresh_token",
-} as const;
