@@ -38,14 +38,10 @@ export const configs = {
     resume:
       "https://raw.githubusercontent.com/marco-souza/resume/main/RESUME.md",
   },
-};
 
-export type AuthenticatedContext = {
-  auth_token: string;
-  refresh_token: string;
+  navigation: {
+    dashboard: "/dashboard",
+    settings: "/user/settings",
+    onboarding: "/user/onboarding",
+  },
 };
-
-export const AUTH_KEYS = {
-  authToken: "auth_token",
-  refreshToken: "refresh_token",
-} as const;

@@ -6,7 +6,7 @@ type Credentials = {
   scope: string;
 };
 
-type AccessToken = {
+export type AccessToken = {
   access_token: string;
   expires_in: number;
   refresh_token: string;

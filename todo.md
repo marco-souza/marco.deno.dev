@@ -1,25 +1,56 @@
 # Checklists
 
-## Milestone 1: Basic Auth
+## ✅ Milestone 1: Basic Auth
 
 - [x] OAuth (Google, Github) - 8 pts
   - [x] sign up
   - [x] sign in
   - [x] sign out
   - [x] refresh
+- [x] Block unauthorized access - 3 pts
+  - [x] allow only selected users
 
 ## Milestone 2: User Settings
 
-- [ ] onboarding after sign up - 5 pts
-  - [ ] gather user info (username, name, email, etc)
-    - [ ] add error handling
-  - [ ] success page
+- [x] [fea] create user entity - 2 pts
+  - [x] id
+  - [x] name
+  - [x] email
+  - [x] role
 
-- [ ] user settings page - 8 pts
-  - [ ] display user info
-  - [ ] make user info editable
+- [x] [fea] user repository - 3 pts
+  - [x] create
+  - [x] read
+  - [x] update
+  - [x] delete
+
+- [x] [fea] user service - 5 pts
+  - [x] create
+  - [x] read
+  - [ ] update
+  - [ ] delete
+
+- [ ] [fea] user settings page - 8 pts
+  - [x] display user info
+  - [x] make user info editable
   - [ ] persist user info changes
-    - [ ] add error handling
+  - [x] add error handling
+
+- [ ] [fea] user onboarding - 8 pts
+  - [x] implement for to review users info (username, name, email, etc)
+  - [x] implement partials - form
+  - [x] implement partials - set initial values
+  - [x] implement partials - add error handling
+  - [ ] implement success feedback
+
+### 2.1 Web notes
+
+- [x] create a vault for taking notes
+- [x] List all vaults on the dashboard by vault
+- [ ] Create a new note
+- [ ] Create a vault
+- [ ] Delete a note
+- [ ] [api] create a note from a tampermonkey
 
 ## Milestone 3: User Management
 

@@ -15,6 +15,8 @@ import ErrorPage from "~/components/ErrorPage.tsx";
 import { ResumePage } from "~/components/ResumePage.tsx";
 import { BlogPage } from "~/components/BlogPage.tsx";
 import { BlogPostPage } from "~/components/BlogPostPage.tsx";
+import { getCookie } from "hono/cookie";
+import { AUTH_KEYS } from "~/shared/auth.ts";
 
 export function registerPageRoutes(app: Hono) {
   const partials = partialRouter();
@@ -42,8 +44,17 @@ function pageRouter(): Hono {
     jsxRenderer(({ children }) => {
       const ctx = useRequestContext();
       const theme = getThemeCookie(ctx);
+      const isAuthenticated = Boolean(
+        getCookie(ctx, AUTH_KEYS.authToken) ||
+          getCookie(ctx, AUTH_KEYS.refreshToken),
+      );
+
       return (
-        <Layout theme={theme} title="Hello World 🌎">
+        <Layout
+          theme={theme}
+          title="Hello World 🌎"
+          navbar={{ theme, isAuthenticated }}
+        >
           {children}
         </Layout>
       );

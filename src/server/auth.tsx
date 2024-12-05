@@ -1,10 +1,12 @@
-import { Hono } from "hono";
-import { LoginPage } from "~/components/LoginPage.tsx";
-
-import { auth } from "@m3o/auth";
-import { raise } from "@m3o/errors";
+import { type Context, Hono } from "hono";
 import { deleteCookie, getCookie, setCookie } from "hono/cookie";
-import { AUTH_KEYS } from "~/constants.ts";
+
+import { type AccessToken, auth } from "@m3o/auth";
+import { raise } from "@m3o/errors";
+
+import { configs } from "~/constants.ts";
+import { LoginPage } from "~/components/LoginPage.tsx";
+import { AUTH_KEYS } from "~/shared/auth.ts";
 
 export function registerAuthRoutes(app: Hono) {
   const authRoutes = authRouter();
@@ -18,57 +20,44 @@ function authRouter(): Hono {
   routes.get("/login", (ctx) => {
     const url = new URL(ctx.req.url);
     const errors = url.searchParams.get("errors") ?? "";
-    const username = url.searchParams.get("username") ?? "";
 
-    return ctx.render(<LoginPage username={username} errors={errors} />);
+    return ctx.render(<LoginPage errors={errors} />);
   });
 
   routes.get(urls.signIn, (ctx) => {
     const reqUrl = new URL(ctx.req.url);
-
-    const username = reqUrl.searchParams.get("username");
-    if (username === "error") {
-      return ctx.redirect("/login?errors=Invalid username");
-    }
-
     const authUrl = auth.generateAuthUrl(reqUrl.origin);
 
-    console.log("User logged in", { username, authUrl });
+    console.log("User logged in", { authUrl });
 
     return ctx.redirect(authUrl);
   });
 
   routes.get(urls.callback, async (ctx) => {
     const reqUrl = new URL(ctx.req.url);
+
     const code = reqUrl.searchParams.get("code") ?? raise("Missing code");
     const state = reqUrl.searchParams.get("state") ?? raise("Missing state");
 
     const token = await auth.fetchAccessToken(code, state);
-
-    setCookie(
-      ctx,
-      AUTH_KEYS.authToken,
-      token.access_token,
-      { maxAge: token.expires_in },
-    );
-
-    setCookie(
-      ctx,
-      AUTH_KEYS.refreshToken,
-      token.refresh_token,
-      { maxAge: token.refresh_token_expires_in },
-    );
+    setAuthCookies(ctx, token);
 
     console.log("User logged in", { token });
 
-    return ctx.redirect("/dashboard");
+    return ctx.redirect(configs.navigation.dashboard);
   });
 
   routes.get(urls.signOut, (ctx) => {
+    const url = new URL(ctx.req.url);
+    const redirectUrl = new URL("/login", url.origin);
+
     deleteCookie(ctx, AUTH_KEYS.authToken);
     deleteCookie(ctx, AUTH_KEYS.refreshToken);
 
-    return ctx.redirect("/login");
+    const errors = url.searchParams.get("errors");
+    if (errors) redirectUrl.searchParams.set("errors", errors);
+
+    return ctx.redirect(redirectUrl.toString());
   });
 
   routes.get(urls.refresh, async (ctx) => {
@@ -80,25 +69,27 @@ function authRouter(): Hono {
     }
 
     const token = await auth.refreshAccessToken(refreshToken);
-
-    setCookie(
-      ctx,
-      AUTH_KEYS.authToken,
-      token.access_token,
-      { maxAge: token.expires_in },
-    );
-
-    setCookie(
-      ctx,
-      AUTH_KEYS.refreshToken,
-      token.refresh_token,
-      { maxAge: token.refresh_token_expires_in },
-    );
+    setAuthCookies(ctx, token);
 
     console.log("User refreshed token", { token });
-
     return ctx.redirect("/dashboard");
   });
 
   return routes;
+}
+
+function setAuthCookies(ctx: Context, token: AccessToken) {
+  setCookie(
+    ctx,
+    AUTH_KEYS.authToken,
+    token.access_token,
+    { maxAge: token.expires_in },
+  );
+
+  setCookie(
+    ctx,
+    AUTH_KEYS.refreshToken,
+    token.refresh_token,
+    { maxAge: token.refresh_token_expires_in },
+  );
 }
