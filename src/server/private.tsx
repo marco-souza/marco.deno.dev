@@ -15,19 +15,63 @@ function privateRouter() {
 
   routes.use(authMiddleware);
 
-  routes.get(configs.navigation.dashboard, (ctx) => {
+  // TODO: split routes into separate files
+
+  routes.get(configs.navigation.dashboard, async (ctx) => {
+    // TODO: move this to the auth middleware and use persisted data, to avoid fetching the profile multiple times
     const authTokenKey = ctx.get(AUTH_KEYS.authToken);
-    const refreshTokenKey = ctx.get(AUTH_KEYS.refreshToken);
+    const profile = await github.fetchAuthenticatedProfile(authTokenKey);
+
+    const vaults = await db.vaults.findAllByOwner(profile.login);
 
     return ctx.render(
-      <div>
-        <h1>Dashboard</h1>
-        <p>Auth Token: {authTokenKey}</p>
-        <p>Refresh Token: {refreshTokenKey}</p>
+      <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-8">
+        <aside class="col-span-1 flex flex-col gap-4">
+          <h1 class="text-4xl">Hi, {profile.name} 👋</h1>
 
-        <a href={auth.urls.signOut} class="btn btn-secondary">
-          Logout
-        </a>
+          <p class="font-light">
+            Here you can manage your account and settings
+          </p>
+
+          <nav class="flex flex-col gap-4">
+            <a href="/dashboard" class="link link-primary">
+              Dashboard
+            </a>
+
+            <a href="/user/settings" class="link link-primary">
+              Settings
+            </a>
+          </nav>
+        </aside>
+
+        <main class="col-span-3 p-4">
+          <h2 class="text-2xl">Your Vaults</h2>
+
+          <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
+            {vaults.map((vault) => (
+              <div
+                class="card card-bordered shadown-md hover:shadow-zinc-200"
+                key={vault.name}
+              >
+                <div class="card-body gap-2">
+                  <h3 class="card-title text-xl">{vault.name}</h3>
+
+                  <p class="font-light text-sm">
+                    Notes: {Object.keys(vault.notes).length}
+                  </p>
+
+                  <div class="card-actions">
+                    <a href={`/vault/${vault.owner}/${vault.name}`}>
+                      Open Vault
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div id="notes">Select a vault to load</div>
+        </main>
       </div>,
     );
   });
@@ -183,16 +227,22 @@ function privateRouter() {
 
     console.log("user created", { user });
 
-    // TODO: create vault
     const formData = await ctx.req.formData();
     const name = formData.get("name")?.toString() ??
       raise("Vault name is required");
 
-    const vault = {
+    const vault = await db.vaults.create({
       name: name,
       owner: profile.login, // NOTE: we can only use this because we are not using multiple social auths
-      notes: {},
-    };
+      notes: {
+        "welcome-note": [
+          {
+            content: "Welcome to your new vault!",
+            last_modified: new Date().toISOString(),
+          },
+        ],
+      },
+    });
 
     console.log("create vault", { vault });
 
