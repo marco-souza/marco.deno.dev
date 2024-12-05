@@ -21,9 +21,26 @@ export const authMiddleware = createMiddleware(async (ctx, next) => {
   ctx.set(AUTH_KEYS.authToken, authTokenKey);
   ctx.set(AUTH_KEYS.refreshToken, refreshTokenKey);
 
+  // block access to not allowed users
+  const profile = await github.fetchAuthenticatedProfile(authTokenKey);
+  if (!ALLOWED_USERS.includes(profile.login)) {
+    console.log("User not allowed", { profile });
+
+    const redirectUrl = new URL(auth.urls.signOut, ctx.req.url);
+    redirectUrl.searchParams.set(
+      "errors",
+      `${profile.login} is not allowed to access this page`,
+    );
+
+    console.log("redirecting", { redirectUrl });
+
+    return ctx.redirect(redirectUrl.toString());
+  }
+
+  ctx.set("profile", profile);
+
   // check if user is registered
-  const githubProfile = await github.fetchAuthenticatedProfile(authTokenKey);
-  const id = db.users.genSocialId("github", githubProfile.login);
+  const id = db.users.genSocialId("github", profile.login);
   const isUserRegistered = await db.users.find(id.id);
   const isUserOnboarding = ctx.req.url.includes(configs.navigation.onboarding);
 

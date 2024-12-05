@@ -30,6 +30,10 @@ export function LoginPage({ errors = "" }) {
           <button class="btn btn-outline btn-secondary w-full" type="submit">
             {githubButton}
           </button>
+
+          <p class="text-xs text-gray-500">
+            We use GitHub for authentication to keep things simple and secure.
+          </p>
         </form>
 
         {errors && <p class="text-red-500">{errors}</p>}

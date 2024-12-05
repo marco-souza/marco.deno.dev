@@ -19,10 +19,7 @@ function privateRouter() {
   // TODO: split routes into separate files
 
   routes.get(configs.navigation.dashboard, async (ctx) => {
-    // TODO: move this to the auth middleware and use persisted data, to avoid fetching the profile multiple times
-    const authTokenKey = ctx.get(AUTH_KEYS.authToken);
-    const profile = await github.fetchAuthenticatedProfile(authTokenKey);
-
+    const profile = ctx.get("profile");
     const vaults = await db.vaults.findAllByOwner(profile.login);
 
     return ctx.render(
@@ -45,8 +42,14 @@ function privateRouter() {
           </nav>
         </aside>
 
-        <main class="col-span-3 p-4">
-          <h2 class="text-2xl">Your Vaults</h2>
+        <main class="col-span-3 p-4 gap-4 grid">
+          <div className="header flex flex-col gap-2">
+            <h2 class="text-2xl">Your Vaults</h2>
+
+            <p class="font-light text-sm italic">
+              Select a vault to get started.
+            </p>
+          </div>
 
           <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
             {vaults.map((vault) => (
@@ -70,16 +73,13 @@ function privateRouter() {
               </div>
             ))}
           </div>
-
-          <div id="notes">Select a vault to load</div>
         </main>
       </div>,
     );
   });
 
-  routes.get(configs.navigation.settings, async (ctx) => {
-    const authTokenKey = ctx.get(AUTH_KEYS.authToken);
-    const profile = await github.fetchAuthenticatedProfile(authTokenKey);
+  routes.get(configs.navigation.settings, (ctx) => {
+    const profile = ctx.get("profile");
 
     return ctx.render(
       <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-8">
@@ -142,11 +142,10 @@ function privateRouter() {
     );
   });
 
-  routes.get(configs.navigation.onboarding, async (ctx) => {
-    const authTokenKey = ctx.get(AUTH_KEYS.authToken);
-    const profile = await github.fetchAuthenticatedProfile(authTokenKey);
+  routes.get(configs.navigation.onboarding, (ctx) => {
+    const profile = ctx.get("profile");
 
-    // TODO: register user in the database
+    console.log("new user", { profile });
 
     return ctx.render(
       <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-8">

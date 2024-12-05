@@ -48,10 +48,16 @@ function authRouter(): Hono {
   });
 
   routes.get(urls.signOut, (ctx) => {
+    const url = new URL(ctx.req.url);
+    const redirectUrl = new URL("/login", url.origin);
+
     deleteCookie(ctx, AUTH_KEYS.authToken);
     deleteCookie(ctx, AUTH_KEYS.refreshToken);
 
-    return ctx.redirect("/login");
+    const errors = url.searchParams.get("errors");
+    if (errors) redirectUrl.searchParams.set("errors", errors);
+
+    return ctx.redirect(redirectUrl.toString());
   });
 
   routes.get(urls.refresh, async (ctx) => {
