@@ -8,6 +8,7 @@ export function LoginPage({ errors = "", username = "" }) {
       <span>Sign in with GitHub</span>
     </div>
   );
+
   return (
     <div class="card shadow-md max-w-96 mx-auto">
       <div class="card-body gap-8">
