@@ -16,7 +16,7 @@ export const ThemeSwitcher: FC<{ theme: Theme }> = ({ theme }) => {
     const newTheme = selectedTheme === "dark" ? "light" : "dark";
 
     htmlElement.dataset.theme = newTheme;
-    document.cookie = `selected-theme=${newTheme}`;
+    document.cookie = `selected-theme=${newTheme}; path=/`;
 
     const btn = document.getElementById("toggle-theme");
     if (!btn) return;
