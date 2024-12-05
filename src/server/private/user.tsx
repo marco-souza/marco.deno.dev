@@ -1,6 +1,8 @@
 import type { Hono } from "hono";
 import * as constantsTs from "~/constants.ts";
 import type { AuthenticatedContext } from "~/shared/auth.ts";
+import { db } from "~/services/db.ts";
+import { auth } from "@m3o/auth";
 
 export function defineRoutes(
   routes: Hono<{ Variables: AuthenticatedContext }>,
@@ -9,7 +11,7 @@ export function defineRoutes(
     const profile = ctx.get("profile");
 
     return ctx.render(
-      <main class="col-span-3 p-4">
+      <main class="col-span-3 p-4 grid gap-4">
         <form hx-post="/user/settings" class="grid gap-4">
           <img
             alt="It's Me"
@@ -53,8 +55,27 @@ export function defineRoutes(
 
           <button type="submit" class="btn btn-primary">Save</button>
         </form>
+
+        <button
+          type="submit"
+          class="btn btn-outline w-full btn-error"
+          hx-delete="/user"
+        >
+          Delete Account
+        </button>
       </main>,
     );
+  });
+
+  routes.delete("/user", async (ctx) => {
+    const profile = ctx.get("profile");
+
+    await db.users.delete(db.users.genSocialId("github", profile.login).id);
+
+    // htmx redirect
+    ctx.header("hx-redirect", auth.urls.signOut);
+
+    return ctx.text("no content", 204);
   });
 
   return routes;

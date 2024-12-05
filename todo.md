@@ -28,7 +28,7 @@
   - [x] create
   - [x] read
   - [ ] update
-  - [ ] delete
+  - [x] delete
 
 - [ ] [fea] user settings page - 8 pts
   - [x] display user info
