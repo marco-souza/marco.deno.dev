@@ -74,7 +74,7 @@ function authRouter(): Hono {
 
       console.log("User refreshed token", { token });
 
-      return ctx.redirect("/dashboard");
+      return ctx.redirect(configs.navigation.dashboard);
     } catch (error) {
       console.error("Error refreshing token", { error });
 
