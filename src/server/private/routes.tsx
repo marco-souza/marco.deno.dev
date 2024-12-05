@@ -31,7 +31,7 @@ function privateRouter() {
 
       return (
         <Layout>
-          <PrivateLayout profile={profile}>{children}</PrivateLayout>;
+          <PrivateLayout profile={profile}>{children}</PrivateLayout>
         </Layout>
       );
     }),
