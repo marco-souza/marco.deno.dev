@@ -64,15 +64,24 @@ function authRouter(): Hono {
     const refreshToken = getCookie(ctx, AUTH_KEYS.refreshToken);
     if (!refreshToken) {
       return ctx.redirect(
-        "/login?errors=Invalid refresh token, please login again",
+        auth.urls.signOut + "?errors=Invalid refresh token, please login again",
       );
     }
 
-    const token = await auth.refreshAccessToken(refreshToken);
-    setAuthCookies(ctx, token);
+    try {
+      const token = await auth.refreshAccessToken(refreshToken);
+      setAuthCookies(ctx, token);
 
-    console.log("User refreshed token", { token });
-    return ctx.redirect("/dashboard");
+      console.log("User refreshed token", { token });
+
+      return ctx.redirect("/dashboard");
+    } catch (error) {
+      console.error("Error refreshing token", { error });
+
+      return ctx.redirect(
+        auth.urls.signOut + "?errors=Invalid refresh token, please login again",
+      );
+    }
   });
 
   return routes;
