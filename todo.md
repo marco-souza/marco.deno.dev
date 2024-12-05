@@ -22,16 +22,16 @@
   - [x] update
   - [x] delete
 
-- [ ] [fea] user service - 5 pts
-  - [ ] create
-  - [ ] read
+- [x] [fea] user service - 5 pts
+  - [x] create
+  - [x] read
   - [ ] update
   - [ ] delete
 
 - [ ] [fea] user settings page - 8 pts
   - [x] display user info
   - [x] make user info editable
-  - [ ] persist user info changes
+  - [x] persist user info changes
   - [ ] add error handling
 
 - [ ] [fea] user onboarding - 8 pts
@@ -40,6 +40,15 @@
   - [ ] implement partials - set initial values
   - [ ] implement partials - add error handling
   - [ ] implement success page
+
+### 2.1 Web notes
+
+- [x] create a vault for taking notes
+- [x] List all vaults on the dashboard by vault
+- [ ] Create a new note
+- [ ] Create a vault
+- [ ] Delete a note
+- [ ] [api] create a note from a tampermonkey
 
 ## Milestone 3: User Management
 
