@@ -1,7 +1,7 @@
 import { Hono } from "hono";
 import { registerPageRoutes } from "~/server/pages.tsx";
 import { registerAuthRoutes } from "~/server/auth.tsx";
-import { registerPrivateRoutes } from "~/server/private.tsx";
+import { registerPrivateRoutes } from "~/server/private/routes.tsx";
 import { setupStaticFiles } from "~/server/static.ts";
 import { generateTailwindTokens } from "~/server/tailwind.ts";
 
