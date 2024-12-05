@@ -75,7 +75,7 @@ export function defineRoutes(
     // htmx redirect
     ctx.header("hx-redirect", auth.urls.signOut);
 
-    return ctx.text("no content", 204);
+    return ctx.body(null);
   });
 
   return routes;
