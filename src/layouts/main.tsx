@@ -38,6 +38,8 @@ export const Layout: FC<Props> = (props) => {
           <Footer />
         </div>
       </body>
+
+      <script src="/sw-register.js"></script>
     </html>
   );
 };

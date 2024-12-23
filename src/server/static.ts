@@ -9,6 +9,16 @@ export async function setupStaticFiles(app: Hono) {
   app.use("/static/*", serveStatic({ root: "./" }));
   app.use("/favicon.ico", serveStatic({ path: "./static/favicon.ico" }));
 
+  // setup servicee worker
+  app.use(
+    "/sw-register.js",
+    serveStatic({ path: "./static/js/sw-register.js" }),
+  );
+  app.use(
+    "/sw.js",
+    serveStatic({ path: "./static/js/service-worker.js" }),
+  );
+
   // setup cache
   app.use("/static/js/*", cacheMiddleware());
   app.use("/static/css/*", cacheMiddleware(7 * time.DAY)); // 1 week

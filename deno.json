@@ -19,6 +19,9 @@
       "node_modules/",
       "static/",
       "posts/*.md"
+    ],
+    "include": [
+      "static/js/s*"
     ]
   },
   "imports": {
