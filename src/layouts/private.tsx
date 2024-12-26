@@ -32,18 +32,8 @@ export const PrivateLayout: FC<Props> = ({ profile, children }) => {
         </nav>
       </aside>
 
-      <main class="col-span-3 p-4 gap-4 grid">
-        <div className="header flex flex-col gap-2">
-          <h2 class="text-2xl">Your Vaults</h2>
-
-          <p class="font-light text-sm italic">
-            Select a vault to get started.
-          </p>
-        </div>
-
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
-          {children}
-        </div>
+      <main class="col-span-3 px-4 gap-4 grid">
+        {children}
       </main>
     </div>
   );

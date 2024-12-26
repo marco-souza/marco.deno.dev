@@ -11,7 +11,7 @@ export function defineRoutes(
     const vaults = await db.vaults.findAllByOwner(profile.login);
 
     return ctx.render(
-      <div class="col-span-3 p-4 gap-4 grid">
+      <>
         <div className="header flex flex-col gap-2">
           <h2 class="text-2xl">Your Vaults</h2>
 
@@ -42,7 +42,7 @@ export function defineRoutes(
             </div>
           ))}
         </div>
-      </div>,
+      </>,
     );
   });
 
