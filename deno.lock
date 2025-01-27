@@ -3,7 +3,7 @@
   "specifiers": {
     "jsr:@hono/hono@^4.6.11": "4.6.13",
     "jsr:@hono/hono@^4.6.12": "4.6.13",
-    "jsr:@libs/markdown@2": "2.0.2",
+    "jsr:@libs/markdown@^2.0.2": "2.0.2",
     "jsr:@libs/typing@^3.1.2": "3.1.2",
     "jsr:@std/assert@^1.0.8": "1.0.9",
     "jsr:@std/dotenv@~0.225.2": "0.225.2",
@@ -13,6 +13,7 @@
     "jsr:@std/yaml@^1.0.5": "1.0.5",
     "npm:daisyui@^4.12.14": "4.12.14",
     "npm:hastscript@9": "9.0.0",
+    "npm:playwright@^1.50.0": "1.50.0",
     "npm:rehype-autolink-headings@^7.1.0": "7.1.0",
     "npm:rehype-highlight@^7.0.1": "7.0.1",
     "npm:rehype-mathjax@6": "6.0.0",
@@ -33,6 +34,7 @@
     "npm:remark-remove-comments@^1.1.1": "1.1.1",
     "npm:remark-ruby@0.4": "0.4.0_remark-parse@9.0.0",
     "npm:remark-wiki-link@^2.0.1": "2.0.1",
+    "npm:tailwindcss@*": "3.4.17_postcss@8.4.49",
     "npm:tailwindcss@^3.4.15": "3.4.17_postcss@8.4.49",
     "npm:typed-htmx@~0.3.1": "0.3.1",
     "npm:unified@^11.0.5": "11.0.5",
@@ -560,7 +562,7 @@
       "dependencies": [
         "anymatch",
         "braces",
-        "fsevents",
+        "fsevents@2.3.3",
         "glob-parent@5.1.2",
         "is-binary-path",
         "is-glob",
@@ -1034,6 +1036,9 @@
     },
     "format@0.2.2": {
       "integrity": "sha512-wzsgA6WOq+09wrU1tsJ09udeR/YZRaeArL9e1wPbFg3GG2yDnC2ldKpxs4xunpFF9DgqCqOIra3bc1HWrJ37Ww=="
+    },
+    "fsevents@2.3.2": {
+      "integrity": "sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA=="
     },
     "fsevents@2.3.3": {
       "integrity": "sha512-5xoDfX+fL7faATnagmWPpbFtwh/R77WmMMqqHGS65C3vvB0YHrgF+B1YmZ3441tMj5n63k0212XNoJwzlhffQw=="
@@ -2115,6 +2120,16 @@
         "pathe"
       ]
     },
+    "playwright-core@1.50.0": {
+      "integrity": "sha512-CXkSSlr4JaZs2tZHI40DsZUN/NIwgaUPsyLuOAaIZp2CyF2sN5MM5NJsyB188lFSSozFxQ5fPT4qM+f0tH/6wQ=="
+    },
+    "playwright@1.50.0": {
+      "integrity": "sha512-+GinGfGTrd2IfX1TA4N2gNmeIksSb+IAe589ZH+FlmpV3MYTx6+buChGIuDLQwrGNCw2lWibqV50fU510N7S+w==",
+      "dependencies": [
+        "fsevents@2.3.2",
+        "playwright-core"
+      ]
+    },
     "points-on-curve@0.2.0": {
       "integrity": "sha512-0mYKnYYe9ZcqMCWhUjItv/oHjvgEsfKvnUTg8sAtnHr3GVy7rGkXCb6d5cSyqrWqL4k81b9CPg3urd+T7aop3A=="
     },
@@ -2891,10 +2906,11 @@
   "workspace": {
     "dependencies": [
       "jsr:@hono/hono@^4.6.12",
-      "jsr:@libs/markdown@2",
+      "jsr:@libs/markdown@^2.0.2",
       "jsr:@std/dotenv@~0.225.2",
       "jsr:@std/yaml@^1.0.5",
       "npm:daisyui@^4.12.14",
+      "npm:playwright@^1.50.0",
       "npm:tailwindcss@^3.4.15",
       "npm:typed-htmx@~0.3.1",
       "npm:unist-util-visit@5"
