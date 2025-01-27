@@ -1,5 +1,5 @@
-import { auth } from "@m3o/auth";
 import GithubIcon from "~/components/icons/GitHubIcon.tsx";
+import { auth } from "~/shared/auth.ts";
 
 export function LoginPage({ errors = "" }) {
   const githubButton = (

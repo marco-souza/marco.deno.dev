@@ -2,7 +2,7 @@ import type { Hono } from "hono";
 import * as constantsTs from "~/constants.ts";
 import type { AuthenticatedContext } from "~/shared/auth.ts";
 import { db } from "~/services/db.ts";
-import { auth } from "@m3o/auth";
+import { auth } from "~/shared/auth.ts";
 
 export function defineRoutes(
   routes: Hono<{ Variables: AuthenticatedContext }>,

@@ -30,7 +30,7 @@ type RefreshAccessToken = Credentials & {
   grant_type: "refresh_token";
 };
 
-class GitHubAuth {
+export class GitHubAuth {
   urls = {
     signIn: "/api/auth",
     signOut: "/api/auth/logout",
@@ -47,6 +47,10 @@ class GitHubAuth {
   };
 
   constructor(private credentials: Credentials) {}
+
+  setUrls(urls: Partial<GitHubAuth["urls"]>) {
+    this.urls = { ...this.urls, ...urls };
+  }
 
   generateAuthUrl(origin: string): string {
     const state = this.createState();
@@ -123,9 +127,3 @@ class GitHubAuth {
     return true;
   }
 }
-
-export const auth: GitHubAuth = new GitHubAuth({
-  scope: "read:user user:email",
-  client_id: Deno.env.get("GITHUB_CLIENT_ID") || "client_id",
-  client_secret: Deno.env.get("GITHUB_CLIENT_SECRET") || "client_secret",
-});
