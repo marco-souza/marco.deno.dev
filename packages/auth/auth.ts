@@ -124,7 +124,7 @@ class GitHubAuth {
   }
 }
 
-export const auth = new GitHubAuth({
+export const auth: GitHubAuth = new GitHubAuth({
   scope: "read:user user:email",
   client_id: Deno.env.get("GITHUB_CLIENT_ID") || "client_id",
   client_secret: Deno.env.get("GITHUB_CLIENT_SECRET") || "client_secret",

@@ -1,6 +1,7 @@
 {
   "name": "@m3o/auth",
   "version": "0.1.0",
+  "license": "MIT",
   "exports": "./auth.ts",
   "tasks": {
     "dev": "deno run --watch -A main.ts",
