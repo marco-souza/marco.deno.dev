@@ -1,6 +1,7 @@
 {
   "name": "@m3o/errors",
   "version": "0.1.0",
+  "license": "MIT",
   "exports": "./main.ts",
   "tasks": {
     "dev": "deno run --watch -A main.ts",
