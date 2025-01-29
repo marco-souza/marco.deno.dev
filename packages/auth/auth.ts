@@ -130,7 +130,7 @@ export class GitHubAuth {
 
   async fetchUser(
     accessToken: string,
-    username = "",
+    username: string,
   ): Promise<GithubProfile> {
     const userUrl = `https://api.github.com/users/${username}`;
     const response = await fetch(userUrl, {
