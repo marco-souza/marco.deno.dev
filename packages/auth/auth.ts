@@ -112,10 +112,24 @@ export class GitHubAuth {
     return await this.requestAccessToken(JSON.stringify(body));
   }
 
+  async fetchAuthenticatedUser(
+    accessToken: string,
+  ): Promise<AuthenticatedProfile> {
+    const response = await fetch("https://api.github.com/users/", {
+      headers: {
+        Authorization: `token ${accessToken}`,
+      },
+    });
+
+    assert(response.ok, `fetch error: Status code: ${response.status}`);
+
+    return await response.json();
+  }
+
   async fetchUser(
     accessToken: string,
-    username = "me",
-  ): Promise<GithubUserResponse> {
+    username = "",
+  ): Promise<GithubProfile> {
     const userUrl = `https://api.github.com/users/${username}`;
     const response = await fetch(userUrl, {
       headers: {
