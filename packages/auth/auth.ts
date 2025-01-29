@@ -26,11 +26,10 @@ export class GitHubAuth {
     "User-Agent": "@m3o/auth",
   };
 
-  constructor(
-    private credentials: Credentials,
-    extraHeaders: Headers = new Headers(),
-  ) {
-    this.headers = { ...this.headers, ...extraHeaders };
+  constructor(private credentials: Credentials) {}
+
+  setHeaders(headers: Headers) {
+    this.headers = { ...this.headers, ...headers };
   }
 
   setUrls(urls: Partial<GitHubAuth["urls"]>) {
