@@ -1,6 +1,6 @@
 {
   "name": "@m3o/auth",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "license": "MIT",
   "exports": "./auth.ts",
   "tasks": {

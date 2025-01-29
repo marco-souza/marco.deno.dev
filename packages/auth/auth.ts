@@ -109,6 +109,8 @@ export class GitHubAuth {
   async fetchAccessToken(code: string): Promise<AccessToken> {
     const body: FetchAccessToken = { ...this.credentials, code };
 
+    console.log(body);
+
     return await this.requestAccessToken(JSON.stringify(body));
   }
 
@@ -122,6 +124,8 @@ export class GitHubAuth {
         Authorization: `token ${accessToken}`,
       },
     });
+
+    console.log(response);
 
     assert(response.ok, `fetch error: Status code: ${response.status}`);
 
@@ -138,6 +142,8 @@ export class GitHubAuth {
         Authorization: `token ${accessToken}`,
       },
     });
+
+    console.log(response);
 
     assert(response.ok, `fetch error: Status code: ${response.status}`);
 
