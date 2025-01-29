@@ -123,7 +123,7 @@ export class GitHubAuth {
       },
     });
 
-    assert(response.ok, `fetch error: Status code: ${response.status}`);
+    assert(!response.ok, `fetch error: Status code: ${response.status}`);
 
     return await response.json();
   }
