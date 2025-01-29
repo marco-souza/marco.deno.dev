@@ -26,7 +26,9 @@ export class GitHubAuth {
     "User-Agent": "@m3o/auth",
   };
 
-  constructor(private credentials: Credentials) {}
+  constructor(private credentials: Credentials, extraHeaders = new Headers()) {
+    this.headers = { ...this.headers, ...extraHeaders };
+  }
 
   setUrls(urls: Partial<GitHubAuth["urls"]>) {
     this.urls = { ...this.urls, ...urls };
@@ -61,6 +63,7 @@ export class GitHubAuth {
 
     const response = await fetch("https://api.github.com/user", {
       headers: {
+        ...this.headers,
         Authorization: `token ${accessToken}`,
       },
     });
@@ -84,6 +87,7 @@ export class GitHubAuth {
     const userUrl = `https://api.github.com/users/${username}`;
     const response = await fetch(userUrl, {
       headers: {
+        ...this.headers,
         Authorization: `token ${accessToken}`,
       },
     });
