@@ -167,9 +167,9 @@ export class GitHubAuth {
 
     if (!response.ok || accessToken.error) {
       const error = accessToken as AccessTokenError;
-      const message = `fetch error: ${
-        error.error ?? `Status code: ${response.status}`
-      }`;
+      const message = `fetch error: ${JSON.stringify(error)}`;
+
+      console.error(error);
 
       raise(message);
     }
