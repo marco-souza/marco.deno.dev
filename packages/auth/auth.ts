@@ -30,6 +30,8 @@ type RefreshAccessToken = Credentials & {
   grant_type: "refresh_token";
 };
 
+type GithubUserResponse = Record<string, unknown>;
+
 export class GitHubAuth {
   urls = {
     signIn: "/api/auth",
@@ -67,15 +69,15 @@ export class GitHubAuth {
   }
 
   async fetchAccessToken(code: string): Promise<AccessToken> {
-    const body: FetchAccessToken = {
-      ...this.credentials,
-      code,
-    };
+    const body: FetchAccessToken = { ...this.credentials, code };
 
     return await this.requestAccessToken(JSON.stringify(body));
   }
 
-  async fetchUser(accessToken: string, username = "me") {
+  async fetchUser(
+    accessToken: string,
+    username = "me",
+  ): Promise<GithubUserResponse> {
     const userUrl = `https://api.github.com/users/${username}`;
     const response = await fetch(userUrl, {
       headers: {
