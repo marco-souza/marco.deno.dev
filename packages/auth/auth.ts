@@ -66,15 +66,26 @@ export class GitHubAuth {
     return oAuthUrl.toString();
   }
 
-  async fetchAccessToken(code: string, state: string): Promise<AccessToken> {
-    assert(this.isValidState(state), "Invalid state");
-
+  async fetchAccessToken(code: string): Promise<AccessToken> {
     const body: FetchAccessToken = {
       ...this.credentials,
       code,
     };
 
     return await this.requestAccessToken(JSON.stringify(body));
+  }
+
+  async fetchUser(accessToken: string, username = "me") {
+    const userUrl = `https://api.github.com/users/${username}`;
+    const response = await fetch(userUrl, {
+      headers: {
+        Authorization: `token ${accessToken}`,
+      },
+    });
+
+    assert(response.ok, `fetch error: Status code: ${response.status}`);
+
+    return await response.json();
   }
 
   async refreshAccessToken(refreshToken: string): Promise<AccessToken> {
@@ -119,7 +130,7 @@ export class GitHubAuth {
     return state;
   }
 
-  private isValidState(state: string): boolean {
+  isValidState(state: string): boolean {
     if (state.trim().length === 0) return false;
     if (!this.validStates.has(state)) return false;
 

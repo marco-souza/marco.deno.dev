@@ -1,4 +1,4 @@
-import { assertIsError, assertStringIncludes } from "@std/assert";
+import { assert, assertIsError, assertStringIncludes } from "@std/assert";
 import { GitHubAuth } from "./auth.ts";
 
 export const auth: GitHubAuth = new GitHubAuth({
@@ -20,21 +20,26 @@ Deno.test(function redirectUrlTest() {
 });
 
 const code = "code";
-const state = "any";
 
 Deno.test("fetch accessToken with invalid code", async () => {
-  await auth.fetchAccessToken(code, state).catch((error) => {
+  await auth.fetchAccessToken(code).catch((error) => {
     assertIsError(error);
   });
 });
 
-Deno.test("throw an error if state is invalid", async () => {
-  const invalidState = "";
+Deno.test("not throw an error if state is valid", () => {
+  const url = new URL(
+    // generate state
+    auth.generateAuthUrl("http://localhost:3000"),
+  );
 
-  await auth.fetchAccessToken(code, invalidState).catch((error) => {
-    assertIsError(error);
-    assertStringIncludes(error.message, "Invalid state");
-  });
+  const state = url.searchParams.get("state") || "";
+  assert(auth.isValidState(state), "State is invalid");
+});
+
+Deno.test("throw an error if state is invalid", () => {
+  const invalidState = "";
+  assert(!auth.isValidState(invalidState), "State is invalid");
 });
 
 Deno.test("throw an error if refresh an invalid token", async () => {
