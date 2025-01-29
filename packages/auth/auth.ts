@@ -115,7 +115,9 @@ export class GitHubAuth {
   async fetchAuthenticatedUser(
     accessToken: string,
   ): Promise<AuthenticatedProfile> {
-    const response = await fetch("https://api.github.com/users/", {
+    assert(accessToken.length > 0, "Invalid access token");
+
+    const response = await fetch("https://api.github.com/user", {
       headers: {
         Authorization: `token ${accessToken}`,
       },
