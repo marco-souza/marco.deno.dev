@@ -125,7 +125,12 @@ export class GitHubAuth {
       },
     });
 
-    console.log(response);
+    console.log({
+      accessToken,
+      status: response.status,
+      headers: response.headers,
+      body: await response.clone().text(),
+    });
 
     assert(response.ok, `fetch error: Status code: ${response.status}`);
 
@@ -143,7 +148,12 @@ export class GitHubAuth {
       },
     });
 
-    console.log(response);
+    console.log({
+      accessToken,
+      status: response.status,
+      headers: response.headers,
+      body: await response.clone().text(),
+    });
 
     assert(response.ok, `fetch error: Status code: ${response.status}`);
 
