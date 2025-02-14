@@ -6,6 +6,7 @@ on:
 
 jobs:
   warm:
+    if: false # disable job for now
     runs-on: ubuntu-latest
     steps:
       - name: Hit home page with 200 status code
