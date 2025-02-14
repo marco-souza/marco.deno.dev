@@ -44,6 +44,9 @@
     "encrypt": "pkg encrypt .env",
     "decrypt": "pkg decrypt .env.gpg",
 
+    "publish:auth": "cd packages/auth && deno publish",
+    "publish:errors": "cd packages/errors && deno publish",
+
     "init": {
       "description": "generate task",
       "command": "deno install",
