@@ -5,7 +5,7 @@ export const time = {
   MINUTE: 60 * 1000,
   HOUR: 60 * 60 * 1000,
   DAY: 24 * 60 * 60 * 1000,
-};
+} as const;
 
 function contactEmail(email = "marco@tremtec.com") {
   const mailUrl = new URL(`mailto:${email}`);
