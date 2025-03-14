@@ -1,10 +1,11 @@
 import type { Hono } from "hono";
 import { configs } from "~/constants.ts";
-import { raise } from "@m3o/errors";
+import { raise } from "#/packages/errors/main.ts";
 import { github } from "~/services/github.ts";
 import { AuthenticatedUserProfile } from "~/components/AuthenticatedUserProfile.tsx";
-import { db } from "~/services/db.ts";
 import { AUTH_KEYS, type AuthenticatedContext } from "~/shared/auth.ts";
+import { users } from "~/repositories/users.ts";
+import { vaults } from "~/repositories/vaults.ts";
 
 export function defineRoutes(
   routes: Hono<{ Variables: AuthenticatedContext }>,
@@ -82,9 +83,7 @@ export function defineRoutes(
     const profile = await github.fetchAuthenticatedProfile(authTokenKey);
 
     // create user
-    const { id } = db.users.genSocialId("github", profile.login);
-    const user = await db.users.create({
-      id,
+    const user = await users.insertOne({
       name: profile.name,
       username: profile.login,
       email: profile.email,
@@ -98,7 +97,7 @@ export function defineRoutes(
     const name = formData.get("name")?.toString() ??
       raise("Vault name is required");
 
-    const vault = await db.vaults.create({
+    const vault = await vaults.insertOne({
       name: name,
       owner: profile.login, // NOTE: we can only use this because we are not using multiple social auths
       notes: {

@@ -2,8 +2,8 @@ import { createMiddleware } from "hono/factory";
 import { getCookie } from "hono/cookie";
 import { configs } from "~/constants.ts";
 import { github } from "~/services/github.ts";
-import { db } from "~/services/db.ts";
 import { ALLOWED_USERS, auth, AUTH_KEYS } from "~/shared/auth.ts";
+import { users } from "~/repositories/users.ts";
 
 export const authMiddleware = createMiddleware(async (ctx, next) => {
   const authTokenKey = getCookie(ctx, AUTH_KEYS.authToken);
@@ -39,8 +39,7 @@ export const authMiddleware = createMiddleware(async (ctx, next) => {
   ctx.set("profile", profile);
 
   // check if user is registered
-  const id = db.users.genSocialId("github", profile.login);
-  const isUserRegistered = await db.users.find(id.id);
+  const isUserRegistered = await users.findOne({ username: profile.login });
   const isUserOnboarding = ctx.req.url.includes(configs.navigation.onboarding);
 
   if (!isUserRegistered && !isUserOnboarding) {

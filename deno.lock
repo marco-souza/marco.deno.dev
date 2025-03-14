@@ -1,6 +1,7 @@
 {
   "version": "4",
   "specifiers": {
+    "jsr:@copilotz/dengo@~0.1.9": "0.1.9",
     "jsr:@hono/hono@^4.6.11": "4.6.13",
     "jsr:@hono/hono@^4.6.12": "4.6.13",
     "jsr:@libs/markdown@^2.0.2": "2.0.2",
@@ -12,6 +13,7 @@
     "jsr:@std/yaml@1": "1.0.5",
     "jsr:@std/yaml@^1.0.5": "1.0.5",
     "npm:@types/node@*": "22.5.4",
+    "npm:bson@6.10.2": "6.10.2",
     "npm:daisyui@^4.12.14": "4.12.14",
     "npm:hastscript@9": "9.0.0",
     "npm:playwright@^1.50.0": "1.50.0",
@@ -42,6 +44,12 @@
     "npm:unist-util-visit@5": "5.0.0"
   },
   "jsr": {
+    "@copilotz/dengo@0.1.9": {
+      "integrity": "e400240cc210f5d48af2861d7f4b80e262a1b0a84af2f58df0df064735d0e8cf",
+      "dependencies": [
+        "npm:bson"
+      ]
+    },
     "@hono/hono@4.6.13": {
       "integrity": "198970fc6facf71a88ee57aa1ed32143b56bcb0f842fa965ca3ee7d6fdd21a8e"
     },
@@ -515,6 +523,9 @@
     },
     "browser-assert@1.2.1": {
       "integrity": "sha512-nfulgvOR6S4gt9UKCeGJOuSGBPGiFT6oQ/2UBnvTY/5aQ1PnksW72fhZkM30DzoRRv2WpwZf1vHHEr3mtuXIWQ=="
+    },
+    "bson@6.10.2": {
+      "integrity": "sha512-5afhLTjqDSA3akH56E+/2J6kTDuSIlBxyXPdQslj9hcIgOUE378xdOfZvC/9q3LifJNI6KR/juZ+d0NRNYBwXg=="
     },
     "camelcase-css@2.0.1": {
       "integrity": "sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA=="
@@ -2915,6 +2926,7 @@
   },
   "workspace": {
     "dependencies": [
+      "jsr:@copilotz/dengo@~0.1.9",
       "jsr:@hono/hono@^4.6.12",
       "jsr:@libs/markdown@^2.0.2",
       "jsr:@std/dotenv@~0.225.2",

@@ -1,8 +1,9 @@
 import type { Hono } from "hono";
 import * as constantsTs from "~/constants.ts";
 import type { AuthenticatedContext } from "~/shared/auth.ts";
-import { db } from "~/services/db.ts";
 import { auth } from "~/shared/auth.ts";
+import { users } from "~/repositories/users.ts";
+import { z } from "zod";
 
 export function defineRoutes(
   routes: Hono<{ Variables: AuthenticatedContext }>,
@@ -70,7 +71,12 @@ export function defineRoutes(
   routes.delete("/user", async (ctx) => {
     const profile = ctx.get("profile");
 
-    await db.users.delete(db.users.genSocialId("github", profile.login).id);
+    const username = z.string()
+      .min(3)
+      .max(30)
+      .parse(profile.login);
+
+    await users.deleteOne({ username });
 
     // htmx redirect
     ctx.header("hx-redirect", auth.urls.signOut);

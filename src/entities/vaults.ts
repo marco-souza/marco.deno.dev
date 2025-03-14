@@ -9,10 +9,4 @@ export const VaultSchema = z.object({
   }))),
 });
 
-export const defineVaultKey = (
-  owner: string,
-  name: string,
-) => ["vaults", owner, name] as const;
-
-export type VaultKey = ReturnType<typeof defineVaultKey>;
-export type Vault = z.infer<typeof VaultSchema>;
+export type VaultEntity = z.infer<typeof VaultSchema>;

@@ -1,14 +1,19 @@
 import type { Hono } from "hono";
 import { configs } from "~/constants.ts";
-import { db } from "~/services/db.ts";
 import type { AuthenticatedContext } from "~/shared/auth.ts";
+import { vaults } from "~/repositories/vaults.ts";
 
 export function defineRoutes(
   routes: Hono<{ Variables: AuthenticatedContext }>,
 ) {
   routes.get(configs.navigation.dashboard, async (ctx) => {
     const profile = ctx.get("profile");
-    const vaults = await db.vaults.findAllByOwner(profile.login);
+    const userVaults = await vaults.find({ owner: profile.login })
+    const vaultsArray = await userVaults.toArray()
+
+    if (!vaultsArray.length) {
+      return ctx.render(<p> Add a new vault </p>)
+    }
 
     return ctx.render(
       <>
@@ -21,7 +26,7 @@ export function defineRoutes(
         </div>
 
         <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
-          {vaults.map((vault) => (
+          {vaultsArray.map((vault) => (
             <div
               class="card card-bordered shadown-md hover:shadow-zinc-200"
               key={vault.name}
