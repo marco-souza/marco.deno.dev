@@ -11,7 +11,7 @@ export type NavBarProps = {
 };
 
 export const NavBar = ({ theme, isAuthenticated }: NavBarProps) => (
-  <div class="navbar">
+  <div class="navbar skip-printer">
     <div class="navbar-start">
       <Menu isAuthenticated={isAuthenticated} />
     </div>
