@@ -14,11 +14,12 @@ It's accessible at:
 
 ## Technologies Used
 
-- **Deno**: A modern runtime for JavaScript and TypeScript.
-- **Hono**: A small, simple, and ultrafast web framework for Deno.
-- **HTMX**: A library that allows you to access AJAX, CSS Transitions, WebSockets, and Server-Sent Events directly in HTML.
-- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
-- **DaisyUI**: A component library for Tailwind CSS.
+- [**Deno**](https://github.com/denoland/deno): A modern runtime for JavaScript and TypeScript.
+- [**Hono**](https://github.com/honojs/hono): A small, simple, and ultrafast web framework for Deno.
+- [**Dengo**](https://github.com/copilotzhq/dengo): MongoDB-compatible API for Deno KV
+- [**HTMX**](https://github.com/bigskysoftware/htmx): A library that allows you to access AJAX, CSS Transitions, WebSockets, and Server-Sent Events directly in HTML.
+- [**Tailwind CSS**](https://github.com/tailwindlabs/tailwindcss): A utility-first CSS framework for rapid UI development.
+- [**DaisyUI**](https://github.com/saadeghi/daisyui): A component library for Tailwind CSS.
 
 ## Installation and Setup
 
