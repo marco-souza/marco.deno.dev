@@ -1,4 +1,4 @@
-import type { ObjectId, Document } from "@copilotz/dengo";
+import type { Document, ObjectId } from "@copilotz/dengo";
 import { db } from "~/repositories/db.ts";
 import type { UserEntity } from "~/entities/users.ts";
 

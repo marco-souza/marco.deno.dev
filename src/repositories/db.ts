@@ -1,3 +1,3 @@
-import { Database } from "@copilotz/dengo"
+import { Database } from "@copilotz/dengo";
 
-export const db = new Database(await Deno.openKv())
+export const db = new Database(await Deno.openKv());

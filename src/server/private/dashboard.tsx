@@ -8,11 +8,11 @@ export function defineRoutes(
 ) {
   routes.get(configs.navigation.dashboard, async (ctx) => {
     const profile = ctx.get("profile");
-    const userVaults = await vaults.find({ owner: profile.login })
-    const vaultsArray = await userVaults.toArray()
+    const userVaults = await vaults.find({ owner: profile.login });
+    const vaultsArray = await userVaults.toArray();
 
     if (!vaultsArray.length) {
-      return ctx.render(<p> Add a new vault </p>)
+      return ctx.render(<p>Add a new vault</p>);
     }
 
     return ctx.render(
@@ -25,7 +25,7 @@ export function defineRoutes(
           </p>
         </div>
 
-        <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-8">
+        <div class="grid gap-4 md:grid-cols-2 md:gap-8">
           {vaultsArray.map((vault) => (
             <div
               class="card card-bordered shadown-md hover:shadow-zinc-200"

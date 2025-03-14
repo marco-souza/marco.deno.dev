@@ -16,7 +16,7 @@ export function defineRoutes(
     console.log("new user", { profile });
 
     return ctx.render(
-      <div class="grid grid-cols-1 gap-4 md:grid-cols-4 md:gap-8">
+      <div class="grid gap-4 lg:grid-cols-4 md:gap-8">
         <aside class="md:col-span-1 flex flex-col gap-4">
           <h1 class="text-4xl">Onboarding</h1>
 
