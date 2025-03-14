@@ -12,21 +12,24 @@ const ProfileSideBar = ({ profile }: Props) => (
     <div class="flex flex-col gap-8 sticky top-10">
       <GitHubProfileCard profile={profile} />
 
-      <a
-        href={configs.contact_me}
-        class="btn btn-outline btn-secondary hover:text-white hover:animate-pulse mx-4"
-      >
-        Let's have a Coffee ☕️
-      </a>
+      <div className="actions grid 2xl:grid-cols-2 md gap-4">
+        <a
+          href={configs.contact_me}
+          class="btn btn-outline btn-secondary hover:text-white hover:animate-pulse mx-4"
+        >
+          Let's grab a Coffee ☕️
+        </a>
 
-      <button
-        type="button"
-        href={configs.contact_me}
-        class="btn btn-outline hover:animate-pulse mx-4"
-        onClick={() => { globalThis.print(); }}
-      >
-        Print Resume 🖨️
-      </button>
+        <button
+          type="button"
+          href={configs.contact_me}
+          class="btn btn-outline hover:animate-pulse mx-4"
+          onClick={() => { globalThis.print(); }}
+        >
+          Print Resume 🖨️
+        </button>
+
+      </div>
     </div>
   </div>
 );
