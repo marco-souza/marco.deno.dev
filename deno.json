@@ -40,7 +40,13 @@
     "#/": "./"
   },
   "tasks": {
-    "fmt": "deno fmt && deno lint",
+    "hooks:install": "deno run --allow-read=deno.json,.git/hooks/ --allow-write=.git/hooks/ jsr:@hongminhee/deno-task-hooks",
+    "hooks:pre-commit": {
+      "description": "Run pre-commit hooks",
+      "dependencies": ["fmt"]
+    },
+
+    "fmt": "deno fmt ./* && deno lint ./*",
     "tw-tokens": "deno run -A npm:@tailwindcss/cli -i ./static/css/styles.css -o ./static/css/styles.min.css",
 
     "encrypt": "pkg encrypt .env",
@@ -52,7 +58,7 @@
     "init": {
       "description": "generate task",
       "command": "deno install",
-      "dependencies": ["tw-tokens"]
+      "dependencies": ["tw-tokens", "hooks:install"]
     },
 
     "release": {
