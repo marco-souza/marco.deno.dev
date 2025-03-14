@@ -38,7 +38,7 @@ export const GitHubProfileView: FC<Props> = (
             href={configs.contact_me}
             class="btn btn-outline text-pink-400 hover:text-white hover:bg-pink-400 hover:animate-zoom-in"
           >
-            Let's have a Coffee ☕️
+            Let's grab a Coffee ☕️
           </a>
           <a
             href="/resume"

@@ -103,7 +103,7 @@ function partialRouter(): Hono {
     const content = await github.fetchResume();
 
     return ctx.render(
-      <div class="markdown-body card shadow-md full-printer-page">
+      <div class="markdown-body card shadow-md full-printer-page w-full">
         <div class="card-body" dangerouslySetInnerHTML={{ __html: content }} />
       </div>,
     );
