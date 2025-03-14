@@ -20,6 +20,8 @@ It's accessible at:
 - [**HTMX**](https://github.com/bigskysoftware/htmx): A library that allows you to access AJAX, CSS Transitions, WebSockets, and Server-Sent Events directly in HTML.
 - [**Tailwind CSS**](https://github.com/tailwindlabs/tailwindcss): A utility-first CSS framework for rapid UI development.
 - [**DaisyUI**](https://github.com/saadeghi/daisyui): A component library for Tailwind CSS.
+- [**direnv**](https://github.com/direnv/direnv): An environment switcher for the shell, allowing project-specific environment variables.
+- [**GPG**](https://gnupg.org/): A complete and free implementation of the OpenPGP standard for encrypting and signing data and communications.
 
 ## Installation and Setup
 
