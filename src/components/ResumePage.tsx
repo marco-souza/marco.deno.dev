@@ -8,8 +8,8 @@ type Props = PropsWithChildren<{
 }>;
 
 const ProfileSideBar = ({ profile }: Props) => (
-  <div class="px-8 mx-auto w-full skip-printer">
-    <div class="flex flex-col gap-10 my-8 xl:my-16 2xl:my-32 items-center text-center">
+  <div class="mx-auto w-full skip-printer">
+    <div class="flex flex-col gap-10 my-8 xl:my-16 2xl:my-32 items-center text-center sticky top-0">
       <GitHubProfileCard profile={profile} />
 
       <div class="actions grid 2xl:grid-cols-2 gap-8 w-full">
