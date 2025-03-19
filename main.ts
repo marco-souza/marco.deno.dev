@@ -1,9 +1,9 @@
 import "@std/dotenv/load";
 
-import { start } from "~/server/server.ts";
+import { setup } from "~/server/server.ts";
 
 if (import.meta.main) {
-  start().catch((err) => {
-    console.error("E: failed to start server", err);
-  });
+  const app = await setup();
+
+  Deno.serve(app.fetch);
 }

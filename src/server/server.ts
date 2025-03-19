@@ -9,7 +9,7 @@ import { showRoutes } from "hono/dev";
 import { logger } from "hono/logger";
 import { errorsMiddleware } from "~/middlewares/errors.tsx";
 
-export async function start() {
+export async function setup() {
   const app = new Hono();
 
   await generateTailwindTokens();
@@ -23,12 +23,17 @@ export async function start() {
   registerAuthRoutes(app);
   registerPrivateRoutes(app);
 
+  showRoutes(app);
+
+  // cron
+  setupCron();
+
+  return app;
+}
+
+function setupCron() {
   // register cron jobs
   Deno.cron("tick", "* * * * *", () => {
     console.log("Cron job tick");
   });
-
-  Deno.serve(app.fetch);
-
-  showRoutes(app);
 }
