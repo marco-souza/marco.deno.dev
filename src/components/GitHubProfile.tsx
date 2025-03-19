@@ -33,7 +33,7 @@ export const GitHubProfileView: FC<Props> = (
       <div class="flex flex-col gap-10 my-8 xl:my-16 2xl:my-32 items-center text-center">
         <GitHubProfileCard profile={profile} />
 
-        <div class="actions grid 2xl:grid-cols-2 gap-8 w-full">
+        <div class="actions grid 2xl:grid-cols-2 gap-8 w-full md:grid-cols-2">
           <a
             href={configs.contact_me}
             class="btn btn-outline text-pink-400 hover:text-white hover:bg-pink-400 hover:animate-zoom-in"
