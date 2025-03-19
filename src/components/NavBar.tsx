@@ -60,6 +60,14 @@ const Menu = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
             <a href={link.href}>{link.name}</a>
           </li>
         ))}
+
+        <button
+          type="button"
+          className="btn btn-ghost"
+          onclick='() => registerServiceWorker("/sw.js")'
+        >
+          Enable notifications
+        </button>
       </ul>
     </div>
   );
