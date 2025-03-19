@@ -19,7 +19,7 @@ self.addEventListener("install", onInstall);
 
 self.addEventListener("activate", onActivate);
 
-// self.addEventListener("fetch", onFetch);
+self.addEventListener("fetch", onFetch);
 
 const channel = new BroadcastChannel("sw-messages");
 
