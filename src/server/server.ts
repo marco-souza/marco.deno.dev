@@ -7,6 +7,7 @@ import { generateTailwindTokens } from "~/server/tailwind.ts";
 
 import { showRoutes } from "hono/dev";
 import { logger } from "hono/logger";
+import { etag } from "hono/etag";
 import { errorsMiddleware } from "~/middlewares/errors.tsx";
 
 export async function setup() {
@@ -17,6 +18,7 @@ export async function setup() {
 
   app.use(logger());
   app.use(errorsMiddleware);
+  app.use(etag());
 
   // setup routes
   registerPageRoutes(app);
