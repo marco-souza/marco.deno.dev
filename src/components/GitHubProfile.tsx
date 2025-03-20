@@ -29,7 +29,7 @@ export const GitHubProfileView: FC<Props> = (
   { profile },
 ) => {
   return (
-    <div class="max-w-2xl px-8 mx-auto">
+    <div class="max-w-2xl mx-auto">
       <div class="flex flex-col gap-10 my-8 xl:my-16 2xl:my-32 items-center text-center">
         <GitHubProfileCard profile={profile} />
 
