@@ -2,9 +2,9 @@
 
 ## 🎉 Feature: add music to my playlist
 
-- [ ] Create a page with form to add music
-- [ ] Enqueue message
-- [ ] Listen queue messages and print them for now
+- [x] Create a page with form to add music
+- [x] Enqueue message
+- [x] Listen queue messages and print them for now
 
 ## 💡 Idea: Investment Dashboard
 
