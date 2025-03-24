@@ -1,3 +1,4 @@
 import { Database } from "@copilotz/dengo";
+import { kv } from "~/repositories/kv.ts";
 
-export const db = new Database(await Deno.openKv());
+export const db = new Database(kv);
