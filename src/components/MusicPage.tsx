@@ -47,7 +47,7 @@ export function MusicSuccessPage() {
     <div class="grid gap-4">
       <h1 class="text-2xl">Add a music to my DJ playlist</h1>
 
-      <p>Downloaded successfully started! ✅</p>
+      <p>Download successfully started! ✅</p>
     </div>
   );
 }

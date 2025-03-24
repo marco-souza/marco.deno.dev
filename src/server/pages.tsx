@@ -19,8 +19,8 @@ import { getCookie } from "hono/cookie";
 import { AUTH_KEYS } from "~/shared/auth.ts";
 import { MusicPage, MusicSuccessPage } from "~/components/MusicPage.tsx";
 import { assert } from "#/packages/errors/main.ts";
-import { kv } from "~/repositories/kv.ts";
 import { configs } from "~/constants.ts";
+import queue from "~/repositories/queue.ts";
 
 export function registerPageRoutes(app: Hono) {
   const partials = partialRouter();
@@ -112,7 +112,10 @@ function pageRouter(): Hono {
     );
     assert(IS_YOUTUBE_OR_YT_MUSIC_RE.test(link), "Invalid link");
 
-    const res = await kv.enqueue({ type: "download-music", link });
+    const res = await queue.postMessage({
+      type: "download-music",
+      payload: { link },
+    });
 
     console.log({ res });
 
