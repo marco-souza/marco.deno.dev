@@ -43,5 +43,7 @@ export const configs = {
     dashboard: "/dashboard",
     settings: "/user/settings",
     onboarding: "/user/onboarding",
+    music: "/music",
+    downloadMusic: "/music/download",
   },
 };
