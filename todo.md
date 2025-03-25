@@ -1,4 +1,37 @@
-# Checklists
+# Cureently working on
+
+## 🎉 Feature: add music to my playlist
+
+- [x] Create a page with form to add music
+- [x] Enqueue message
+- [x] Listen queue messages and print them for now
+
+## 💡 Idea: Investment Dashboard
+
+- [ ] Show current CDI 
+- [ ] Simulate Profit
+- [ ] Compare LCA/LCA/CDB
+
+## 🎉 Feature: Price Watcher
+
+- [ ] Create a page for listing records
+- [ ] Create a page for listing logs of a record 
+- [ ] Watch a price (add link, selector, interval)
+- [ ] Delete a watcher creataed
+- [ ] Publish results to a queue to process later
+- [ ] Notify if a price has changed
+- [ ] ...
+
+# Backlog
+
+## Feature: Web notes
+
+- [x] create a vault for taking notes
+- [x] List all vaults on the dashboard by vault
+- [ ] Create a new note
+- [ ] Create a vault
+- [ ] Delete a note
+- [ ] [api] create a note from a tampermonkey
 
 ## ✅ Milestone 1: Basic Auth
 
@@ -42,15 +75,6 @@
   - [x] implement partials - set initial values
   - [x] implement partials - add error handling
   - [ ] implement success feedback
-
-### 2.1 Web notes
-
-- [x] create a vault for taking notes
-- [x] List all vaults on the dashboard by vault
-- [ ] Create a new note
-- [ ] Create a vault
-- [ ] Delete a note
-- [ ] [api] create a note from a tampermonkey
 
 ## Milestone 3: User Management
 

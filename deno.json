@@ -71,8 +71,14 @@
       "description": "Start the dev server",
       "command": "deno run -REN --allow-run='deno' --allow-sys --watch main.ts",
       "dependencies": ["init", "fmt"]
+    },
+
+    "download-queue": {
+      "description": "Run the download consumer",
+      "command": "deno run -A ./scripts/consume-download-queue.ts"
     }
   },
+
   "compilerOptions": {
     "jsx": "precompile",
     "lib": [
