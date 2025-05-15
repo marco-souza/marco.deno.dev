@@ -1,23 +1,10 @@
-import { z } from "zod";
 import { configs, time } from "~/constants.ts";
 import { markdownToHTML } from "~/services/markdown.ts";
 import { assert } from "@m3o/errors";
-
-const GitHubProfileSchema = z.object({
-  bio: z.string(),
-  name: z.string(),
-  login: z.string(),
-  avatar_url: z.string(),
-});
-
-export const GitHubAuthenticatedProfileSchema = GitHubProfileSchema.extend({
-  email: z.string(),
-});
-
-export type GitHubProfile = z.infer<typeof GitHubProfileSchema>;
-export type GitHubAuthenticatedProfile = z.infer<
-  typeof GitHubAuthenticatedProfileSchema
->;
+import {
+  GitHubAuthenticatedProfileSchema,
+  GitHubProfileSchema,
+} from "../shared/auth.ts";
 
 const db = await Deno.openKv();
 

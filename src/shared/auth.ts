@@ -1,5 +1,21 @@
-import type { GitHubAuthenticatedProfile } from "~/services/github.ts";
+import { z } from "zod";
 import { GitHubAuth } from "@m3o/auth";
+
+export const GitHubProfileSchema = z.object({
+  bio: z.string(),
+  name: z.string(),
+  login: z.string(),
+  avatar_url: z.string(),
+});
+
+export const GitHubAuthenticatedProfileSchema = GitHubProfileSchema.extend({
+  email: z.string(),
+});
+
+export type GitHubProfile = z.infer<typeof GitHubProfileSchema>;
+export type GitHubAuthenticatedProfile = z.infer<
+  typeof GitHubAuthenticatedProfileSchema
+>;
 
 export const auth = new GitHubAuth({
   scope: "read:user user:email",
