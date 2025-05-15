@@ -27,6 +27,7 @@
   "imports": {
     "@copilotz/dengo": "jsr:@copilotz/dengo@^0.1.9",
     "@libs/markdown": "jsr:@libs/markdown@^2.0.2",
+    "@modelcontextprotocol/sdk": "npm:@modelcontextprotocol/sdk@^1.11.3",
     "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
     "@std/yaml": "jsr:@std/yaml@^1.0.5",
     "daisyui": "npm:daisyui@^5.0.4",
