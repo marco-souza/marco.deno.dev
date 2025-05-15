@@ -30,6 +30,8 @@
     "@modelcontextprotocol/sdk": "npm:@modelcontextprotocol/sdk@^1.11.3",
     "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
     "@std/yaml": "jsr:@std/yaml@^1.0.5",
+    "cheerio": "npm:cheerio@^1.0.0",
+    "cherio": "npm:cherio@^1.0.0-rc.2",
     "daisyui": "npm:daisyui@^5.0.4",
     "hono": "jsr:@hono/hono@^4.6.12",
     "playwright": "npm:playwright@^1.50.0",
