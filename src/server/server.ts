@@ -38,11 +38,11 @@ export async function setup() {
 }
 
 function setupCron() {
-  // INFO: run Mon,Wed,Thu at 8:00 AM
-  Deno.cron("Bom dia", "0 8 * * 1,3,4", async () => {
+  // INFO: Mon,Wed,Thu at 8:00 AM
+  Deno.cron("PodCodar: Good Morning message", "0 8 * * 1,3,4", async () => {
     const gif = await fetchRandomGif("bom dia good morning");
     await sendMessageToChannel("goodMorning", gif);
 
-    console.log("Cron job: Bom dia executed", { gif });
+    console.log("Cron job: executed", { gif });
   });
 }
