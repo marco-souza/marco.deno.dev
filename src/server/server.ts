@@ -8,6 +8,7 @@ import { generateTailwindTokens } from "~/server/tailwind.ts";
 import { showRoutes } from "hono/dev";
 import { logger } from "hono/logger";
 import { etag } from "hono/etag";
+
 import { errorsMiddleware } from "~/middlewares/errors.tsx";
 import { sendMessageToChannel } from "~/internal/discord.ts";
 import { fetchRandomGif } from "~/internal/giphy.ts";
@@ -40,10 +41,8 @@ function setupCron() {
   // INFO: run Mon,Wed,Thu at 8:00 AM
   Deno.cron("Bom dia", "0 8 * * 1,3,4", async () => {
     const gif = await fetchRandomGif("bom dia good morning");
-    const message = `Bom dia 🌞\n${gif}`;
+    await sendMessageToChannel("goodMorning", gif);
 
-    await sendMessageToChannel("goodMorning", message);
-
-    console.log("Cron job: Bom dia executed", { message });
+    console.log("Cron job: Bom dia executed", { gif });
   });
 }
