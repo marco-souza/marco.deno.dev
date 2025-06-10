@@ -9,7 +9,8 @@ import { showRoutes } from "hono/dev";
 import { logger } from "hono/logger";
 import { etag } from "hono/etag";
 import { errorsMiddleware } from "~/middlewares/errors.tsx";
-import { config, discord, sendMessageToChannel } from "~/internal/discord.ts";
+import { sendMessageToChannel } from "~/internal/discord.ts";
+import { fetchRandomGif } from "~/internal/giphy.ts";
 
 export async function setup() {
   const app = new Hono();
@@ -32,18 +33,17 @@ export async function setup() {
   setupCron();
 
   // setup discord
-  await sendMessageToChannel(
-    discord,
-    config.channelIdMap.debug,
-    "Server started successfully!",
-  );
-
   return app;
 }
 
 function setupCron() {
-  // register cron jobs
-  Deno.cron("tick", "* * * * *", () => {
-    console.log("Cron job tick");
+  // INFO: run Mon,Wed,Thu at 8:00 AM
+  Deno.cron("Bom dia", "0 8 * * 1,3,4", async () => {
+    const gif = await fetchRandomGif("bom dia good morning");
+    const message = `Bom dia 🌞\n${gif}`;
+
+    await sendMessageToChannel("debug", message);
+
+    console.log("Cron job: Bom dia executed", { message });
   });
 }
