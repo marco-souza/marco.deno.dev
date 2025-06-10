@@ -9,6 +9,7 @@ import { showRoutes } from "hono/dev";
 import { logger } from "hono/logger";
 import { etag } from "hono/etag";
 import { errorsMiddleware } from "~/middlewares/errors.tsx";
+import { config, discord, sendMessageToChannel } from "~/internal/discord.ts";
 
 export async function setup() {
   const app = new Hono();
@@ -29,6 +30,13 @@ export async function setup() {
 
   // cron
   setupCron();
+
+  // setup discord
+  await sendMessageToChannel(
+    discord,
+    config.channelIdMap.debug,
+    "Server started successfully!",
+  );
 
   return app;
 }
