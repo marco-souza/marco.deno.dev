@@ -37,3 +37,5 @@ jobs:
           project: "marco"
           entrypoint: "./main.ts"
           root: "."
+          
+          
