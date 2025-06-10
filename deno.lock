@@ -12,6 +12,7 @@
     "jsr:@std/text@1": "1.0.8",
     "jsr:@std/yaml@1": "1.0.5",
     "jsr:@std/yaml@^1.0.5": "1.0.5",
+    "npm:@giphy/js-fetch-api@^5.6.0": "5.6.0",
     "npm:@modelcontextprotocol/sdk@^1.11.3": "1.11.3_express@5.0.1_zod@3.24.3",
     "npm:@tailwindcss/cli@*": "4.0.14",
     "npm:@types/node@*": "22.5.4",
@@ -226,6 +227,23 @@
     },
     "@fortawesome/fontawesome-free@6.7.1": {
       "integrity": "sha512-ALIk/MOh5gYe1TG/ieS5mVUsk7VUIJTJKPMK9rFFqOgfp0Q3d5QiBXbcOMwUvs37fyZVCz46YjOE6IFeOAXCHA=="
+    },
+    "@giphy/js-fetch-api@5.6.0": {
+      "integrity": "sha512-hKZ7XZWGSzR29ISW1f6LWeVZ7GgWwhVuZprPMj3nrhHT6RkmkKghIP/yXKpWyhfTyAVgjeNGq0T/fAmGNKRvGQ==",
+      "dependencies": [
+        "@giphy/js-types",
+        "@giphy/js-util"
+      ]
+    },
+    "@giphy/js-types@5.1.0": {
+      "integrity": "sha512-BZYCDtYNRR7cUWkbDLB4wmm3qmWMsVCQdUiBNOfmZ3yAazCgygKJoDI/5Rq4CK5MBaOc5LVdF8viC2WtoBdaPA=="
+    },
+    "@giphy/js-util@5.2.0": {
+      "integrity": "sha512-Qt7pGh2cqiNmXLeWAgb459wK8+BuMLtIxTfg4ZksnPHPsLthiHT9hhzs2QhqUh7Pp/HOq+Cbv2etGDfnq+xiKA==",
+      "dependencies": [
+        "@giphy/js-types",
+        "uuid"
+      ]
     },
     "@iconify/types@2.0.0": {
       "integrity": "sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg=="
@@ -4065,6 +4083,7 @@
       "jsr:@libs/markdown@^2.0.2",
       "jsr:@std/dotenv@~0.225.2",
       "jsr:@std/yaml@^1.0.5",
+      "npm:@giphy/js-fetch-api@^5.6.0",
       "npm:@modelcontextprotocol/sdk@^1.11.3",
       "npm:cheerio@1",
       "npm:cherio@^1.0.0-rc.2",

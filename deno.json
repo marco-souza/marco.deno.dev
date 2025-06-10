@@ -26,6 +26,7 @@
   },
   "imports": {
     "@copilotz/dengo": "jsr:@copilotz/dengo@^0.1.9",
+    "@giphy/js-fetch-api": "npm:@giphy/js-fetch-api@^5.6.0",
     "@libs/markdown": "jsr:@libs/markdown@^2.0.2",
     "@modelcontextprotocol/sdk": "npm:@modelcontextprotocol/sdk@^1.11.3",
     "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
