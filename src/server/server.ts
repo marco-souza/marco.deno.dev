@@ -42,7 +42,7 @@ function setupCron() {
     const gif = await fetchRandomGif("bom dia good morning");
     const message = `Bom dia 🌞\n${gif}`;
 
-    await sendMessageToChannel("debug", message);
+    await sendMessageToChannel("goodMorning", message);
 
     console.log("Cron job: Bom dia executed", { message });
   });
