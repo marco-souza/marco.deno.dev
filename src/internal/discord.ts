@@ -14,27 +14,27 @@ const Config = z.object({
   appId: z.string(),
   clientId: z.string(),
   clientSecret: z.string(),
-  channelIdMap: z.record(z.string(), z.string()),
 });
 
-export const config = Config.parse({
+const config = Config.parse({
   token: Deno.env.get("DISCORD_BOT_TOKEN"),
   appId: Deno.env.get("DISCORD_APP_ID"),
   clientId: Deno.env.get("DISCORD_CLIENT_ID"),
   clientSecret: Deno.env.get("DISCORD_CLIENT_SECRET"),
-  channelIdMap: {
-    goodMorning: "1338883336084521053",
-    debug: "1243281325780107444",
-  },
 });
+
+const channelIdMap = {
+  goodMorning: "1338883336084521053",
+  debug: "1243281325780107444",
+} as const;
 
 // Function to send a message to a specific channel
 export async function sendMessageToChannel(
-  client: Client,
-  channelId: string,
+  channelName: keyof typeof channelIdMap,
   message: string,
 ): Promise<void> {
-  const channel = client.channels.cache.get(channelId);
+  const channelId = channelIdMap[channelName];
+  const channel = discord.channels.cache.get(channelId);
 
   if (!channel) {
     throw new Error(`Channel with ID ${channelId} not found.`);
