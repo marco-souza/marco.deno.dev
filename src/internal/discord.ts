@@ -34,7 +34,7 @@ export async function sendMessageToChannel(
   message: string,
 ): Promise<void> {
   const channelId = channelIdMap[channelName];
-  const channel = discord.channels.cache.get(channelId);
+  const channel = client.channels.cache.get(channelId);
 
   if (!channel) {
     throw new Error(`Channel with ID ${channelId} not found.`);
@@ -47,7 +47,7 @@ export async function sendMessageToChannel(
   await channel.send(message);
 }
 
-async function registerCommands(client: Client) {
+async function registerCommands() {
   if (client.application === null) return;
 
   const commands = [
@@ -65,16 +65,7 @@ async function registerCommands(client: Client) {
   console.log("Successfully reloaded application (/) commands.");
 }
 
-async function init() {
-  const client = new Client({
-    intents: [
-      GatewayIntentBits.Guilds,
-      GatewayIntentBits.GuildMessages,
-      GatewayIntentBits.MessageContent,
-      GatewayIntentBits.DirectMessages,
-    ],
-    partials: [Partials.User, Partials.Channel, Partials.Message],
-  });
+function registerEventHandlers() {
   client.on(Events.ClientReady, (readyClient) => {
     console.log(`Logged in as ${readyClient.user.tag}!`);
   });
@@ -107,13 +98,21 @@ async function init() {
       await interaction.reply("Pong!");
     }
   });
-
-  await client.login(config.token);
-
-  // register commands
-  await registerCommands(client);
-
-  return client;
 }
 
-export const discord = await init();
+const client = new Client({
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+    GatewayIntentBits.DirectMessages,
+  ],
+  partials: [Partials.User, Partials.Channel, Partials.Message],
+});
+
+await client.login(config.token);
+
+// register commands
+registerEventHandlers();
+
+await registerCommands();
