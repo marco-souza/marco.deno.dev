@@ -9,9 +9,15 @@ const config = Config.parse({
   token: Deno.env.get("GIPHY_TOKEN"),
 });
 
+class GiphyClient {
+  constructor(private gf: GiphyFetch) {}
+
+  async fetchRandomGif(tag: string) {
+    const { data } = await this.gf.random({ tag });
+    return data.url;
+  }
+}
+
 const gf = new GiphyFetch(config.token);
 
-export async function fetchRandomGif(tag: string) {
-  const { data } = await gf.random({ tag });
-  return data.url;
-}
+export const giphy = new GiphyClient(gf);
