@@ -89,7 +89,7 @@ class DiscordClient {
     });
 
     this.client.on(Events.InteractionCreate, async (interaction) => {
-      console.log(Events.InteractionCreate);
+      console.log(Events.InteractionCreate, { interaction });
       if (!interaction.isChatInputCommand()) return;
 
       if (interaction.commandName === "pong") {
