@@ -34,7 +34,12 @@ export async function sendMessageToChannel(
   message: string,
 ): Promise<void> {
   const channelId = channelIdMap[channelName];
-  const channel = client.channels.cache.get(channelId);
+
+  // fetch channel
+  let channel = client.channels.cache.get(channelId) ?? null;
+  if (!channel) {
+    channel = await client.channels.fetch(channelId);
+  }
 
   if (!channel) {
     throw new Error(`Channel with ID ${channelId} not found.`);
