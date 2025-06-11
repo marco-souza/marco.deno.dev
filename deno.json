@@ -32,7 +32,6 @@
     "@std/dotenv": "jsr:@std/dotenv@^0.225.2",
     "@std/yaml": "jsr:@std/yaml@^1.0.5",
     "cheerio": "npm:cheerio@^1.0.0",
-    "cherio": "npm:cherio@^1.0.0-rc.2",
     "daisyui": "npm:daisyui@^5.0.4",
     "discord.js": "npm:discord.js@^14.19.3",
     "hono": "jsr:@hono/hono@^4.6.12",
