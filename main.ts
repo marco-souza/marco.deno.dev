@@ -1,4 +1,5 @@
 import "@std/dotenv/load";
+import "~/internal/cronjobs.ts";
 
 import { setup } from "~/server/server.ts";
 

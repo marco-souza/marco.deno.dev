@@ -10,8 +10,6 @@ import { logger } from "hono/logger";
 import { etag } from "hono/etag";
 
 import { errorsMiddleware } from "~/middlewares/errors.tsx";
-import { sendMessageToChannel } from "~/internal/discord.ts";
-import { fetchRandomGif } from "~/internal/giphy.ts";
 
 export async function setup() {
   const app = new Hono();
@@ -30,18 +28,5 @@ export async function setup() {
 
   showRoutes(app);
 
-  // cron
-  setupCron();
-
   return app;
-}
-
-function setupCron() {
-  // INFO: Mon,Wed,Thu at 8:00 AM
-  Deno.cron("PodCodar: Good Morning message", "0 8 * * 1,3,4", async () => {
-    const gif = await fetchRandomGif("bom dia good morning");
-    await sendMessageToChannel("goodMorning", gif);
-
-    console.log("Cron job: executed", { gif });
-  });
 }
