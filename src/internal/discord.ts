@@ -57,7 +57,7 @@ async function registerCommands() {
 
   console.log("Started refreshing application (/) commands.");
 
-  const rest = new REST({ version: "10" }).setToken(client.token!);
+  const rest = new REST({ version: "10" }).setToken(config.token);
   await rest.put(Routes.applicationCommands(config.clientId), {
     body: commands,
   });
@@ -110,9 +110,8 @@ const client = new Client({
   partials: [Partials.User, Partials.Channel, Partials.Message],
 });
 
-await client.login(config.token);
+await registerCommands();
 
-// register commands
 registerEventHandlers();
 
-await registerCommands();
+await client.login(config.token);
