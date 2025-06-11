@@ -35,7 +35,7 @@ export async function sendMessageToChannel(
 ): Promise<void> {
   const channelId = channelIdMap[channelName];
 
-  // fetch channel
+  // get channel
   let channel = client.channels.cache.get(channelId) ?? null;
   if (!channel) {
     channel = await client.channels.fetch(channelId);
@@ -53,8 +53,6 @@ export async function sendMessageToChannel(
 }
 
 async function registerCommands() {
-  if (client.application === null) return;
-
   const commands = [
     { name: "ping", description: "Replies with Pong!" },
     { name: "pong", description: "Replies with Ping!" },
@@ -81,14 +79,16 @@ function registerEventHandlers() {
 
     // Simple conversational responses
     if (message.content.toLowerCase().includes("hello")) {
-      return await message.reply("Hi there! How can I assist you today?");
+      await message.reply("Hi there! How can I assist you today?");
     }
 
     if (message.content.toLowerCase().includes("bye")) {
-      return await message.reply("Goodbye! Have a great day!");
+      await message.reply("Goodbye! Have a great day!");
     }
 
-    message.reply("Sorry, I didn't quite get that. Can you please rephrase?");
+    await message.reply(
+      "Sorry, I didn't quite get that. Can you please rephrase?",
+    );
   });
 
   client.on(Events.InteractionCreate, async (interaction) => {
