@@ -2,7 +2,7 @@ import { sendMessageToChannel } from "./discord.ts";
 import { fetchRandomGif } from "./giphy.ts";
 
 // INFO: Mon,Wed,Thu at 8:00 AM
-Deno.cron("PodCodar: Good Morning message", "0 8 * * 1,3,4", async () => {
+Deno.cron("PodCodar - Good Morning message", "0 8 * * 1,3,4", async () => {
   try {
     const gif = await fetchRandomGif("bom dia good morning");
     await sendMessageToChannel("goodMorning", gif);
