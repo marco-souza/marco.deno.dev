@@ -80,10 +80,12 @@ function registerEventHandlers() {
     // Simple conversational responses
     if (message.content.toLowerCase().includes("hello")) {
       await message.reply("Hi there! How can I assist you today?");
+      return;
     }
 
     if (message.content.toLowerCase().includes("bye")) {
       await message.reply("Goodbye! Have a great day!");
+      return;
     }
 
     await message.reply(
