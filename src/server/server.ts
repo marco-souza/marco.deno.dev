@@ -33,7 +33,6 @@ export async function setup() {
   // cron
   setupCron();
 
-  // setup discord
   return app;
 }
 
