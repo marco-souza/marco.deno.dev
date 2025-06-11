@@ -29,15 +29,20 @@ const channelIdMap = {
 } as const;
 
 class DiscordClient {
+  private initialized = false;
   constructor(private client: Client) {}
 
   async init() {
+    if (this.initialized) return;
+
     this.registerEventHandlers();
 
     await Promise.all([
       this.registerCommands(),
       this.client.login(config.token),
     ]);
+
+    this.initialized = true;
   }
 
   async sendMessageToChannel(
