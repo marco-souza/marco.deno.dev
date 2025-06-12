@@ -1,8 +1,8 @@
 import { discord } from "./discord.ts";
 import { giphy } from "./giphy.ts";
 
-// INFO: Mon,Wed,Thu at 8:00 AM
-Deno.cron("PodCodar - Good Morning message", "0 8 * * 1,3,4", async () => {
+// INFO: Mon,Wed,Thu at 8:00 AM (UTM-3)
+Deno.cron("PodCodar - Good Morning message", "30 11 * * 1-5", async () => {
   try {
     // start up discord
     await discord.init();
