@@ -2,7 +2,7 @@ import { discord } from "./discord.ts";
 import { giphy } from "./giphy.ts";
 
 // INFO: Every weekday at 8:30 AM (UTM-3)
-Deno.cron("PodCodar - Good Morning message", "20 19 * * 2-6", async () => {
+Deno.cron("PodCodar - Good Morning message", "30 11 * * 2-6", async () => {
   try {
     // start up discord
     await discord.init();
