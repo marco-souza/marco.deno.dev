@@ -6,7 +6,7 @@ Welcome to my personal site! 🌟 This project is built using modern web technol
 - 🌍 [marco.deno.dev](https://marco.deno.dev)
 - 🌍 [marco.tremtec.deno.net](https://marco.tremtec.deno.net)
 
-![Build Status](https://img.shields.io/github/workflow/status/marco-souza/marco.deno.dev/CI)
+[![Deploy](https://github.com/marco-souza/marco.deno.dev/actions/workflows/deploy.yml/badge.svg)](https://github.com/marco-souza/marco.deno.dev/actions/workflows/deploy.yml)
 ![License](https://img.shields.io/github/license/marco-souza/marco.deno.dev)
 ![Deno](https://img.shields.io/badge/Deno-🦕-green)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-💅-blue)
