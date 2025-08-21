@@ -1,16 +1,18 @@
 # 🚀 My Personal Site
 
+[![Deploy](https://github.com/marco-souza/marco.deno.dev/actions/workflows/deploy.yml/badge.svg)](https://github.com/marco-souza/marco.deno.dev/actions/workflows/deploy.yml)
+![License](https://img.shields.io/github/license/marco-souza/marco.deno.dev)
+![Deno](https://img.shields.io/badge/Deno-🦕-green)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-💅-blue)
+![Hono](https://img.shields.io/badge/Hono-🔥-orange)
+
 Welcome to my personal site! 🌟 This project is built using modern web technologies to deliver a **fast**, **dynamic**, and **responsive** user experience.
 
 🌐 **Accessible at**:
 - 🌍 [marco.deno.dev](https://marco.deno.dev)
 - 🌍 [marco.tremtec.deno.net](https://marco.tremtec.deno.net)
 
-[![Deploy](https://github.com/marco-souza/marco.deno.dev/actions/workflows/deploy.yml/badge.svg)](https://github.com/marco-souza/marco.deno.dev/actions/workflows/deploy.yml)
-![License](https://img.shields.io/github/license/marco-souza/marco.deno.dev)
-![Deno](https://img.shields.io/badge/Deno-🦕-green)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-💅-blue)
-![Hono](https://img.shields.io/badge/Hono-🔥-orange)
+[![Deploy on Deno](https://deno.com/button)](https://app.deno.com/new?clone=https://github.com/marco-souza/marco.deno.dev)
 
 ## ✨ Features
 
