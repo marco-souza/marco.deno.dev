@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from "hono/jsx";
 import type { FC } from "hono/jsx";
-import type { GitHubAuthenticatedProfile } from "~/services/github.ts";
 import { defineMenuLinks } from "~/shared/links.tsx";
+import type { GitHubAuthenticatedProfile } from "~/shared/auth.ts";
 
 type Props = PropsWithChildren<{
   profile: GitHubAuthenticatedProfile;

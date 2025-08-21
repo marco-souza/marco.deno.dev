@@ -1,6 +1,6 @@
 import type { FC } from "hono/jsx";
-import type { GitHubProfile } from "~/services/github.ts";
 import { configs } from "~/constants.ts";
+import type { GitHubProfile } from "~/shared/auth.ts";
 
 type Props = {
   profile: GitHubProfile;

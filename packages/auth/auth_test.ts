@@ -22,7 +22,7 @@ Deno.test(function redirectUrlTest() {
 const code = "code";
 
 Deno.test("fetch accessToken with invalid code", async () => {
-  await auth.fetchAccessToken(code).catch((error) => {
+  await auth.fetchAccessToken(code, null).catch((error) => {
     assertIsError(error);
   });
 });

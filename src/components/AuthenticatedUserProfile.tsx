@@ -1,5 +1,5 @@
-import type { GitHubAuthenticatedProfile } from "~/services/github.ts";
 import { parseBioText } from "~/components/GitHubProfile.tsx";
+import type { GitHubAuthenticatedProfile } from "~/shared/auth.ts";
 
 export function AuthenticatedUserProfile(
   { profile }: { profile: GitHubAuthenticatedProfile },

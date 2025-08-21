@@ -50,10 +50,10 @@ export class GitHubAuth {
     return oAuthUrl.toString();
   }
 
-  async fetchAccessToken(code: string): Promise<AccessToken> {
+  async fetchAccessToken(code: string, state: unknown): Promise<AccessToken> {
     const body: FetchAccessToken = { ...this.credentials, code };
 
-    console.log(body);
+    console.log({ code, state });
 
     return await this.requestAccessToken(JSON.stringify(body));
   }
@@ -156,3 +156,5 @@ export class GitHubAuth {
     return true;
   }
 }
+
+export type { AccessToken };

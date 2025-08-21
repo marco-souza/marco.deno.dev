@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from "hono/jsx";
 import { GitHubProfileCard } from "~/components/GitHubProfile.tsx";
-import type { GitHubProfile } from "~/services/github.ts";
 import { configs } from "~/constants.ts";
+import type { GitHubProfile } from "~/shared/auth.ts";
 
 type Props = PropsWithChildren<{
   profile: GitHubProfile;
